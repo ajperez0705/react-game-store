@@ -1,0 +1,46 @@
+.container {
+  max-width: 1444px;
+  min-width: 1444px;
+  max-height: 222px;
+  min-height: 222px;
+  border-radius: 50px;
+  background-image: url("https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 54px;
+  margin-top: 56px;
+  margin-bottom: 24px;
+}
+
+.title {
+  padding: 16px 0;
+}
+
+.ctas {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.ctas .btn {
+}
+
+.hero-screenshots {
+  max-height: 133px;
+  max-width: 244px;
+  border-radius: 540px;
+  margin-left: 16px;
+}
+
+.right-panel {
+  display: flex;
+  align-items: center;
+}
+
+.completed {
+  margin-right: 24px;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import CartItem from "./CartItem";
 import styles from "./Cart.module.css";
-import PrimaryBtn from "../buttons/PrimaryBtn";
+import PrimaryBtn from "../organisms/buttons/PrimaryBtn";
 
 function Cart() {
   return (

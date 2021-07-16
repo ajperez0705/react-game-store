@@ -1,0 +1,15 @@
+.form {
+  padding: 24px 16px;
+  border-radius: 25px;
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  font-size: 24px;
+  min-width: 455px;
+  max-width: 455px;
+}
+
+.form::placeholder {
+  color: white;
+  font-size: 24px;
+}

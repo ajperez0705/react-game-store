@@ -1,0 +1,18 @@
+.hero {
+  margin-bottom: 24px;
+}
+
+.game-info {
+  margin-bottom: 40px;
+}
+
+.view-more-title {
+  text-align: center;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 0;
+}

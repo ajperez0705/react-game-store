@@ -1,0 +1,22 @@
+.section-title {
+  margin-bottom: 16px;
+  margin-left: 40px;
+}
+
+.hero {
+  margin-bottom: 48px;
+}
+
+.medium {
+  margin-bottom: 48px;
+}
+
+.small {
+  margin-bottom: 48px;
+}
+
+.card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
