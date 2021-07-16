@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.primary-container {
+  max-width: 844px;
+  min-width: 844px;
+  max-height: 409px;
+  min-height: 409px;
+  background-color: #25262c;
+  border-radius: 50px;
+  padding: 64px;
+}
+
+.secondary-container {
+  max-width: 293px;
+  min-width: 293px;
+  max-height: 409px;
+  min-height: 409px;
+  background-color: #25262c;
+  border-radius: 50px;
+  padding: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}

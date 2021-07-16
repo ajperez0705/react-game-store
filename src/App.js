@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import PrimaryBtn from "./organisms/buttons/PrimaryBtn";
+import SecondaryBtn from "./organisms/buttons/SecondaryBtn";
+import GameDetailContent from "./organisms/layout/GameDetailContent";
+import Header from "./organisms/layout/Header";
+import HeroProdCard from "./organisms/layout/HeroProdCard";
+import MediumProdCard from "./organisms/layout/MediumProdCard";
+import NavBar from "./organisms/layout/NavBar";
+import SmallProdCard from "./organisms/layout/SmallProdCard";
+
+// fetching from the backend
+// const videoGameTest = async () => {
+//   try {
+//     const response = await fetch("http://localhost:3000/");
+//     const data = await response.json();
+//     console.log(data, data.next);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <GameDetailContent />
     </div>
   );
 }

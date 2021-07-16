@@ -1,0 +1,53 @@
+.container {
+  max-width: 350px;
+  min-height: 350px;
+  background-image: url("https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.card-content {
+  background-color: #25262c;
+  border-radius: 0 0 50px 50px;
+  min-height: 125px;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-content-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.card-content-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.title {
+  font-size: 32px;
+}
+
+.genre {
+  font-size: 18px;
+  color: #6c6e7a;
+}
+
+.price {
+  font-size: 24px;
+}
+
+.rating {
+  font-size: 24px;
+}

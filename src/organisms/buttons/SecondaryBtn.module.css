@@ -1,0 +1,13 @@
+.secondary-btn {
+  font-size: 1.5rem;
+  border-radius: 24px;
+  border: none;
+  background-color: #89ef89;
+  padding: 24px 16px;
+  cursor: pointer;
+}
+
+.secondary-btn:hover {
+  background-color: #58eb58;
+  transition: ease-in 0.3s;
+}

@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 140px;
+}
+
+.logo {
+  font-size: 3rem;
+}
+
+span {
+  color: #d91f27;
+}
+
+.user-btns i {
+  font-size: 2rem;
+  margin-left: 32px;
+  cursor: pointer;
+}
