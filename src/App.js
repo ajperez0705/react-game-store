@@ -1,6 +1,8 @@
 import "./App.css";
 import PrimaryBtn from "./organisms/buttons/PrimaryBtn";
 import SecondaryBtn from "./organisms/buttons/SecondaryBtn";
+import CartItem from "./organisms/layout/CartItem";
+import Cart from "./organisms/layout/Cart";
 import GameDetailContent from "./organisms/layout/GameDetailContent";
 import Header from "./organisms/layout/Header";
 import HeroProdCard from "./organisms/layout/HeroProdCard";
@@ -22,7 +24,11 @@ import SmallProdCard from "./organisms/layout/SmallProdCard";
 function App() {
   return (
     <div>
-      <GameDetailContent />
+      <Header />
+      <NavBar />
+      <div className="container-wrapper">
+        <Cart />
+      </div>
     </div>
   );
 }

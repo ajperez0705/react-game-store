@@ -1,0 +1,12 @@
+.cart-totals {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0;
+}
+
+.ctas {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

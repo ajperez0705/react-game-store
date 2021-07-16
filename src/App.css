@@ -15,3 +15,7 @@ body {
   font-family: mabry-pro;
   src: url("./assets/fonts/Mabry\ Pro\ Medium.ttf");
 }
+
+.container-wrapper {
+  margin-left: 240px;
+}
