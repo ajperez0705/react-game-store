@@ -1,27 +1,47 @@
-import React from "react";
+// Styling
 import styles from "./NavBar.module.css";
+
+// Hooks
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 function NavBar() {
   return (
     <div>
       <header className={styles.container}>
         <ul className={styles["main-nav"]}>
-          <li>
-            <i class="fas fa-home" />
+          <NavLink
+            activeClassName={styles.active}
+            className={styles["nav-link"]}
+            to="/home"
+          >
+            <i className="fas fa-home" />
             Home
-          </li>
-          <li>
-            <i class="fas fa-search" />
+          </NavLink>
+          <NavLink
+            activeClassName={styles.active}
+            className={styles["nav-link"]}
+            to="/search"
+          >
+            <i className="fas fa-search" />
             Search
-          </li>
-          <li>
-            <i class="fas fa-heart" />
+          </NavLink>
+          <NavLink
+            activeClassName={styles.active}
+            className={styles["nav-link"]}
+            to="/wish-list"
+          >
+            <i className="fas fa-heart" />
             Wish List
-          </li>
-          <li>
-            <i class="fas fa-book" />
+          </NavLink>
+          <NavLink
+            activeClassName={styles.active}
+            className={styles["nav-link"]}
+            to="/my-library"
+          >
+            <i className="fas fa-book" />
             My Library
-          </li>
+          </NavLink>
         </ul>
         <div className={styles["filter-menu"]}>
           <h1 className={styles["filter-menu-title"]}>Filters</h1>

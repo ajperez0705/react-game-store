@@ -1,12 +1,17 @@
+// Hooks
 import React from "react";
 import styles from "./GameDetailContent.module.css";
+import HeroProdCard from "./HeroProdCard";
 
-function GameDetailContent() {
+function GameDetailContent({ title }) {
   return (
     <div>
+      <div className={styles["hero-container"]}>
+        <HeroProdCard title={title} />
+      </div>
       <div className={styles.container}>
         <div className={styles["primary-container"]}>
-          <h3>About</h3>
+          <h3>Title</h3>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
             quisquam repellat quam vel molestias impedit possimus nisi. Fugit

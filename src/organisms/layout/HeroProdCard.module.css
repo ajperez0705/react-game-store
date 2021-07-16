@@ -31,3 +31,8 @@
   border-radius: 540px;
   margin-left: 16px;
 }
+
+a {
+  color: white;
+  text-decoration: none;
+}

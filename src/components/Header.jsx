@@ -10,8 +10,8 @@ function Header() {
         </div>
       </div>
       <div className={style["user-btns"]}>
-        <i class="fas fa-shopping-cart" />
-        <i class="fas fa-user" />
+        <i className="fas fa-shopping-cart" />
+        <i className="fas fa-user" />
       </div>
     </div>
   );

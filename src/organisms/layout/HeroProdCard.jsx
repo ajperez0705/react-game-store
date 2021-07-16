@@ -3,12 +3,12 @@ import PrimaryBtn from "../buttons/PrimaryBtn";
 import SecondaryBtn from "../buttons/SecondaryBtn";
 import styles from "../layout/HeroProdCard.module.css";
 
-function HeroProdCard() {
+function HeroProdCard({ data }) {
   return (
     <div>
       <div className={styles.container}>
         <div className={styles["left-panel"]}>
-          <h1 className={styles.title}>Title</h1>
+          <h1 className={styles.title}>{data.name}</h1>
           <div className={styles.ctas}>
             <PrimaryBtn className={styles.btn} content="Add to Cart" />
             <SecondaryBtn className={styles.btn} content="Learn More" />

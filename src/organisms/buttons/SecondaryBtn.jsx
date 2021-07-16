@@ -4,7 +4,7 @@ import style from "../buttons/SecondaryBtn.module.css";
 function SecondaryBtn({ content }) {
   return (
     <div>
-      <button classname={style["secondary-btn"]}>{content}</button>
+      <button className={style["secondary-btn"]}>{content}</button>
     </div>
   );
 }

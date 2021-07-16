@@ -54,3 +54,8 @@
 .rating {
   font-size: 24px;
 }
+
+a {
+  color: white;
+  text-decoration: none;
+}

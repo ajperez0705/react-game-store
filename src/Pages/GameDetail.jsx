@@ -1,18 +1,18 @@
 import React from "react";
 import GameDetailContent from "../organisms/layout/GameDetailContent";
-import HeroProdCard from "../organisms/layout/HeroProdCard";
 import MediumProdCard from "../organisms/layout/MediumProdCard";
+
+import { useParams } from "react-router-dom";
 
 import styles from "./GameDetail.module.css";
 
 function GameDetail() {
+  const params = useParams();
+
   return (
     <div>
-      <section className={styles.hero}>
-        <HeroProdCard />
-      </section>
       <section className={styles["game-info"]}>
-        <GameDetailContent />
+        <GameDetailContent title={params.gameName} />
       </section>
       <section className={styles["view-more"]}>
         <h2 className={styles["view-more-title"]}>

@@ -1,17 +1,12 @@
-// Hooks
+// CSS
 import "./App.css";
 
+// Hooks
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
 // Components
-import PrimaryBtn from "./organisms/buttons/PrimaryBtn";
-import SecondaryBtn from "./organisms/buttons/SecondaryBtn";
-import CartItem from "./components/CartItem";
-import Cart from "./components/Cart";
-import GameDetailContent from "./organisms/layout/GameDetailContent";
 import Header from "./components/Header";
-import HeroProdCard from "./organisms/layout/HeroProdCard";
-import MediumProdCard from "./organisms/layout/MediumProdCard";
 import NavBar from "./components/NavBar";
-import SmallProdCard from "./organisms/layout/SmallProdCard";
 import Home from "./Pages/Home";
 import Search from "./Pages/Search";
 import GameDetail from "./Pages/GameDetail";
@@ -20,29 +15,21 @@ import MyLibrary from "./Pages/MyLibrary";
 
 function App() {
   return (
-    <div>
+    <BrowserRouter>
       <Header />
       <NavBar />
       <div className="container-wrapper">
-        <Home />
-        {/* <Search /> */}
-        {/* <GameDetail /> */}
-        {/* <WishList /> */}
-        {/* <MyLibrary /> */}
+        <Switch>
+          <Route path="/home" exact component={Home} />
+          <Route path="/search" exact component={Search} />
+          <Route path="/wish-list" exact component={WishList} />
+          <Route path="/my-library" exact component={MyLibrary} />
+          <Route path="/games/:gameName" component={GameDetail} />
+          <Route path="/" render={() => <div>404</div>} />
+        </Switch>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
 export default App;
-
-// fetching from the backend
-// const videoGameTest = async () => {
-//   try {
-//     const response = await fetch("http://localhost:3000/");
-//     const data = await response.json();
-//     console.log(data, data.next);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
