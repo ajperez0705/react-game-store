@@ -4,11 +4,25 @@ import SecondaryBtn from "../buttons/SecondaryBtn";
 import styles from "../layout/HeroProdCard.module.css";
 
 function HeroProdCard({ data }) {
+  const game = {
+    id: data.id,
+    name: data.name,
+    cardImage: data.background_image,
+    // screenshotOne: JSON.stringify(data.short_screenshots[0].image),
+    // screenshotTwo: data.short_screenshots[2].image,
+    // screenshotThree: data.short_screenshots[3].image,
+  };
+  console.log(data);
+
   return (
     <div>
-      <div className={styles.container}>
+      <div
+        key={game.id}
+        style={{ backgroundImage: "url(" + game.cardImage + ")" }}
+        className={styles.container}
+      >
         <div className={styles["left-panel"]}>
-          <h1 className={styles.title}>{data.name}</h1>
+          <h1 className={styles.title}>{game.name}</h1>
           <div className={styles.ctas}>
             <PrimaryBtn className={styles.btn} content="Add to Cart" />
             <SecondaryBtn className={styles.btn} content="Learn More" />
@@ -17,17 +31,17 @@ function HeroProdCard({ data }) {
         <div className={styles["right-panel"]}>
           <img
             className={styles["hero-screenshots"]}
-            src="https://i.ytimg.com/vi/_UB5hpk0iqg/maxresdefault.jpg"
+            // src={game.screenshotOne}
             alt=""
           />
           <img
             className={styles["hero-screenshots"]}
-            src="https://images.firstpost.com/wp-content/uploads/2019/05/Grand-Theft-Auto-poster.jpg"
+            // src={game.screenshotTwo}
             alt=""
           />
           <img
             className={styles["hero-screenshots"]}
-            src="https://compass-ssl.xbox.com/assets/a0/4f/a04f2744-74d9-4668-8263-e0261fbea869.jpg?n=GTA-V_GLP-Page-Hero-1084_1920x1080.jpg"
+            // src={game.screenshotThree}
             alt=""
           />
         </div>

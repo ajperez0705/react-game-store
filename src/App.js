@@ -24,7 +24,7 @@ function App() {
           <Route path="/search" exact component={Search} />
           <Route path="/wish-list" exact component={WishList} />
           <Route path="/my-library" exact component={MyLibrary} />
-          <Route path="/games/:gameName" component={GameDetail} />
+          <Route path="/games-detail" component={GameDetail} />
           <Route path="/" render={() => <div>404</div>} />
         </Switch>
       </div>
