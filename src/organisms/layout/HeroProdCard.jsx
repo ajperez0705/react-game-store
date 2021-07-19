@@ -8,11 +8,11 @@ function HeroProdCard({ data }) {
     id: data.id,
     name: data.name,
     cardImage: data.background_image,
-    // screenshotOne: JSON.stringify(data.short_screenshots[0].image),
+    // screenShotOne: data.short_screenshots,
     // screenshotTwo: data.short_screenshots[2].image,
     // screenshotThree: data.short_screenshots[3].image,
   };
-  console.log(data);
+  // console.log(data.short_screenshots[0].image);
 
   return (
     <div>
@@ -31,7 +31,7 @@ function HeroProdCard({ data }) {
         <div className={styles["right-panel"]}>
           <img
             className={styles["hero-screenshots"]}
-            // src={game.screenshotOne}
+            // src={`url(${game.screenShotOne})`}
             alt=""
           />
           <img

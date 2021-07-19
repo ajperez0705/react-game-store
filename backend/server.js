@@ -4,18 +4,25 @@ const port = 3001;
 const fetch = require("node-fetch");
 const cors = require("cors");
 
+// Vars
+const numResults = 150;
 app.use(cors());
 
-app.get("/gameList", async (req, res) => {
-  //   const response = await fetch(
-  //     "https://www.giantbomb.com/api/games/?api_key=bc411d2bfeb051e2c96098b5ae2b2d6420d84786"
-  //   );
-
-  const numResults = 150;
-
+// Get All games
+app.get("/gamelist", async (req, res) => {
   const response = await fetch(
     `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&page_size=${numResults}`
   );
+  console.log(res);
+  res.json(await response.json());
+});
+
+// Get Games based on Release Dates
+app.get("/realeaseDateFilter", async (req, res) => {
+  const response = await fetch(
+    `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&dates=2020-01-01,2021-01-01&page_size=${numResults}`
+  );
+  console.log(res);
   res.json(await response.json());
 });
 
