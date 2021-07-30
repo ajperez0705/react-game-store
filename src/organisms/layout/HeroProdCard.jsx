@@ -12,13 +12,13 @@ function HeroProdCard({ data }) {
     // screenshotTwo: data.short_screenshots[2].image,
     // screenshotThree: data.short_screenshots[3].image,
   };
-  // console.log(data.short_screenshots[0].image);
+  console.log(game.cardImage);
 
   return (
     <div>
       <div
         key={game.id}
-        style={{ backgroundImage: "url(" + game.cardImage + ")" }}
+        style={{ backgroundImage: `url(${game.cardImage})` }}
         className={styles.container}
       >
         <div className={styles["left-panel"]}>

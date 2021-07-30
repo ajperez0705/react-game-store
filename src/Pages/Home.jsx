@@ -37,7 +37,7 @@ function Home() {
   }, []);
 
   const fetchFeaturedGame = async () => {
-    const data = await fetchGameList("/gamelist");
+    const data = await fetchGameList("http://localhost:3001/gamelist");
     let featGame = {
       rating: 0,
     };
@@ -51,7 +51,7 @@ function Home() {
   };
 
   const fetchNewReleases = async () => {
-    const data = await fetchGameList("/realeaseDateFilter");
+    const data = await fetchGameList("http://localhost:3001/releaseDateFilter");
 
     let sortingNewReleases = [];
 
@@ -62,40 +62,52 @@ function Home() {
       let day = game.released.slice(8, 10);
       // if newReleases array.length > 2, loop through newreleases array, if game month is greater than newReleases month && month is !== to each other, filter out that newRelease, push current game and sort according to release date
       if (sortingNewReleases.length < 3) {
-        for (let i = 0; i < sortingNewReleases.length; i++) {
-          if (id === sortingNewReleases[i].id) {
-            return;
-          } else {
-            sortingNewReleases.push(game);
-          }
-        }
-      } else {
-        sortingNewReleases.forEach((newRelease) => {
-          // let newRelName = newRelease.name;
-          let newRelId = newRelease.id;
-          let newRelMonth = newRelease.released.slice(5, 7);
-          let newRelDay = newRelease.released.slice(8, 10);
+        // for (let i = 0; i < sortingNewReleases.length; i++) {
+        //   if (id === sortingNewReleases[i].id) {
+        //     return;
+        //   } else {
+        //     sortingNewReleases.push(game);
+        //   }
+        // }
+        sortingNewReleases.push(game);
+      } 
+    //   else {
+    //     sortingNewReleases.forEach((newRelease) => {
+    //       // let newRelName = newRelease.name;
+    //       let newRelId = newRelease.id;
+    //       let newRelMonth = newRelease.released.slice(5, 7);
+    //       let newRelDay = newRelease.released.slice(8, 10);
 
-          if (id === newRelId) return;
+    //       if (id === newRelId) return;
 
-          // Else if, months are ===, compare days
-          if (
-            month > newRelMonth ||
-            (month === newRelMonth && day > newRelDay)
-          ) {
-            sortingNewReleases.push(game);
-            sortingNewReleases = sortingNewReleases.filter(
-              (gameToKeep) => gameToKeep.id !== newRelId
-            );
-          } else return;
-        });
-      }
-    });
-    sortingNewReleases.sort((a, b) =>
-      a.released.slice(5, 7) > b.released.slice(5, 7) ? -1 : 1
-    );
-    setNewReleases(sortingNewReleases);
-    console.log(newReleases);
+    //       // Else if, months are ===, compare days
+    //       if (
+    //         month > newRelMonth ||
+    //         (month === newRelMonth && day > newRelDay)
+    //       ) {
+    //         sortingNewReleases.push(game);
+    //         sortingNewReleases = sortingNewReleases.filter(
+    //           (gameToKeep) => gameToKeep.id !== newRelId
+    //         );
+    //       } else return;
+    //     });
+    //   }
+    // });
+    // sortingNewReleases.sort((a, b) =>
+    //   a.released.slice(5, 7) > b.released.slice(5, 7) ? -1 : 1
+    // );
+    // // Loop through the newReleases and map them to new key values
+    // // sortingNewReleases.map(finalGame => {
+    // //   gameId: finalGame.id,
+    // // gameName: finalGame.name,
+    // // cardImage: finalGame.background_image,
+    // // genreOne: finalGame.genres[0].name,
+    // // genreTwo: finalGame.genres[1].name,
+    // // rating: finalGame.ratings,
+    // // )};
+
+    // setNewReleases(sortingNewReleases);
+    // console.log(sortingNewReleases);
   };
 
   return (

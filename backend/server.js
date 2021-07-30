@@ -18,7 +18,7 @@ app.get("/gamelist", async (req, res) => {
 });
 
 // Get Games based on Release Dates
-app.get("/realeaseDateFilter", async (req, res) => {
+app.get("/releaseDateFilter", async (req, res) => {
   const response = await fetch(
     `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&dates=2020-01-01,2021-01-01&page_size=${numResults}`
   );
