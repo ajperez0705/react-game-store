@@ -5,20 +5,29 @@ import styles from "./SearchBar.module.css";
 function SearchBar({ submit }) {
   const [inputValue, setInputValue] = useState("");
 
+  const inputChangeHandler = (e) => {
+    setInputValue(e.target.value);
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
 
-    setInputValue(e.target.value);
+    console.log(inputValue);
 
     submit(inputValue, e);
 
-    setInputValue("");
+    // setInputValue("");
   };
 
   return (
     <div>
       <form action="Submit" onSubmit={submitHandler}>
-        <input className={styles.form} type="text" placeholder="Search" />
+        <input
+          onChange={inputChangeHandler}
+          className={styles.form}
+          type="text"
+          placeholder="Search"
+        />
       </form>
     </div>
   );

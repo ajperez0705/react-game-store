@@ -28,9 +28,9 @@ function Home() {
     setIsLoading(true);
 
     async function init() {
-      // await fetchFeaturedGame();
-      // await fetchNewReleases();
-      // await fetchBestSellers();
+      await fetchFeaturedGame();
+      await fetchNewReleases();
+      await fetchBestSellers();
 
       setIsLoading(false);
     }

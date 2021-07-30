@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Filter from "../components/Filter";
 import SearchBar from "../components/SearchBar";
 
@@ -6,12 +6,23 @@ import styles from "./Search.module.css";
 
 // Helpers
 import { searchDB } from "../helpers/fetch-functions";
+import SmallProdCard from "../organisms/layout/SmallProdCard";
 
 function Search() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchData, setSearchData] = useState([]);
+
   const searchHandler = async (inputValue, e) => {
     e.preventDefault();
+    console.log(inputValue);
 
-    // const data = await searchDB(inputValue)("/dynamicSearch");
+    setIsLoading(true);
+
+    const data = await searchDB(`/game/${inputValue}`);
+    setSearchData(data);
+    console.log(searchData);
+
+    setIsLoading(false);
   };
 
   return (
@@ -22,7 +33,13 @@ function Search() {
           <Filter />
         </div>
         <div className={styles["content-container"]}>
-          <h1 className={styles["error-msg"]}>No Search Results</h1>
+          {isLoading ? (
+            <h1 className={styles["error-msg"]}>Loading</h1>
+          ) : (
+            searchData.map((game) => {
+              return <SmallProdCard key={game.id} data={game} />;
+            })
+          )}
         </div>
       </div>
     </div>

@@ -9,11 +9,11 @@ export const fetchGameList = async (path) => {
   }
 };
 
-export const searchDB = async (userInput) => {
+export const searchDB = async (path) => {
   try {
-    const response = await fetch(userInput);
+    const response = await fetch(path);
     const data = await response.json();
-    return data;
+    return data.results;
     // console.log(data);
   } catch (error) {
     console.log(error);

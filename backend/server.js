@@ -27,11 +27,11 @@ app.get("/realeaseDateFilter", async (req, res) => {
 });
 
 // Search through DB
-app.get("/dynamicSearch", async (req, res) => {
+app.get("/game/:name", async (req, res) => {
   const response = await fetch(
-    `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&dates=2020-01-01,2021-01-01&page_size=${numResults}`
+    `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&search=${req.params.name}&page_size=${numResults}`
   );
-  console.log(res);
+  console.log(req.params.name);
   res.json(await response.json());
 });
 
