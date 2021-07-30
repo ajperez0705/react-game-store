@@ -1,18 +1,36 @@
 import React from "react";
 import styles from "../layout/MediumProdCard.module.css";
 
-function MediumProdCard() {
+function MediumProdCard({ data }) {
+  const game = {
+    id: data.id,
+    name: data.name,
+    cardImage: data.background_image,
+    genreOne: data.genres[0].name,
+    genreTwo: data.genres[1].name,
+    rating: data.metacritic,
+    // screenShotOne: data.short_screenshots,
+    // screenshotTwo: data.short_screenshots[2].image,
+    // screenshotThree: data.short_screenshots[3].image,
+  };
+
   return (
     <div>
-      <div className={styles.container}>
+      <div
+        key={game.id}
+        style={{ backgroundImage: "url(" + game.cardImage + ")" }}
+        className={styles.container}
+      >
         <img src="" alt="" />
         <div className={styles["card-content"]}>
           <div className={styles["card-content-top"]}>
-            <p className={styles.genre}>Action</p>
-            <h6 className={styles.rating}>92</h6>
+            <p className={styles.genre}>
+              {game.genreOne}, {game.genreTwo}
+            </p>
+            <h6 className={styles.rating}>{game.rating}</h6>
           </div>
           <div className={styles["card-content-bottom"]}>
-            <h3 className={styles.title}>Title</h3>
+            <h3 className={styles.title}>{game.name}</h3>
             <h6 className={styles.price}>$49.99</h6>
           </div>
         </div>

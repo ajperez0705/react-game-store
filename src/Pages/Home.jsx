@@ -28,7 +28,7 @@ function Home() {
     setIsLoading(true);
 
     async function init() {
-      await fetchFeaturedGame();
+      // await fetchFeaturedGame();
       await fetchNewReleases();
 
       setIsLoading(false);
@@ -62,13 +62,14 @@ function Home() {
       let day = game.released.slice(8, 10);
       // if newReleases array.length > 2, loop through newreleases array, if game month is greater than newReleases month && month is !== to each other, filter out that newRelease, push current game and sort according to release date
       if (sortingNewReleases.length < 3) {
-        for (let i = 0; i < sortingNewReleases.length; i++) {
-          if (id === sortingNewReleases[i].id) {
-            return;
-          } else {
-            sortingNewReleases.push(game);
-          }
-        }
+        // for (let i = 0; i < sortingNewReleases.length; i++) {
+        //   if (id === sortingNewReleases[i].id) {
+        //     return;
+        //   } else {
+        //     sortingNewReleases.push(game);
+        //   }
+        // }
+        sortingNewReleases.push(game);
       } else {
         sortingNewReleases.forEach((newRelease) => {
           // let newRelName = newRelease.name;
@@ -108,9 +109,13 @@ function Home() {
       <section className={styles.medium}>
         <h4 className={styles["section-title"]}>New Releases</h4>
         <div className={styles["card-row"]}>
-          <MediumProdCard />
-          <MediumProdCard />
-          <MediumProdCard />
+          {isLoading ? (
+            <div>Loading</div>
+          ) : (
+            newReleases.map((game) => {
+              return <MediumProdCard key={game.id} data={game} />;
+            })
+          )}
         </div>
       </section>
       <section className={styles.small}>
