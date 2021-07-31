@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styles from "./SearchBar.module.css";
 
-function SearchBar() {
+function SearchBar({ submit }) {
+  const [inputValue, setInputValue] = useState("");
+
+  const inputChangeHandler = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    console.log(inputValue);
+
+    if (inputValue === "") return;
+
+    submit(inputValue, e);
+
+    // setInputValue("");
+  };
+
   return (
     <div>
-      <form action="Submit">
-        <input className={styles.form} type="text" placeholder="Search" />
+      <form action="Submit" onSubmit={submitHandler}>
+        <input
+          onChange={inputChangeHandler}
+          className={styles.form}
+          type="text"
+          placeholder="Search"
+        />
       </form>
     </div>
   );

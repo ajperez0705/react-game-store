@@ -30,6 +30,7 @@ function Home() {
     async function init() {
       await fetchFeaturedGame();
       await fetchNewReleases();
+      await fetchBestSellers();
 
       setIsLoading(false);
     }
@@ -60,7 +61,6 @@ function Home() {
       // let name = game.name;
       let month = game.released.slice(5, 7);
       let day = game.released.slice(8, 10);
-      // if newReleases array.length > 2, loop through newreleases array, if game month is greater than newReleases month && month is !== to each other, filter out that newRelease, push current game and sort according to release date
       if (sortingNewReleases.length < 3) {
         // for (let i = 0; i < sortingNewReleases.length; i++) {
         //   if (id === sortingNewReleases[i].id) {
@@ -70,44 +70,74 @@ function Home() {
         //   }
         // }
         sortingNewReleases.push(game);
-      } 
-    //   else {
-    //     sortingNewReleases.forEach((newRelease) => {
-    //       // let newRelName = newRelease.name;
-    //       let newRelId = newRelease.id;
-    //       let newRelMonth = newRelease.released.slice(5, 7);
-    //       let newRelDay = newRelease.released.slice(8, 10);
+      } else {
+        sortingNewReleases.forEach((newRelease) => {
+          // let newRelName = newRelease.name;
+          let newRelId = newRelease.id;
+          let newRelMonth = newRelease.released.slice(5, 7);
+          let newRelDay = newRelease.released.slice(8, 10);
 
-    //       if (id === newRelId) return;
+          // Else if, months are ===, compare days
+          if (
+            (!sortingNewReleases.includes(game) && month > newRelMonth) ||
+            (!sortingNewReleases.includes(game) &&
+              month === newRelMonth &&
+              day > newRelDay)
+          ) {
+            sortingNewReleases.push(game);
+            sortingNewReleases = sortingNewReleases.filter(
+              (gameToKeep) => gameToKeep.id !== newRelId
+            );
+          } else return;
+        });
+      }
+    });
+    sortingNewReleases.sort((a, b) =>
+      a.released.slice(5, 7) > b.released.slice(5, 7) ? -1 : 1
+    );
+    setNewReleases(sortingNewReleases);
+    console.log(newReleases);
+  };
 
-    //       // Else if, months are ===, compare days
-    //       if (
-    //         month > newRelMonth ||
-    //         (month === newRelMonth && day > newRelDay)
-    //       ) {
-    //         sortingNewReleases.push(game);
-    //         sortingNewReleases = sortingNewReleases.filter(
-    //           (gameToKeep) => gameToKeep.id !== newRelId
-    //         );
-    //       } else return;
-    //     });
-    //   }
-    // });
-    // sortingNewReleases.sort((a, b) =>
-    //   a.released.slice(5, 7) > b.released.slice(5, 7) ? -1 : 1
+  const fetchBestSellers = async () => {
+    const data = await fetchGameList("/gamelist");
+    let sortingBestSellers = [];
+
+    data.results.forEach((game) => {
+      let id = game.id;
+      let ratingCount = game.ratings_count;
+      // let name = game.name;
+
+      if (sortingBestSellers.length < 4) {
+        // for (let i = 0; i < sortingBestSellers.length; i++) {
+        //   if (id === sortingBestSellers[i].id) {
+        //     return;
+        //   } else {
+        //     sortingBestSellers.push(game);
+        //   }
+        // }
+        sortingBestSellers.push(game);
+      } else {
+        sortingBestSellers.forEach((bestSeller) => {
+          // let newRelName = bestSeller.name;
+          let newId = bestSeller.id;
+          let newRatingCount = bestSeller.ratings_count;
+
+          // Else if, months are ===, compare days
+          if (ratingCount > newRatingCount) {
+            sortingBestSellers.push(game);
+            sortingBestSellers = sortingBestSellers.filter(
+              (gameToKeep) => gameToKeep.id !== newId
+            );
+          } else return;
+        });
+      }
+    });
+    // sortingBestSellers.sort((a, b) =>
+    //   a.ratings_count > b.ratings_count ? -1 : 1
     // );
-    // // Loop through the newReleases and map them to new key values
-    // // sortingNewReleases.map(finalGame => {
-    // //   gameId: finalGame.id,
-    // // gameName: finalGame.name,
-    // // cardImage: finalGame.background_image,
-    // // genreOne: finalGame.genres[0].name,
-    // // genreTwo: finalGame.genres[1].name,
-    // // rating: finalGame.ratings,
-    // // )};
-
-    // setNewReleases(sortingNewReleases);
-    // console.log(sortingNewReleases);
+    setBestSellers(sortingBestSellers);
+    console.log(bestSellers);
   };
 
   return (
@@ -120,18 +150,25 @@ function Home() {
       <section className={styles.medium}>
         <h4 className={styles["section-title"]}>New Releases</h4>
         <div className={styles["card-row"]}>
-          <MediumProdCard />
-          <MediumProdCard />
-          <MediumProdCard />
+          {isLoading ? (
+            <div>Loading</div>
+          ) : (
+            newReleases.map((game) => {
+              return <MediumProdCard key={game.id} data={game} />;
+            })
+          )}
         </div>
       </section>
       <section className={styles.small}>
         <h4 className={styles["section-title"]}>Best Sellers</h4>
         <div className={styles["card-row"]}>
-          <SmallProdCard />
-          <SmallProdCard />
-          <SmallProdCard />
-          <SmallProdCard />
+          {isLoading ? (
+            <div>Loading</div>
+          ) : (
+            bestSellers.map((game) => {
+              return <SmallProdCard key={game.id} data={game} />;
+            })
+          )}
         </div>
       </section>
     </div>

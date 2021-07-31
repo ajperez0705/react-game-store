@@ -16,3 +16,10 @@
   top: 45%;
   left: 50%;
 }
+
+.content-container {
+  display: grid;
+  grid-template-columns: repeat(3, 500px);
+  row-gap: 64px;
+  column-gap: 16px;
+}

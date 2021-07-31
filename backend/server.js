@@ -26,6 +26,15 @@ app.get("/releaseDateFilter", async (req, res) => {
   res.json(await response.json());
 });
 
+// Search through DB
+app.get("/game/:name", async (req, res) => {
+  const response = await fetch(
+    `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&search=${req.params.name}&page_size=${numResults}`
+  );
+  console.log(req.params.name);
+  res.json(await response.json());
+});
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
