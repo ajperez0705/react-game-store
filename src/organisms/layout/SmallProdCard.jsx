@@ -7,14 +7,15 @@ function SmallProdCard({ data }) {
     id: data.id,
     name: data.name,
     cardImage: data.background_image,
-    // genreOne: data.genres[0].name,
-    // genreTwo: data.genres[1].name,
-    rating: data.metacritic,
+    genreOne: data.genres.length > 0 ? data.genres[0].name : "N/A",
+    genreTwo: data.genres.length > 1 ? data.genres[1].name : "N/A",
+    rating: data.metacritic !== null ? data.metacritic : "N/A",
     // screenShotOne: data.short_screenshots,
     // screenshotTwo: data.short_screenshots[2].image,
     // screenshotThree: data.short_screenshots[3].image,
   };
 
+  // console.log(data.genres);
   return (
     <div
       key={game.id}
@@ -24,13 +25,11 @@ function SmallProdCard({ data }) {
       <img src="" alt="" />
       <div className={styles["card-content"]}>
         <div className={styles["card-content-top"]}>
-          <p className={styles.genre}>
-            {game.genreOne}, {game.genreTwo}
-          </p>
+          <p className={styles.genre}>{game.genreOne}</p>
           <h6 className={styles.rating}>{game.rating}</h6>
         </div>
         <div className={styles["card-content-bottom"]}>
-          <h3 className={styles.title}>{game.name}</h3>
+          <h5 className={styles.title}>{game.name}</h5>
           <h6 className={styles.price}>$49.99</h6>
         </div>
       </div>

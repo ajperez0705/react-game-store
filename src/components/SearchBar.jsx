@@ -14,6 +14,8 @@ function SearchBar({ submit }) {
 
     console.log(inputValue);
 
+    if (inputValue === "") return;
+
     submit(inputValue, e);
 
     // setInputValue("");
