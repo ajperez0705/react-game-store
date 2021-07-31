@@ -11,6 +11,7 @@ import styles from "./Home.module.css";
 
 // Helpers
 import { fetchGameList } from "../helpers/fetch-functions";
+import { Spinner } from "../helpers/error-handling";
 
 function Home() {
   const [featuredGame, setFeaturedGame] = useState([]);
@@ -96,11 +97,10 @@ function Home() {
       a.released.slice(5, 7) > b.released.slice(5, 7) ? -1 : 1
     );
     setNewReleases(sortingNewReleases);
-    console.log(newReleases);
   };
 
   const fetchBestSellers = async () => {
-    const data = await fetchGameList("/gamelist");
+    const data = await fetchGameList("http://localhost:3001/gamelist");
     let sortingBestSellers = [];
 
     data.results.forEach((game) => {
@@ -137,7 +137,6 @@ function Home() {
     //   a.ratings_count > b.ratings_count ? -1 : 1
     // );
     setBestSellers(sortingBestSellers);
-    console.log(bestSellers);
   };
 
   return (

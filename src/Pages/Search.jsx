@@ -17,12 +17,11 @@ function Search() {
     let initSearchData = [];
 
     e.preventDefault();
-    console.log(inputValue);
 
     setIsLoading(true);
     setIsSearching(true);
 
-    const data = await searchDB(`/game/${inputValue}`);
+    const data = await searchDB(`http://localhost:3001/game/${inputValue}`);
     // initSearchData = await searchDB(`/game/${inputValue}`);
 
     // Loop through init data and filter our any games that do not have a genre
@@ -37,7 +36,6 @@ function Search() {
     // });
 
     setSearchData(data);
-    console.log(searchData);
 
     setIsLoading(false);
   };

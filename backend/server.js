@@ -35,6 +35,15 @@ app.get("/game/:name", async (req, res) => {
   res.json(await response.json());
 });
 
+// Search using slug
+app.get("/game/:slug", async (req, res) => {
+  const response = await fetch(
+    `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&slug=${req.params.name}`
+  );
+  console.log(req.params.name);
+  res.json(await response.json());
+});
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

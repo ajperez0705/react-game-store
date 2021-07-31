@@ -18,3 +18,13 @@ export const searchDB = async (path) => {
     console.log(error);
   }
 };
+
+export const slugSearch = async (slug) => {
+  try {
+    const response = await fetch(slug);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -12,7 +12,6 @@ function HeroProdCard({ data }) {
     // screenshotTwo: data.short_screenshots[2].image,
     // screenshotThree: data.short_screenshots[3].image,
   };
-  console.log(game.cardImage);
 
   return (
     <div>

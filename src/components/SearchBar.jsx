@@ -12,8 +12,6 @@ function SearchBar({ submit }) {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    console.log(inputValue);
-
     if (inputValue === "") return;
 
     submit(inputValue, e);
