@@ -8,8 +8,9 @@ function GameDetailContent({ data }) {
     heroImage: data.background_image,
     title: data.name,
     id: data.id,
-    genreOne: data.genres.length > 0 ? data.genres[0].name : "N/A",
-    genreTwo: data.genres.length > 1 ? data.genres[1].name : "N/A",
+    genres: data.genres,
+    // genreOne: data.genres.length > 0 ? data.genres[0].name : "N/A",
+    // genreTwo: data.genres.length > 1 ? data.genres[1].name : "N/A",
     rating: data.metacritic,
     slug: data.slug,
     numReviews: data.reviews_count,
@@ -17,8 +18,6 @@ function GameDetailContent({ data }) {
     description: data.description,
     releaseDate: data.released,
   };
-
-  console.log(game.platforms, data.genres);
 
   return (
     <div>
@@ -65,13 +64,15 @@ function GameDetailContent({ data }) {
           </div>
           <div className={styles.detail}>
             <h6>Tags</h6>
-            <h6>
-              {!game.genreOne && !game.genreTwo ? (
+            <div>
+              {!game.genres ? (
                 <h3>Loading</h3>
               ) : (
-                `${game.genreOne}, ${game.genreOne}`
+                game.genres.map((genre) => {
+                  return <h4 key={genre.id}>{genre.name}</h4>;
+                })
               )}
-            </h6>
+            </div>
           </div>
         </div>
       </div>

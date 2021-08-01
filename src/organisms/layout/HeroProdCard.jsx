@@ -8,9 +8,7 @@ function HeroProdCard({ data }) {
     id: data.id,
     name: data.name,
     cardImage: data.background_image,
-    // screenShotOne: data.short_screenshots,
-    // screenshotTwo: data.short_screenshots[2].image,
-    // screenshotThree: data.short_screenshots[3].image,
+    screenShots: data.short_screenshots,
   };
 
   return (
@@ -28,21 +26,20 @@ function HeroProdCard({ data }) {
           </div>
         </div>
         <div className={styles["right-panel"]}>
-          <img
-            className={styles["hero-screenshots"]}
-            // src={`url(${game.screenShotOne})`}
-            alt=""
-          />
-          <img
-            className={styles["hero-screenshots"]}
-            // src={game.screenshotTwo}
-            alt=""
-          />
-          <img
-            className={styles["hero-screenshots"]}
-            // src={game.screenshotThree}
-            alt=""
-          />
+          {/* {!game.screenShots ? (
+            <h3>Loading</h3>
+          ) : (
+            game.screenShots.map((screenShot) => {
+              return (
+                <img
+                  key={screenShot.id}
+                  className={styles["hero-screenshots"]}
+                  src={`url(${screenShot.image})`}
+                  alt=""
+                />
+              );
+            })
+          )} */}
         </div>
       </div>
     </div>
