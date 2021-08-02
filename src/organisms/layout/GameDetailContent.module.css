@@ -11,8 +11,11 @@
 .primary-container {
   max-width: 844px;
   min-width: 844px;
+  width: auto;
+
   max-height: 409px;
   min-height: 409px;
+  height: auto;
   background-color: #25262c;
   border-radius: 50px;
   padding: 64px;
@@ -21,8 +24,10 @@
 .secondary-container {
   max-width: 293px;
   min-width: 293px;
+  width: auto;
   max-height: 409px;
   min-height: 409px;
+  height: auto;
   background-color: #25262c;
   border-radius: 50px;
   padding: 64px;
@@ -30,4 +35,22 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
+}
+
+.platforms-container {
+  /* padding: 4px 0; */
+}
+
+.spans {
+  color: white;
+  padding-right: 8px;
+  font-size: 16px;
+}
+
+.game-detail-extras {
+  color: #6c6e6c;
+}
+
+.detail {
+  padding-bottom: 8px;
 }

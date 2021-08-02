@@ -14,8 +14,6 @@ function Search() {
   const [searchData, setSearchData] = useState([]);
 
   const searchHandler = async (inputValue, e) => {
-    let initSearchData = [];
-
     e.preventDefault();
 
     setIsLoading(true);

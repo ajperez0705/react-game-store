@@ -41,35 +41,41 @@ function GameDetailContent({ data }) {
         </div>
         <div className={styles["secondary-container"]}>
           <div className={styles.detail}>
-            <h6>Platform</h6>
-            <div>
+            <h6 className={styles["game-detail-extras"]}>Platform</h6>
+            <div className={styles["platforms-container"]}>
               {!game.platforms ? (
                 <h3>Loading</h3>
               ) : (
                 game.platforms.map((platform) => {
                   return (
-                    <h4 key={platform.platform.id}>{platform.platform.name}</h4>
+                    <span className={styles.spans} key={platform.platform.id}>
+                      {platform.platform.name}
+                    </span>
                   );
                 })
               )}
             </div>
           </div>
           <div className={styles.detail}>
-            <h6>Developers</h6>
+            <h6 className={styles["game-detail-extras"]}>Developers</h6>
             <h6>CD Projekt Rekt</h6>
           </div>
           <div className={styles.detail}>
-            <h6>Release Date</h6>
+            <h6 className={styles["game-detail-extras"]}>Release Date</h6>
             <h6>{game.releaseDate}</h6>
           </div>
           <div className={styles.detail}>
-            <h6>Tags</h6>
+            <h6 className={styles["game-detail-extras"]}>Tags</h6>
             <div>
               {!game.genres ? (
                 <h3>Loading</h3>
               ) : (
                 game.genres.map((genre) => {
-                  return <h4 key={genre.id}>{genre.name}</h4>;
+                  return (
+                    <span className={styles.spans} key={genre.id}>
+                      {genre.name}
+                    </span>
+                  );
                 })
               )}
             </div>

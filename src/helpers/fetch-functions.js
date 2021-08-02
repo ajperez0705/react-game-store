@@ -19,9 +19,9 @@ export const searchDB = async (path) => {
   }
 };
 
-export const slugSearch = async (slug) => {
+export const slugSearch = async (path) => {
   try {
-    const response = await fetch(slug);
+    const response = await fetch(path);
     const data = await response.json();
     return data;
   } catch (error) {

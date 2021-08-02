@@ -5,6 +5,7 @@
   background-color: #89ef89;
   padding: 24px 16px;
   cursor: pointer;
+  color: white;
 }
 
 .secondary-btn:hover {
