@@ -1,10 +1,12 @@
 import React from "react";
 import style from "../buttons/PrimaryBtn.module.css";
 
-function PrimaryBtn({ content }) {
+function PrimaryBtn({ content, onClick }) {
   return (
     <div>
-      <button className={style["primary-btn"]}>{content}</button>
+      <button onClick={onClick} className={style["primary-btn"]}>
+        {content}
+      </button>
     </div>
   );
 }

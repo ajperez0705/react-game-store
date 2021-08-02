@@ -1,21 +1,39 @@
 import React from "react";
 import styles from "./CartItem.module.css";
 
-function CartItem() {
+// redux
+import { useDispatch } from "react-redux";
+import { cartActions } from "../components/store/store";
+
+function CartItem({ id, name, price, image }) {
+  const item = {
+    id: id,
+    name: name,
+    price: price,
+    image: image,
+  };
+
+  const dispatch = useDispatch();
+
+  const removeFromCartHandler = () => {
+    dispatch(cartActions.removeFromCart(item));
+  };
+
   return (
     <div>
-      <div className={styles.container}>
+      <div id={id} className={styles.container}>
         <div className={styles["left-cart-item"]}>
-          <img
-            className={styles["cart-img"]}
-            src="https://www.rockstargames.com/V/img/global/order/mobile-cover.jpg"
-            alt=""
-          />
-          <h2 className={styles.title}>Title</h2>
+          <img className={styles["cart-img"]} src={image} alt="" />
+          <h2 className={styles.title}>{name}</h2>
         </div>
         <div className={styles["right-cart-item"]}>
-          <h4 className={styles.price}>Price</h4>
-          <button className={styles["remove-btn"]}>Remove</button>
+          <h4 className={styles.price}>{price}</h4>
+          <button
+            onClick={removeFromCartHandler}
+            className={styles["remove-btn"]}
+          >
+            Remove
+          </button>
         </div>
       </div>
     </div>

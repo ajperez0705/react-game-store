@@ -13,8 +13,12 @@ span {
   color: #d91f27;
 }
 
-.user-btns i {
+.user-btns {
   font-size: 2rem;
   margin-left: 32px;
   cursor: pointer;
+}
+
+.shopping-cart {
+  margin-right: 32px;
 }

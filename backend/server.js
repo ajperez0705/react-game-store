@@ -3,10 +3,13 @@ const app = express();
 const port = 3001;
 const fetch = require("node-fetch");
 const cors = require("cors");
+const { urlencoded } = require("express");
 
 // Vars
 const numResults = 150;
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 // Get All games
 app.get("/gamelist", async (req, res) => {
@@ -43,6 +46,13 @@ app.get("/game/:slug", async (req, res) => {
   console.log(req.params.name);
   res.json(await response.json());
 });
+
+// // Uses the twitch api to access game summaries
+// app.post("/game/summary/:slug", async (req, res) => {
+//   res.send({
+//     Client-ID: pqvyu7shepuuadhc1ces159vkss7ba,
+//   });
+// });
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

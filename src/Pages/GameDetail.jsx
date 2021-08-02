@@ -7,7 +7,12 @@ import { useParams } from "react-router-dom";
 import styles from "./GameDetail.module.css";
 import { slugSearch } from "../helpers/fetch-functions";
 
+import { useSelector } from "react-redux";
+import CartItem from "../components/CartItem";
+
 function GameDetail() {
+  const cartItems = useSelector((state) => state.cart.items);
+
   const [isLoading, setIsLoading] = useState(false);
   const [game, setGame] = useState([]);
   const { slug } = useParams();
@@ -39,6 +44,17 @@ function GameDetail() {
           Checkout More Games Like This One
         </h2>
         <div className={styles["card-container"]}>
+          {cartItems.map((item) => {
+            return (
+              <CartItem
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                price={item.price}
+                image={item.image}
+              />
+            );
+          })}
           {/* <MediumProdCard />
           <MediumProdCard />
           <MediumProdCard /> */}

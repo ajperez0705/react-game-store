@@ -4,6 +4,12 @@ import "./App.css";
 // Hooks
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
+// React Lib
+import { useEffect } from "react";
+
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+
 // Components
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
@@ -12,8 +18,33 @@ import Search from "./Pages/Search";
 import GameDetail from "./Pages/GameDetail";
 import WishList from "./Pages/WishList";
 import MyLibrary from "./Pages/MyLibrary";
+import Cart from "./components/Cart";
+import { sendCartData, fetchData } from "./components/store/cart-actions";
+
+let isInitial = true;
 
 function App() {
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchData());
+  }, []);
+
+  useEffect(() => {
+    if (isInitial) {
+      isInitial = false;
+      return;
+    }
+
+    dispatch(sendCartData(cart));
+
+    fetch("https://react-steam-project-default-rtdb.firebaseio.com/cart.json", {
+      method: "PUT",
+      body: JSON.stringify(cart),
+    });
+  }, [cart, dispatch]);
+
   return (
     <BrowserRouter>
       <Header />
@@ -25,6 +56,7 @@ function App() {
           <Route path="/wish-list" exact component={WishList} />
           <Route path="/my-library" exact component={MyLibrary} />
           <Route path="/game-detail/:slug" component={GameDetail} />
+          <Route path="/cart" component={Cart} />
           <Route path="/" render={() => <div>404</div>} />
         </Switch>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../layout/MediumProdCard.module.css";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function MediumProdCard({ data }) {
   const game = {
@@ -18,7 +18,7 @@ function MediumProdCard({ data }) {
 
   return (
     <div>
-      <NavLink to={`/game-detail/${data.slug}`}>
+      <Link to={`/game-detail/${data.slug}`}>
         <div
           key={game.id}
           style={{ backgroundImage: "url(" + game.cardImage + ")" }}
@@ -38,7 +38,7 @@ function MediumProdCard({ data }) {
             </div>
           </div>
         </div>
-      </NavLink>
+      </Link>
     </div>
   );
 }
