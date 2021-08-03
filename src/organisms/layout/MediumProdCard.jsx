@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styles from "../layout/MediumProdCard.module.css";
 import { Link } from "react-router-dom";
 
@@ -17,29 +17,28 @@ function MediumProdCard({ data }) {
   };
 
   return (
-    <div>
-      <Link to={`/game-detail/${data.slug}`}>
-        <div
-          key={game.id}
-          style={{ backgroundImage: "url(" + game.cardImage + ")" }}
-          className={styles.container}
-        >
-          <img src="" alt="" />
-          <div className={styles["card-content"]}>
-            <div className={styles["card-content-top"]}>
-              <p className={styles.genre}>
-                {game.genreOne}, {game.genreTwo}
-              </p>
-              <h6 className={styles.rating}>{game.rating}</h6>
-            </div>
-            <div className={styles["card-content-bottom"]}>
-              <h3 className={styles.title}>{game.name}</h3>
-              <h6 className={styles.price}>$49.99</h6>
-            </div>
+    <Fragment>
+      <Link
+        to={`/game-detail/${data.slug}`}
+        key={game.id}
+        style={{ backgroundImage: "url(" + game.cardImage + ")" }}
+        className={styles.container}
+      >
+        <img src="" alt="" />
+        <div className={styles["card-content"]}>
+          <div className={styles["card-content-top"]}>
+            <span className={styles.genre}>
+              {game.genreOne}, {game.genreTwo}
+            </span>
+            <h6 className={styles.rating}>{game.rating}</h6>
+          </div>
+          <div className={styles["card-content-bottom"]}>
+            <h4 className={styles.title}>{game.name}</h4>
+            <h6 className={styles.price}>$49.99</h6>
           </div>
         </div>
       </Link>
-    </div>
+    </Fragment>
   );
 }
 

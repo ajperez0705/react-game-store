@@ -19,7 +19,7 @@ function Search() {
     setIsLoading(true);
     setIsSearching(true);
 
-    const data = await searchDB(`http://localhost:3001/game/${inputValue}`);
+    const initData = await searchDB(`http://localhost:3001/game/${inputValue}`);
     // initSearchData = await searchDB(`/game/${inputValue}`);
 
     // Loop through init data and filter our any games that do not have a genre
@@ -33,7 +33,11 @@ function Search() {
     //   }
     // });
 
-    setSearchData(data);
+    console.log(initData);
+
+    const filteredData = initData.filter((result) => result.ratings_count > 50);
+
+    setSearchData(filteredData);
 
     setIsLoading(false);
   };

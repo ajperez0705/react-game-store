@@ -1,10 +1,10 @@
-import { cartActions } from "./cart-slice";
+import { wishlistActions } from "./wishlist-slice";
 
-export const fetchCartData = () => {
+export const fetchWishListData = () => {
   return async (dispatch) => {
     const fetchRequest = async () => {
       const response = await fetch(
-        "https://react-steam-project-default-rtdb.firebaseio.com/cart.json",
+        "https://react-steam-project-default-rtdb.firebaseio.com/wishlist.json",
         {
           method: "GET",
         }
@@ -17,13 +17,12 @@ export const fetchCartData = () => {
       return data;
     };
     try {
-      const cartData = await fetchRequest();
+      const listData = await fetchRequest();
 
       dispatch(
-        cartActions.replaceCart({
-          items: cartData.items || [],
-          totalQuantity: cartData.totalQuantity,
-          totalAmount: cartData.totalAmount,
+        wishlistActions.replaceList({
+          items: listData.items || [],
+          totalQuantity: listData.totalQuantity,
         })
       );
     } catch (err) {
@@ -32,17 +31,16 @@ export const fetchCartData = () => {
   };
 };
 
-export const sendCartData = (cart) => {
+export const sendWishListData = (wishlist) => {
   return async (dispatch) => {
     const sendRequest = async () => {
       const response = await fetch(
-        "https://react-steam-project-default-rtdb.firebaseio.com/cart.json",
+        "https://react-steam-project-default-rtdb.firebaseio.com/wishlist.json",
         {
           method: "PUT",
           body: JSON.stringify({
-            items: cart.items,
-            totalAmount: cart.totalAmount,
-            totalQuantity: cart.totalQuantity,
+            items: wishlist.items,
+            totalQuantity: wishlist.totalQuantity,
           }),
         }
       );

@@ -5,7 +5,13 @@ import WishListCard from "../organisms/layout/WishListCard";
 
 import styles from "./WishList.module.css";
 
+// Redux
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+
 function WishList() {
+  const wishListItems = useSelector((state) => state.wishlist.items);
+
   return (
     <div>
       <div className={styles["user-controls"]}>
@@ -13,7 +19,17 @@ function WishList() {
         <Filter />
       </div>
       <div className={styles["list-container"]}>
-        <WishListCard />
+        {wishListItems.map((item) => {
+          return (
+            <WishListCard
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              image={item.image}
+              price={item.price}
+            />
+          );
+        })}
       </div>
     </div>
   );

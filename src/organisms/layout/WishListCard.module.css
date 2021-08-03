@@ -1,10 +1,10 @@
 .container {
   max-width: 1444px;
   min-width: 1444px;
-  max-height: 222px;
-  min-height: 222px;
+  max-height: 400px;
+  min-height: 400px;
   border-radius: 50px;
-  background-image: url("https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg");
+
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

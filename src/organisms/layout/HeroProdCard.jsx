@@ -4,8 +4,12 @@ import SecondaryBtn from "../buttons/SecondaryBtn";
 import styles from "../layout/HeroProdCard.module.css";
 
 // Redux
-import { cartActions } from "../../components/store/store";
+import { cartActions } from "../../components/store/cart-slice";
+import { wishlistActions } from "../../components/store/wishlist-slice";
 import { useDispatch, useSelector } from "react-redux";
+
+let screenShotLimit = [];
+let garbage = [];
 
 function HeroProdCard({ data }) {
   const cartItems = useSelector((state) => state.cart.items);
@@ -30,8 +34,19 @@ function HeroProdCard({ data }) {
     );
   };
 
+  const addToWishListHandler = () => {
+    dispatch(
+      wishlistActions.addToWishList({
+        id: game.id,
+        name: game.name,
+        image: game.cardImage,
+        price: game.price,
+      })
+    );
+  };
+
   return (
-    <div>
+    <div className={styles["main-container"]}>
       <div
         key={game.id}
         style={{ backgroundImage: `url(${game.cardImage})` }}
@@ -45,25 +60,35 @@ function HeroProdCard({ data }) {
               content="Add to Cart"
               onClick={addToCartHandler}
             />
-            <SecondaryBtn className={styles.btn} content="Learn More" />
+            <SecondaryBtn
+              className={styles.btn}
+              content="Add to Wishlist"
+              onClick={addToWishListHandler}
+            />
           </div>
         </div>
-        <div className={styles["right-panel"]}>
-          {/* {!game.screenShots ? (
-            <h3>Loading</h3>
-          ) : (
-            game.screenShots.map((screenShot) => {
+      </div>
+      <div className={styles["screenshot-container"]}>
+        {!game.screenShots ? (
+          <h3>Loading</h3>
+        ) : (
+          game.screenShots.map((screenShot, index) => {
+            console.log(index);
+
+            if (index < 3) {
               return (
                 <img
                   key={screenShot.id}
                   className={styles["hero-screenshots"]}
-                  src={`url(${screenShot.image})`}
+                  src={screenShot.image}
                   alt=""
                 />
               );
-            })
-          )} */}
-        </div>
+            } else {
+              return null;
+            }
+          })
+        )}
       </div>
     </div>
   );

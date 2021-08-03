@@ -3,7 +3,7 @@ import styles from "./CartItem.module.css";
 
 // redux
 import { useDispatch } from "react-redux";
-import { cartActions } from "../components/store/store";
+import { cartActions } from "../components/store/cart-slice";
 
 function CartItem({ id, name, price, image }) {
   const item = {

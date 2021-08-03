@@ -19,16 +19,22 @@ import GameDetail from "./Pages/GameDetail";
 import WishList from "./Pages/WishList";
 import MyLibrary from "./Pages/MyLibrary";
 import Cart from "./components/Cart";
-import { sendCartData, fetchData } from "./components/store/cart-actions";
+import { sendCartData, fetchCartData } from "./components/store/cart-actions";
+import {
+  fetchWishListData,
+  sendWishListData,
+} from "./components/store/wishlist-actions";
 
 let isInitial = true;
 
 function App() {
   const cart = useSelector((state) => state.cart);
+  const wishList = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchData());
+    dispatch(fetchCartData());
+    dispatch(fetchWishListData());
   }, []);
 
   useEffect(() => {
@@ -38,12 +44,13 @@ function App() {
     }
 
     dispatch(sendCartData(cart));
+    dispatch(sendWishListData(wishList));
 
-    fetch("https://react-steam-project-default-rtdb.firebaseio.com/cart.json", {
-      method: "PUT",
-      body: JSON.stringify(cart),
-    });
-  }, [cart, dispatch]);
+    // fetch("https://react-steam-project-default-rtdb.firebaseio.com/cart.json", {
+    //   method: "PUT",
+    //   body: JSON.stringify(cart),
+    // });
+  }, [cart, wishList, dispatch]);
 
   return (
     <BrowserRouter>
