@@ -31,6 +31,7 @@ let isInitial = true;
 function App() {
   const cart = useSelector((state) => state.cart);
   const wishList = useSelector((state) => state.wishlist);
+  const notification = useSelector((state) => state.errorUI.notification);
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -1,4 +1,5 @@
 import { cartActions } from "./cart-slice";
+import { errorUIActions } from "./errorUI-slice";
 
 export const fetchCartData = () => {
   return async (dispatch) => {
@@ -52,8 +53,6 @@ export const sendCartData = (cart) => {
 
     try {
       await sendRequest();
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (error) {}
   };
 };

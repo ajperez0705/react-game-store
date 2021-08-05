@@ -1,5 +1,5 @@
 // Hooks
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 // Components
 import HeroProdCard from "../organisms/layout/HeroProdCard";
@@ -11,7 +11,11 @@ import styles from "./Home.module.css";
 
 // Helpers
 import { fetchGameList } from "../helpers/fetch-functions";
-import { Spinner } from "../helpers/error-handling";
+
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+import { errorUIActions } from "../components/store/errorUI-slice";
+import Notification from "../components/Notification";
 
 function Home() {
   const [featuredGame, setFeaturedGame] = useState([]);
@@ -19,14 +23,21 @@ function Home() {
   const [bestSellers, setBestSellers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Call function
-  // Fetch game list
-  // Loop through data.results
-  // Save highest result with highest review count
-  // data.results.find() =>
+  // Redux
+  const notification = useSelector((state) => state.errorUI.notification);
+  const errorUI = useSelector((state) => state.errorUI);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setIsLoading(true);
+
+    dispatch(
+      errorUIActions.showNotification({
+        status: "Loading",
+        title: "Loading",
+        message: "Loading from database",
+      })
+    );
 
     async function init() {
       await fetchFeaturedGame();
@@ -34,6 +45,13 @@ function Home() {
       await fetchBestSellers();
 
       setIsLoading(false);
+      dispatch(
+        errorUIActions.showNotification({
+          status: "Complete",
+          title: "Completed",
+          message: "Completed loading from database",
+        })
+      );
     }
     init();
   }, []);
@@ -141,7 +159,14 @@ function Home() {
   };
 
   return (
-    <div>
+    <Fragment>
+      {notification && (
+        <Notification
+          status={notification.status}
+          title={notification.title}
+          message={notification.message}
+        />
+      )}
       <section className={styles.hero}>
         <h4 className={styles["section-title"]}>Featured</h4>
         {/* if is loading true, render loading, else render hero */}
@@ -171,7 +196,7 @@ function Home() {
           )}
         </div>
       </section>
-    </div>
+    </Fragment>
   );
 }
 
