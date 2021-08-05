@@ -3,7 +3,7 @@ import styles from "./NavBar.module.css";
 
 // Hooks
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 function NavBar() {
   return (
@@ -45,14 +45,41 @@ function NavBar() {
         </ul>
         <div className={styles["filter-menu"]}>
           <h1 className={styles["filter-menu-title"]}>Filters</h1>
+          <h2 className={styles["filter-title"]}>Platform</h2>
+          <ul className={styles["filter-list"]}>
+            <Link to="/games/pc" param="pc" className={styles["filter-link"]}>
+              PC
+            </Link>
+            <Link
+              to="/games/xbox-one"
+              param="xbox-one"
+              className={styles["filter-link"]}
+            >
+              Xbox
+            </Link>
+            <Link
+              to="/games/playstation4"
+              param="playstation4"
+              className={styles["filter-link"]}
+            >
+              Playstation
+            </Link>
+            <Link
+              to="/games/nintendo-switch"
+              param="nintendo-switch"
+              className={styles["filter-link"]}
+            >
+              Nintendo
+            </Link>
+          </ul>
           <h2 className={styles["filter-title"]}>Genre</h2>
           <ul className={styles["filter-list"]}>
-            <li className={styles["filter-link"]}>Adventure</li>
-            <li className={styles["filter-link"]}>RPG</li>
-            <li className={styles["filter-link"]}>Shooter</li>
-            <li className={styles["filter-link"]}>Puzzle</li>
-            <li className={styles["filter-link"]}>Racing</li>
-            <li className={styles["filter-link"]}>Sports</li>
+            <Link className={styles["filter-link"]}>Adventure</Link>
+            <Link className={styles["filter-link"]}>RPG</Link>
+            <Link className={styles["filter-link"]}>Shooter</Link>
+            <Link className={styles["filter-link"]}>Puzzle</Link>
+            <Link className={styles["filter-link"]}>Racing</Link>
+            <Link className={styles["filter-link"]}>Sports</Link>
           </ul>
         </div>
       </header>

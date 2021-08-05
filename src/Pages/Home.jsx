@@ -43,6 +43,7 @@ function Home() {
     let featGame = {
       rating: 0,
     };
+    console.log(data);
     data.results.map((game) => {
       if (game.rating > featGame.rating) {
         featGame = game;

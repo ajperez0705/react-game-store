@@ -8,6 +8,16 @@ export const fetchGameList = async (path) => {
   }
 };
 
+export const fetchGameListPage = async (path, pageNum) => {
+  try {
+    const response = await fetch(`${path}?page=${pageNum}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const searchDB = async (path) => {
   try {
     const response = await fetch(path);

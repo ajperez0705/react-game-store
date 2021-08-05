@@ -20,19 +20,6 @@ function Search() {
     setIsSearching(true);
 
     const initData = await searchDB(`http://localhost:3001/game/${inputValue}`);
-    // initSearchData = await searchDB(`/game/${inputValue}`);
-
-    // Loop through init data and filter our any games that do not have a genre
-    // initSearchData.forEach((game) => {
-    //   let genreArr = game.genres;
-
-    //   if (genreArr < 0) {
-    //     initSearchData = initSearchData.filter((gameToRemove) =>
-    //       gameToRemove.genres !== genreArr;
-    //     );
-    //   }
-    // });
-
     console.log(initData);
 
     const filteredData = initData.filter((result) => result.ratings_count > 50);

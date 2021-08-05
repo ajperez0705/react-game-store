@@ -14,7 +14,17 @@ app.use(express.urlencoded({ extended: false }));
 // Get All games
 app.get("/gamelist", async (req, res) => {
   const response = await fetch(
-    `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&page_size=${numResults}`
+    `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&page_size=200`
+  );
+  console.log(res);
+  res.json(await response.json());
+});
+
+// Get All games && Page #s
+app.get("/filteredGameList", async (req, res) => {
+  const { page } = req.query;
+  const response = await fetch(
+    `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&page_size=200&page=${page}`
   );
   console.log(res);
   res.json(await response.json());

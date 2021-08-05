@@ -24,6 +24,7 @@ import {
   fetchWishListData,
   sendWishListData,
 } from "./components/store/wishlist-actions";
+import FilteredGamesList from "./Pages/FilteredGamesList";
 
 let isInitial = true;
 
@@ -60,6 +61,7 @@ function App() {
         <Switch>
           <Route path="/home" exact component={Home} />
           <Route path="/search" exact component={Search} />
+          <Route path="/games/:filter" component={FilteredGamesList} />
           <Route path="/wish-list" exact component={WishList} />
           <Route path="/my-library" exact component={MyLibrary} />
           <Route path="/game-detail/:slug" component={GameDetail} />
