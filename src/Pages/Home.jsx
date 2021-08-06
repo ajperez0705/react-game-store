@@ -16,6 +16,7 @@ import { fetchGameList } from "../helpers/fetch-functions";
 import { useSelector, useDispatch } from "react-redux";
 import { errorUIActions } from "../components/store/errorUI-slice";
 import Notification from "../components/Notification";
+import LoadingSpinner from "../organisms/ui-components/LoadingSpinner";
 
 function Home() {
   const [featuredGame, setFeaturedGame] = useState([]);
@@ -61,7 +62,6 @@ function Home() {
     let featGame = {
       rating: 0,
     };
-    console.log(data);
     data.results.map((game) => {
       if (game.rating > featGame.rating) {
         featGame = game;
@@ -159,7 +159,7 @@ function Home() {
   };
 
   return (
-    <Fragment>
+    <div>
       {notification && (
         <Notification
           status={notification.status}
@@ -167,36 +167,42 @@ function Home() {
           message={notification.message}
         />
       )}
-      <section className={styles.hero}>
-        <h4 className={styles["section-title"]}>Featured</h4>
-        {/* if is loading true, render loading, else render hero */}
-        {isLoading ? <div>Loading</div> : <HeroProdCard data={featuredGame} />}
-      </section>
-      <section className={styles.medium}>
-        <h4 className={styles["section-title"]}>New Releases</h4>
-        <div className={styles["card-row"]}>
-          {isLoading ? (
-            <div>Loading</div>
-          ) : (
-            newReleases.map((game) => {
-              return <MediumProdCard key={game.id} data={game} />;
-            })
-          )}
+
+      {!isLoading ? (
+        <div>
+          <section className={styles.hero}>
+            <h4 className={styles["section-title"]}>Featured</h4>
+            <HeroProdCard data={featuredGame} />
+          </section>
+          <section className={styles.medium}>
+            <h4 className={styles["section-title"]}>New Releases</h4>
+            <div className={styles["card-row"]}>
+              {isLoading ? (
+                <div>Loading</div>
+              ) : (
+                newReleases.map((game) => {
+                  return <MediumProdCard key={game.id} data={game} />;
+                })
+              )}
+            </div>
+          </section>
+          <section className={styles.small}>
+            <h4 className={styles["section-title"]}>Best Sellers</h4>
+            <div className={styles["card-row"]}>
+              {isLoading ? (
+                <div>Loading</div>
+              ) : (
+                bestSellers.map((game) => {
+                  return <SmallProdCard key={game.id} data={game} />;
+                })
+              )}
+            </div>
+          </section>
         </div>
-      </section>
-      <section className={styles.small}>
-        <h4 className={styles["section-title"]}>Best Sellers</h4>
-        <div className={styles["card-row"]}>
-          {isLoading ? (
-            <div>Loading</div>
-          ) : (
-            bestSellers.map((game) => {
-              return <SmallProdCard key={game.id} data={game} />;
-            })
-          )}
-        </div>
-      </section>
-    </Fragment>
+      ) : (
+        <LoadingSpinner />
+      )}
+    </div>
   );
 }
 
