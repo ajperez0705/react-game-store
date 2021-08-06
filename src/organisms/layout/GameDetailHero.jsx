@@ -7,13 +7,16 @@ import styles from "../layout/HeroProdCard.module.css";
 import { cartActions } from "../../components/store/cart-slice";
 import { wishlistActions } from "../../components/store/wishlist-slice";
 import { useDispatch, useSelector } from "react-redux";
+import { errorUIActions } from "../../components/store/errorUI-slice";
+import Notification from "../../components/Notification";
 
 let screenShotLimit = [];
 let garbage = [];
 
-function HeroProdCard({ data }) {
+function GameDetailHero({ data, inCart }) {
   const cartItems = useSelector((state) => state.cart.items);
-
+  const notification = useSelector((state) => state.errorUI.notification);
+  const errorUI = useSelector((state) => state.errorUI);
   const dispatch = useDispatch();
 
   const game = {
@@ -26,6 +29,14 @@ function HeroProdCard({ data }) {
 
   const addToCartHandler = () => {
     dispatch(
+      errorUIActions.showNotification({
+        status: "Pending",
+        title: "Sending",
+        message: "Sending Cart Data",
+      })
+    );
+
+    dispatch(
       cartActions.addToCart({
         id: game.id,
         name: game.name,
@@ -33,9 +44,33 @@ function HeroProdCard({ data }) {
         image: game.cardImage,
       })
     );
+
+    dispatch(
+      errorUIActions.showNotification({
+        status: "Complete",
+        title: "Send Complete",
+        message: "Successfully sent data to cart",
+      })
+    );
+
+    setTimeout(() => {
+      dispatch(
+        errorUIActions.resetNotification({
+          notification: null,
+        })
+      );
+    }, 3000);
   };
 
   const addToWishListHandler = () => {
+    dispatch(
+      errorUIActions.showNotification({
+        status: "Pending",
+        title: "Sending",
+        message: "Sending Cart Data",
+      })
+    );
+
     dispatch(
       wishlistActions.addToWishList({
         id: game.id,
@@ -44,6 +79,22 @@ function HeroProdCard({ data }) {
         price: game.price,
       })
     );
+
+    dispatch(
+      errorUIActions.showNotification({
+        status: "Complete",
+        title: "Send Complete",
+        message: "Successfully sent data to cart",
+      })
+    );
+
+    setTimeout(() => {
+      dispatch(
+        errorUIActions.resetNotification({
+          notification: null,
+        })
+      );
+    }, 3000);
   };
 
   return (
@@ -55,6 +106,15 @@ function HeroProdCard({ data }) {
           className={styles.container}
         >
           <div className={styles["left-panel"]}>
+            <div className={styles["user-check"]}>
+              {inCart ? (
+                <i className="fas fa-shopping-cart" />
+              ) : (
+                <h3>Not in cart</h3>
+              )}
+              <i className="fas fa-list-ol" />
+              <i className="fas fa-book" />
+            </div>
             <h1 className={styles.title}>{game.name}</h1>
             <div className={styles.ctas}>
               <PrimaryBtn
@@ -75,8 +135,6 @@ function HeroProdCard({ data }) {
             <h3>Loading</h3>
           ) : (
             game.screenShots.map((screenShot, index) => {
-              console.log(index);
-
               if (index < 3) {
                 return (
                   <img
@@ -97,4 +155,4 @@ function HeroProdCard({ data }) {
   );
 }
 
-export default HeroProdCard;
+export default GameDetailHero;

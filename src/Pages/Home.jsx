@@ -53,9 +53,16 @@ function Home() {
           message: "Completed loading from database",
         })
       );
+      setTimeout(() => {
+        dispatch(
+          errorUIActions.resetNotification({
+            notification: null,
+          })
+        );
+      }, 3000);
     }
     init();
-  }, []);
+  }, [dispatch]);
 
   const fetchFeaturedGame = async () => {
     const data = await fetchGameList("http://localhost:3001/gamelist");
@@ -200,7 +207,9 @@ function Home() {
           </section>
         </div>
       ) : (
-        <LoadingSpinner />
+        <Fragment>
+          <LoadingSpinner />
+        </Fragment>
       )}
     </div>
   );

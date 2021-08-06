@@ -13,6 +13,9 @@ const errorSlice = createSlice({
         message: action.payload.message,
       };
     },
+    resetNotification(state, action) {
+      state.notification = action.payload.notification;
+    },
   },
 });
 

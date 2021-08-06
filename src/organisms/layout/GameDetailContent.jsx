@@ -1,9 +1,12 @@
 // Hooks
 import React from "react";
 import styles from "./GameDetailContent.module.css";
+import GameDetailHero from "./GameDetailHero";
 import HeroProdCard from "./HeroProdCard";
 
-function GameDetailContent({ data }) {
+import { useSelector } from "react-redux";
+
+function GameDetailContent({ data, inCart }) {
   const game = {
     heroImage: data.background_image,
     title: data.name,
@@ -22,7 +25,7 @@ function GameDetailContent({ data }) {
   return (
     <div>
       <div className={styles["hero-container"]}>
-        <HeroProdCard data={data} />
+        <GameDetailHero inCart={inCart} data={data} />
       </div>
       <div className={styles.container}>
         <div className={styles["primary-container"]}>
