@@ -13,7 +13,7 @@ function NavBar() {
           <NavLink
             activeClassName={styles.active}
             className={styles["nav-link"]}
-            to="/home"
+            to="/"
           >
             <i className="fas fa-home" />
             Home
