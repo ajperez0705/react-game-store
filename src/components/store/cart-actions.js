@@ -14,22 +14,25 @@ export const fetchCartData = (user) => {
         .get()
         .then((snapshot) => {
           snapshot.forEach((doc) => {
-            console.log(doc.data());
-            dbArr.push(doc.data());
+            let tempCopy = JSON.parse(JSON.stringify(doc.data()));
+            console.log(tempCopy);
+
+            dbArr.push(tempCopy);
           });
         });
+      console.log(dbArr);
       return dbArr;
     };
     try {
       const cartData = await fetchRequest();
-      cartData.forEach((data) => console.log(data));
-      // dispatch(
-      //   cartActions.replaceCart({
-      //     items: cartData || [],
-      //     totalQuantity: cartData.totalQuantity,
-      //     totalAmount: cartData.totalAmount,
-      //   })
-      // );
+      console.log(cartData[1].items);
+      dispatch(
+        cartActions.replaceCart({
+          items: cartData[1].items || [],
+          totalQuantity: cartData.totalQuantity,
+          totalAmount: cartData.totalAmount,
+        })
+      );
     } catch (err) {
       console.log(err);
     }

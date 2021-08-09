@@ -49,11 +49,11 @@ const cartSlice = createSlice({
     },
 
     replaceCart(state, action) {
-      console.log("called");
       const cartDB = action.payload;
-      state.items = cartDB.items;
-      state.totalQuantity = cartDB.totalQuantity;
-      state.totalAmount = cartDB.totalAmount;
+      console.log(cartDB);
+      state.items = cartDB[1].items;
+      state.totalQuantity = cartDB[0].totalQuantity;
+      state.totalAmount = cartDB[0].totalAmount;
     },
     hideCart(state, action) {},
     showCart(state, action) {},
