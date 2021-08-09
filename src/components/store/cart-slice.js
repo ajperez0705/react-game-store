@@ -49,6 +49,7 @@ const cartSlice = createSlice({
     },
 
     replaceCart(state, action) {
+      console.log("called");
       const cartDB = action.payload;
       state.items = cartDB.items;
       state.totalQuantity = cartDB.totalQuantity;

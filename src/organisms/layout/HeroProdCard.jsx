@@ -75,8 +75,6 @@ function HeroProdCard({ data }) {
             <h3>Loading</h3>
           ) : (
             game.screenShots.map((screenShot, index) => {
-              console.log(index);
-
               if (index < 3) {
                 return (
                   <img

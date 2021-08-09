@@ -57,7 +57,7 @@ function SignUp() {
               </a>
             </div>
             <span>or use your email for registration</span>
-            <input type="text" placeholder="Name" />
+            {/* <input type="text" placeholder="Name" /> */}
             <input
               id="email"
               type="email"
@@ -75,7 +75,7 @@ function SignUp() {
             <input
               id="password-confirm"
               type="password"
-              placeholder="Password"
+              placeholder="Confirm Password"
               required
               ref={passwordConfirmRef}
             />
