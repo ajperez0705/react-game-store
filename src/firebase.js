@@ -1,7 +1,6 @@
 import firebase from "firebase/app";
-import "firebase/auth";
 
-const app = firebase.initializeApp({
+const firebaseConfig = {
   apiKey: "AIzaSyC5LvvaddtQTJsFdZY7GL-xe9DKSUbii7o",
   authDomain: "react-steam-project.firebaseapp.com",
   databaseURL: "https://react-steam-project-default-rtdb.firebaseio.com",
@@ -9,10 +8,14 @@ const app = firebase.initializeApp({
   storageBucket: "react-steam-project.appspot.com",
   messagingSenderId: "565157680939",
   appId: "1:565157680939:web:0e51d5049e63c76e12176e",
-});
+};
 
-export const auth = app.auth();
-export default app;
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+const db = firebaseApp.firestore();
+const auth = firebase.auth();
+
+export { db, auth };
 
 // apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
 //   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
