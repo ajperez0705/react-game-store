@@ -19,6 +19,7 @@ import GameDetail from "./Pages/GameDetail";
 import WishList from "./Pages/WishList";
 import MyLibrary from "./Pages/MyLibrary";
 import Cart from "./components/Cart";
+import Payment from "./Pages/Payment";
 import { sendCartData, fetchCartData } from "./components/store/cart-actions";
 import {
   fetchWishListData,
@@ -45,7 +46,7 @@ function App() {
   useEffect(() => {
     dispatch(fetchCartData(currentUser));
     dispatch(fetchWishListData(currentUser));
-  }, [currentUser, dispatch]);
+  }, [dispatch, currentUser]);
 
   useEffect(() => {
     if (isInitial) {
@@ -73,6 +74,7 @@ function App() {
           <PrivateRoute path="/my-library" exact component={MyLibrary} />
           <PrivateRoute path="/game-detail/:slug" component={GameDetail} />
           <PrivateRoute path="/cart" component={Cart} />
+          <PrivateRoute path="/payment" component={Payment} />
           <Route path="/" render={() => <div>404</div>} />
         </Switch>
       </div>

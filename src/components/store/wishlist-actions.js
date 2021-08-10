@@ -22,7 +22,6 @@ export const fetchWishListData = (user) => {
     };
     try {
       const cartData = await fetchRequest();
-      console.log(cartData[1].items);
       dispatch(
         wishlistActions.replaceList({
           items: cartData[1].items || [],

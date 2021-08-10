@@ -23,7 +23,7 @@ export const fetchCartData = (user) => {
     };
     try {
       const cartData = await fetchRequest();
-      console.log(cartData[1].items);
+      console.log(cartData[0].totalAmount);
       dispatch(
         cartActions.replaceCart({
           items: cartData[1].items || [],
@@ -38,6 +38,7 @@ export const fetchCartData = (user) => {
 };
 
 export const sendCartData = (cart, user) => {
+  console.log(cart);
   return async () => {
     const sendRequest = async () => {
       db.collection("users")

@@ -1,16 +1,14 @@
 import React, { useEffect } from "react";
-import CartItem from "./CartItem";
-import styles from "./Cart.module.css";
+import CartItem from "../components/CartItem";
+import styles from "./Payment.module.css";
 import PrimaryBtn from "../organisms/buttons/PrimaryBtn";
 
 import { useSelector } from "react-redux";
 import { useAuth } from "../contexts/AuthContext";
-import { useHistory } from "react-router-dom";
 
-function Cart() {
+function Payment() {
   const cartItems = useSelector((state) => state.cart.items);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
-  const history = useHistory();
 
   const { currentUser } = useAuth();
 
@@ -18,7 +16,7 @@ function Cart() {
 
   return (
     <div>
-      <h1>Your Cart</h1>
+      <h1>Checkout</h1>
       {cartItems.map((item) => {
         return (
           <CartItem
@@ -39,14 +37,10 @@ function Cart() {
         )}
       </div>
       <div className={styles.ctas}>
-        <PrimaryBtn content="Continue Shopping" />
-        <PrimaryBtn
-          onClick={(e) => history.push("/payment")}
-          content="Checkout"
-        />
+        <PrimaryBtn content="Confirm Payment" />
       </div>
     </div>
   );
 }
 
-export default Cart;
+export default Payment;
