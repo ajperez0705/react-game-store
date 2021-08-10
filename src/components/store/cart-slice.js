@@ -50,13 +50,15 @@ const cartSlice = createSlice({
 
     replaceCart(state, action) {
       const cartDB = action.payload;
-      console.log(cartDB);
-      state.items = cartDB[1].items;
-      state.totalQuantity = cartDB[0].totalQuantity;
-      state.totalAmount = cartDB[0].totalAmount;
+      console.log(cartDB.totalAmount);
+      state.items = cartDB.items;
+      state.totalQuantity = cartDB.totalQuantity;
+      state.totalAmount = cartDB.totalAmount;
     },
-    hideCart(state, action) {},
-    showCart(state, action) {},
+
+    resetCart(state) {
+      state = undefined;
+    },
   },
 });
 

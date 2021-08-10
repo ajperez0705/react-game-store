@@ -2,19 +2,24 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import style from "./Header.module.css";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useAuth } from "../contexts/AuthContext";
+import { cartActions } from "../components/store/cart-slice";
+import { wishlistActions } from "../components/store/wishlist-slice";
 
 function Header() {
   const cartQuantity = useSelector((state) => state.cart.totalQuantity);
   const [error, setError] = useState("");
   const history = useHistory();
   const { currentUser, logout } = useAuth();
+  const dispatch = useDispatch();
 
   async function handleLogout() {
     setError("");
 
     try {
+      dispatch(cartActions.resetCart());
+      dispatch(wishlistActions.resetList());
       await logout();
       history.push("./login");
     } catch {

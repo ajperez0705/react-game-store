@@ -1,28 +1,32 @@
 import { wishlistActions } from "./wishlist-slice";
+import { db } from ".../../../src/firebase";
 
-export const fetchWishListData = () => {
+export const fetchWishListData = (user) => {
   return async (dispatch) => {
     const fetchRequest = async () => {
-      const response = await fetch(
-        "https://react-steam-project-default-rtdb.firebaseio.com/wishlist.json",
-        {
-          method: "GET",
-        }
-      );
+      let dbArr = [];
+      await db
+        .collection("users")
+        .doc(user?.uid)
+        .collection("wishlist")
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((doc) => {
+            let tempCopy = JSON.parse(JSON.stringify(doc.data()));
 
-      if (!response.ok) throw new Error("error getting response");
-
-      const data = await response.json();
-
-      return data;
+            dbArr.push(tempCopy);
+          });
+        });
+      console.log(dbArr);
+      return dbArr;
     };
     try {
-      const listData = await fetchRequest();
-
+      const cartData = await fetchRequest();
+      console.log(cartData[1].items);
       dispatch(
         wishlistActions.replaceList({
-          items: listData.items || [],
-          totalQuantity: listData.totalQuantity,
+          items: cartData[1].items || [],
+          totalQuantity: cartData[0].totalQuantity,
         })
       );
     } catch (err) {
@@ -31,21 +35,24 @@ export const fetchWishListData = () => {
   };
 };
 
-export const sendWishListData = (wishlist) => {
+export const sendWishListData = (wishlist, user) => {
   return async (dispatch) => {
     const sendRequest = async () => {
-      const response = await fetch(
-        "https://react-steam-project-default-rtdb.firebaseio.com/wishlist.json",
-        {
-          method: "PUT",
-          body: JSON.stringify({
-            items: wishlist.items,
-            totalQuantity: wishlist.totalQuantity,
-          }),
-        }
-      );
+      db.collection("users")
+        .doc(user?.uid)
+        .collection("wishlist")
+        .doc("wishlist-items")
+        .set({
+          items: wishlist.items,
+        });
 
-      if (!response.ok) throw new Error("error getting response");
+      db.collection("users")
+        .doc(user?.uid)
+        .collection("wishlist")
+        .doc("wishlist-details")
+        .set({
+          totalQuantity: wishlist.totalQuantity,
+        });
     };
 
     try {

@@ -50,6 +50,9 @@ const wishlistSlice = createSlice({
       state.items = listDB.items;
       state.totalQuantity = listDB.totalQuantity;
     },
+    resetList(state) {
+      state = undefined;
+    },
   },
 });
 

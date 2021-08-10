@@ -1,21 +1,19 @@
 import { cartActions } from "./cart-slice";
 // import { errorUIActions } from "./errorUI-slice";
 import { db } from ".../../../src/firebase";
-import { useAuth } from "../../contexts/AuthContext";
-import { useSelector } from "react-redux";
 
 export const fetchCartData = (user) => {
   return async (dispatch) => {
     const fetchRequest = async () => {
       let dbArr = [];
-      db.collection("users")
+      await db
+        .collection("users")
         .doc(user?.uid)
         .collection("cart")
         .get()
         .then((snapshot) => {
           snapshot.forEach((doc) => {
             let tempCopy = JSON.parse(JSON.stringify(doc.data()));
-            console.log(tempCopy);
 
             dbArr.push(tempCopy);
           });
@@ -29,8 +27,8 @@ export const fetchCartData = (user) => {
       dispatch(
         cartActions.replaceCart({
           items: cartData[1].items || [],
-          totalQuantity: cartData.totalQuantity,
-          totalAmount: cartData.totalAmount,
+          totalQuantity: cartData[0].totalQuantity,
+          totalAmount: cartData[0].totalAmount,
         })
       );
     } catch (err) {

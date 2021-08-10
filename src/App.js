@@ -44,8 +44,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchCartData(currentUser));
-
-    // dispatch(fetchWishListData());
+    dispatch(fetchWishListData(currentUser));
   }, [currentUser, dispatch]);
 
   useEffect(() => {
@@ -55,7 +54,7 @@ function App() {
     }
 
     dispatch(sendCartData(cart, currentUser));
-    // dispatch(sendWishListData(wishList));
+    dispatch(sendWishListData(wishList, currentUser));
   }, [cart, wishList, dispatch]);
 
   return (
