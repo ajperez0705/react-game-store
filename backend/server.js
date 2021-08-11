@@ -4,6 +4,9 @@ const port = 3001;
 const fetch = require("node-fetch");
 const cors = require("cors");
 const { urlencoded } = require("express");
+const stripe = require("stripe")(
+  "sk_test_51JMyQHGlODK871q6TktyOBPrNLZIZWhCWBgklFiJV0ARcsdtFdWBo5gSHQEsEsJonZzT3m0c0peM9ykGXLkUBIKl00ZazqkPfl"
+);
 
 // Vars
 const numResults = 150;
@@ -55,6 +58,21 @@ app.get("/game/:slug", async (req, res) => {
   );
   console.log(req.params.name);
   res.json(await response.json());
+});
+
+// Stripe
+app.post("/payments/create", async (req, res) => {
+  console.log("req sent");
+
+  const total = req.query.total;
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: total, // in subunits (cents)
+    currency: "usd",
+  });
+
+  res.status(201).send({
+    clientSecret: paymentIntent.client_secret,
+  });
 });
 
 // // Uses the twitch api to access game summaries

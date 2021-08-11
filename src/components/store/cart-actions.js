@@ -1,5 +1,4 @@
 import { cartActions } from "./cart-slice";
-// import { errorUIActions } from "./errorUI-slice";
 import { db } from ".../../../src/firebase";
 
 export const fetchCartData = (user) => {

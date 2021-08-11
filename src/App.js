@@ -10,6 +10,10 @@ import { useEffect } from "react";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 
+// Stripe
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
 // Components
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
@@ -21,6 +25,10 @@ import MyLibrary from "./Pages/MyLibrary";
 import Cart from "./components/Cart";
 import Payment from "./Pages/Payment";
 import { sendCartData, fetchCartData } from "./components/store/cart-actions";
+import {
+  sendLibraryData,
+  fetchLibraryData,
+} from "./components/store/library-actions";
 import {
   fetchWishListData,
   sendWishListData,
@@ -35,6 +43,9 @@ import ForgotPassword from "./Pages/ForgotPassword";
 import { useAuth } from "./contexts/AuthContext";
 
 let isInitial = true;
+const promise = loadStripe(
+  "pk_test_51JMyQHGlODK871q6XYOf5lRbRWuqFfKBCzf4ZeI3YFXTlT9gw5a2X2QmuhaWQbiOrEBgaaaEq4lmkzvRGXAhP1mC00z6cbkcSg"
+);
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -46,6 +57,7 @@ function App() {
   useEffect(() => {
     dispatch(fetchCartData(currentUser));
     dispatch(fetchWishListData(currentUser));
+    dispatch(fetchLibraryData(currentUser));
   }, [dispatch, currentUser]);
 
   useEffect(() => {
@@ -54,6 +66,7 @@ function App() {
       return;
     }
 
+    dispatch(sendLibraryData(cart, currentUser));
     dispatch(sendCartData(cart, currentUser));
     dispatch(sendWishListData(wishList, currentUser));
   }, [cart, wishList, dispatch]);
@@ -74,7 +87,11 @@ function App() {
           <PrivateRoute path="/my-library" exact component={MyLibrary} />
           <PrivateRoute path="/game-detail/:slug" component={GameDetail} />
           <PrivateRoute path="/cart" component={Cart} />
-          <PrivateRoute path="/payment" component={Payment} />
+          <PrivateRoute path="/payment">
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
+          </PrivateRoute>
           <Route path="/" render={() => <div>404</div>} />
         </Switch>
       </div>

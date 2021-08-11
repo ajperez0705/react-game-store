@@ -38,3 +38,15 @@ export const slugSearch = async (path) => {
     console.log(error);
   }
 };
+
+export const purchaseDB = async (path, options) => {
+  try {
+    const response = await fetch(path, options);
+    const data = await response.json();
+    return data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};

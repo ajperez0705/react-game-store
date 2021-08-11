@@ -64,7 +64,7 @@ button.ghost {
   border-color: #ffffff;
 }
 
-form {
+.form-container form {
   background-color: #ffffff;
   display: flex;
   align-items: center;
@@ -75,7 +75,7 @@ form {
   text-align: center;
 }
 
-input {
+.form-container input {
   background-color: #eee;
   border: none;
   padding: 12px 15px;
