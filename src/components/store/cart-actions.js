@@ -37,7 +37,6 @@ export const fetchCartData = (user) => {
 };
 
 export const sendCartData = (cart, user) => {
-  console.log(cart);
   return async () => {
     const sendRequest = async () => {
       db.collection("users")

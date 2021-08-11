@@ -34,7 +34,7 @@ export const fetchLibraryData = (user) => {
   };
 };
 
-export const sendLibraryData = (cart, user) => {
+export const sendLibraryData = (library, user) => {
   return async () => {
     const sendRequest = async () => {
       db.collection("users")
@@ -42,7 +42,7 @@ export const sendLibraryData = (cart, user) => {
         .collection("library")
         .doc("library-items")
         .set({
-          items: cart.items,
+          items: library.items,
         });
 
       db.collection("users")
@@ -50,7 +50,7 @@ export const sendLibraryData = (cart, user) => {
         .collection("library")
         .doc("library-details")
         .set({
-          totalQuantity: cart.totalQuantity,
+          totalQuantity: library.totalQuantity,
         });
     };
     try {

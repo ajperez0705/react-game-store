@@ -18,6 +18,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 function Payment() {
   // Redux
   const cart = useSelector((state) => state.cart);
+  const library = useSelector((state) => state.library);
   const cartItems = useSelector((state) => state.cart.items);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const dispatch = useDispatch();
@@ -32,12 +33,15 @@ function Payment() {
   const [processing, setProcessing] = useState(false);
   const [succeeded, setSucceeded] = useState("");
   const [clientSecret, setClientSecret] = useState("");
+  const [isEmpty, setIsEmpty] = useState(false);
   const { currentUser } = useAuth();
 
   // Router
   const history = useHistory();
 
   useEffect(() => {
+    setIsEmpty(false);
+
     const getClientSecret = async () => {
       const amount = totalAmount * 100;
       const data = await purchaseDB(
@@ -50,12 +54,14 @@ function Payment() {
         }
       );
       setClientSecret(data.clientSecret);
+
+      // return () => {
+      //   setIsEmpty(true);
+      // };
     };
 
     getClientSecret();
   }, [totalAmount]);
-
-  console.log(`The secret is >>> ${clientSecret}`);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -72,12 +78,14 @@ function Payment() {
         setSucceeded(true);
         setError(false);
         setProcessing(false);
-
+        console.log(cart, cartItems);
         dispatch(libraryActions.addToLibrary(cart));
-        dispatch(cartActions.resetCart());
-
+        console.log(library);
         history.replace("/my-library");
+        dispatch(cartActions.emptyCart(cart));
       });
+
+    setIsEmpty(true);
   };
 
   const inputHandler = (e) => {
@@ -106,17 +114,21 @@ function Payment() {
               <h3>Review Items and Delivery</h3>
             </div>
             <div className={styles["payment__items"]}>
-              {cartItems.map((item) => {
-                return (
-                  <CartItem
-                    key={item.id}
-                    id={item.id}
-                    name={item.name}
-                    price={item.price}
-                    image={item.image}
-                  />
-                );
-              })}
+              {isEmpty ? (
+                <h1>Payment processing</h1>
+              ) : (
+                cartItems.map((item) => {
+                  return (
+                    <CartItem
+                      key={item.id}
+                      id={item.id}
+                      name={item.name}
+                      price={item.price}
+                      image={item.image}
+                    />
+                  );
+                })
+              )}
             </div>
           </div>
 

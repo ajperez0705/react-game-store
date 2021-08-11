@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CartItem from "./CartItem";
 import styles from "./Cart.module.css";
 import PrimaryBtn from "../organisms/buttons/PrimaryBtn";
@@ -10,11 +10,14 @@ import { useHistory } from "react-router-dom";
 function Cart() {
   const cartItems = useSelector((state) => state.cart.items);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
+  const [disabled, setDisabled] = useState(true);
   const history = useHistory();
 
-  const { currentUser } = useAuth();
+  // const { currentUser } = useAuth();
 
-  useEffect(() => {}, [currentUser]);
+  useEffect(() => {
+    cartItems.length === 0 ? setDisabled(true) : setDisabled(false);
+  }, [cartItems]);
 
   return (
     <div>
@@ -32,18 +35,33 @@ function Cart() {
       })}
       <div className={styles["cart-totals"]}>
         <h1 className={styles.title}>Total Amount</h1>
-        {!currentUser ? (
-          <h1 className={styles.price}>''</h1>
+        {cartItems.length === 0 ? (
+          <h1 className={styles.price}>$0.00</h1>
         ) : (
           <h1 className={styles.price}>{totalAmount.toFixed(2)}</h1>
         )}
       </div>
       <div className={styles.ctas}>
         <PrimaryBtn content="Continue Shopping" />
-        <PrimaryBtn
+        {disabled ? (
+          <button
+            onClick={(e) => history.push("/payment")}
+            content="Checkout"
+            disabled
+          >
+            Checkout
+          </button>
+        ) : (
+          <button onClick={(e) => history.push("/payment")} content="Checkout">
+            Checkout
+          </button>
+        )}
+
+        {/* <PrimaryBtn
           onClick={(e) => history.push("/payment")}
           content="Checkout"
-        />
+          disabled={disabled}
+        /> */}
       </div>
     </div>
   );

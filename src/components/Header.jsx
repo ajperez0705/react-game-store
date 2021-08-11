@@ -9,6 +9,7 @@ import { wishlistActions } from "../components/store/wishlist-slice";
 
 function Header() {
   const cartQuantity = useSelector((state) => state.cart.totalQuantity);
+  const cart = useSelector((state) => state.cart);
   const [error, setError] = useState("");
   const history = useHistory();
   const { currentUser, logout } = useAuth();
@@ -17,9 +18,9 @@ function Header() {
   async function handleLogout() {
     setError("");
 
+    dispatch(cartActions.emptyCart(cart));
+    dispatch(wishlistActions.resetList());
     try {
-      dispatch(cartActions.resetCart());
-      dispatch(wishlistActions.resetList());
       await logout();
       history.push("./login");
     } catch {

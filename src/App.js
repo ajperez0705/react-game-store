@@ -50,14 +50,15 @@ const promise = loadStripe(
 function App() {
   const cart = useSelector((state) => state.cart);
   const wishList = useSelector((state) => state.wishlist);
+  const library = useSelector((state) => state.library);
   // const notification = useSelector((state) => state.errorUI.notification);
   const dispatch = useDispatch();
   const { currentUser } = useAuth();
 
   useEffect(() => {
+    dispatch(fetchLibraryData(currentUser));
     dispatch(fetchCartData(currentUser));
     dispatch(fetchWishListData(currentUser));
-    dispatch(fetchLibraryData(currentUser));
   }, [dispatch, currentUser]);
 
   useEffect(() => {
@@ -66,10 +67,19 @@ function App() {
       return;
     }
 
-    dispatch(sendLibraryData(cart, currentUser));
+    dispatch(sendLibraryData(library, currentUser));
     dispatch(sendCartData(cart, currentUser));
     dispatch(sendWishListData(wishList, currentUser));
-  }, [cart, wishList, dispatch]);
+  }, [cart, wishList, library, dispatch]);
+
+  // useEffect(() => {
+  //   if (isInitial) {
+  //     isInitial = false;
+  //     return;
+  //   }
+
+  //   dispatch(sendLibraryData(library, currentUser));
+  // }, [library]);
 
   return (
     <BrowserRouter>

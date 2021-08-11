@@ -13,6 +13,7 @@ let garbage = [];
 
 function HeroProdCard({ data }) {
   const cartItems = useSelector((state) => state.cart.items);
+  const libraryItems = useSelector((state) => state.library.items);
 
   const dispatch = useDispatch();
 
@@ -24,15 +25,23 @@ function HeroProdCard({ data }) {
     price: 50,
   };
 
-  const addToCartHandler = () => {
-    dispatch(
-      cartActions.addToCart({
-        id: game.id,
-        name: game.name,
-        price: game.price,
-        image: game.cardImage,
-      })
+  const addToCartHandler = async () => {
+    const existingLibraryItem = await libraryItems.find(
+      (item) => item.id === game.id
     );
+    console.log("added");
+    if (existingLibraryItem) {
+      return;
+    } else {
+      dispatch(
+        cartActions.addToCart({
+          id: game.id,
+          name: game.name,
+          price: game.price,
+          image: game.cardImage,
+        })
+      );
+    }
   };
 
   const addToWishListHandler = () => {

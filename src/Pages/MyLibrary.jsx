@@ -7,12 +7,10 @@ import styles from "./MyLibrary.module.css";
 
 // Redux
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 function MyLibrary() {
   const libraryItems = useSelector((state) => state.library.items);
-
-  console.log(libraryItems);
 
   return (
     <div>
