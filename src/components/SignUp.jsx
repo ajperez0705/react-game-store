@@ -4,6 +4,7 @@ import "../components/SignInForm.css";
 import { useAuth } from "../contexts/AuthContext";
 
 function SignUp() {
+  const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -30,7 +31,11 @@ function SignUp() {
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
+      await signup(
+        emailRef.current.value,
+        passwordRef.current.value,
+        nameRef.current.value
+      );
       history.push("/");
     } catch {
       setError("Failed to create an account");
@@ -58,6 +63,13 @@ function SignUp() {
             </div>
             <span>or use your email for registration</span>
             {/* <input type="text" placeholder="Name" /> */}
+            <input
+              id="name"
+              type="text"
+              placeholder="Name"
+              required
+              ref={nameRef}
+            />
             <input
               id="email"
               type="email"

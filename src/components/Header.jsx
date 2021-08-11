@@ -28,6 +28,8 @@ function Header() {
     }
   }
 
+  console.log(currentUser);
+
   return (
     <div className={style.header}>
       <div>
@@ -37,6 +39,12 @@ function Header() {
       </div>
       <div className={style["user-btns"]}>
         <Link className={style["shopping-cart"]} to="/cart">
+          {currentUser ? (
+            <span>{`Welcome ${currentUser.displayName}`}</span>
+          ) : (
+            <span>Hello Guest!</span>
+          )}
+
           <i className="fas fa-shopping-cart" />
           <span>{cartQuantity}</span>
         </Link>

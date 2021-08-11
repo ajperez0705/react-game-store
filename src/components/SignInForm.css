@@ -1,13 +1,13 @@
-.body {
+.container {
   /* background: #f6f5f7; */
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  /* flex-direction: column; */
   /* font-family: "Montserrat", sans-serif; */
   height: auto;
   width: auto;
-  margin: -20px 0 50px;
+  margin-top: 40px;
 }
 
 h1 {

@@ -16,11 +16,13 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  async function signup(email, password) {
+  async function signup(email, password, name) {
     return auth
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
-        console.log(auth);
+        auth.user.updateProfile({
+          displayName: name,
+        });
       })
       .catch((error) => console.log(`${error}: Did not yield user object`));
   }
