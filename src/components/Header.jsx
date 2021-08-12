@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import style from "./Header.module.css";
+import "../App.css";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth } from "../contexts/AuthContext";

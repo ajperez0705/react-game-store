@@ -10,8 +10,9 @@ const stripe = require("stripe")(
 // Vars
 const numResults = 150;
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.text());
 
 // Get All games
 app.get("/gamelist", async (req, res) => {
@@ -80,11 +81,27 @@ app.post("/payments/create", async (req, res) => {
 });
 
 // Game Summary
-app.post("/gamesummary/", async (req, res) => {
-  const response = await fetch(`https://api.igdb.com/v4/games`);
+app.post("/gamesummary/:accessToken", async (req, res) => {
+  const clientID = "pqvyu7shepuuadhc1ces159vkss7ba";
+  const accessToken = req.params.accessToken;
+  const { gameName } = req.query;
+  console.log(gameName);
+  const newBody = `${req.body} "${gameName}";`;
+
+  console.log(gameName);
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain",
+      "Client-ID": `${clientID}`,
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: newBody,
+  };
+  const response = await fetch(`https://api.igdb.com/v4/games`, options);
   const data = await response.json();
   console.log(data);
-  // const data = response.json();
   res.send(data);
 });
 

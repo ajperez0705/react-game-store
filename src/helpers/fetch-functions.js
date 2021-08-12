@@ -39,6 +39,18 @@ export const slugSearch = async (path) => {
   }
 };
 
+export const gameSummary = async (path, gameName, options) => {
+  try {
+    const response = await fetch(`${path}?gameName=${gameName}`, options);
+    const data = await response.json();
+    return data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 export const purchaseDB = async (path, options) => {
   try {
     const response = await fetch(path, options);

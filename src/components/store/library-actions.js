@@ -7,7 +7,7 @@ export const fetchLibraryData = (user) => {
       let dbArr = [];
       await db
         .collection("users")
-        .doc(user?.uid)
+        .doc(user?.displayName)
         .collection("library")
         .get()
         .then((snapshot) => {
@@ -38,7 +38,7 @@ export const sendLibraryData = (library, user) => {
   return async () => {
     const sendRequest = async () => {
       db.collection("users")
-        .doc(user?.uid)
+        .doc(user?.displayName)
         .collection("library")
         .doc("library-items")
         .set({
@@ -46,7 +46,7 @@ export const sendLibraryData = (library, user) => {
         });
 
       db.collection("users")
-        .doc(user?.uid)
+        .doc(user?.displayName)
         .collection("library")
         .doc("library-details")
         .set({

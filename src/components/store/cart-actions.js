@@ -7,7 +7,7 @@ export const fetchCartData = (user) => {
       let dbArr = [];
       await db
         .collection("users")
-        .doc(user?.uid)
+        .doc(user?.displayName)
         .collection("cart")
         .get()
         .then((snapshot) => {
@@ -40,7 +40,7 @@ export const sendCartData = (cart, user) => {
   return async () => {
     const sendRequest = async () => {
       db.collection("users")
-        .doc(user?.uid)
+        .doc(user?.displayName)
         .collection("cart")
         .doc("cart-items")
         .set({

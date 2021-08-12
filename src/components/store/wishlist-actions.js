@@ -7,7 +7,7 @@ export const fetchWishListData = (user) => {
       let dbArr = [];
       await db
         .collection("users")
-        .doc(user?.uid)
+        .doc(user?.displayName)
         .collection("wishlist")
         .get()
         .then((snapshot) => {
@@ -38,7 +38,7 @@ export const sendWishListData = (wishlist, user) => {
   return async (dispatch) => {
     const sendRequest = async () => {
       db.collection("users")
-        .doc(user?.uid)
+        .doc(user?.displayName)
         .collection("wishlist")
         .doc("wishlist-items")
         .set({
@@ -46,7 +46,7 @@ export const sendWishListData = (wishlist, user) => {
         });
 
       db.collection("users")
-        .doc(user?.uid)
+        .doc(user?.displayName)
         .collection("wishlist")
         .doc("wishlist-details")
         .set({

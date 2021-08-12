@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./GameDetailContent.module.css";
 import GameDetailHero from "./GameDetailHero";
 
-import { purchaseDB } from "../../helpers/fetch-functions";
+import { gameSummary } from "../../helpers/fetch-functions";
 
 function GameDetailContent({ data, inCart, twitchAccess }) {
   const [summary, setSummary] = useState("");
@@ -26,26 +26,32 @@ function GameDetailContent({ data, inCart, twitchAccess }) {
   useEffect(() => {
     async function fetchGameSummary(twitchAccess) {
       try {
-        const bodyData = "fields *; where name = The Witcher 3: Wild Hunt;";
-        const gameData = await purchaseDB(
-          `http://localhost:3001/gamesummary/`,
+        const bodyData = "fields *; where name =";
+        console.log(data.name);
+        const gameData = await gameSummary(
+          `http://localhost:3001/gamesummary/${twitchAccess.access_token}`,
+          `${data.name}`,
           {
             method: "POST",
             headers: {
-              "Content-Type": "text/html",
-              "Client-ID": "clientIDHere",
-              Authorization: `Bearer ${twitchAccess.access_token}`,
+              "Content-Type": "text/plain",
             },
-            body: JSON.stringify(bodyData),
+            body: bodyData,
           }
         );
+        console.log(gameData[0].summary);
+        setSummary(gameData[0].summary);
       } catch {
         console.log("Error in game detail content component");
       }
     }
 
     fetchGameSummary(twitchAccess);
-  }, []);
+
+    return () => {
+      setSummary("");
+    };
+  }, [data.name, twitchAccess]);
 
   return (
     <div>
@@ -55,7 +61,7 @@ function GameDetailContent({ data, inCart, twitchAccess }) {
       <div className={styles.container}>
         <div className={styles["primary-container"]}>
           <h3>{game.title}</h3>
-          <p>{game.description}</p>
+          <p>{summary}</p>
         </div>
         <div className={styles["secondary-container"]}>
           <div className={styles["metacritic-rating"]}>
