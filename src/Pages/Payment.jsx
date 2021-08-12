@@ -142,8 +142,11 @@ function Payment() {
               <form onSubmit={submitHandler}>
                 <CardElement onChange={inputHandler} />
                 <div className={styles["payment__priceContainer"]}>
-                  <h1>Total Amount: {totalAmount}</h1>
-                  <button disabled={processing || disabled || succeeded}>
+                  <h1>Total Amount: ${totalAmount}</h1>
+                  <button
+                    className="primary-btn"
+                    disabled={processing || disabled || succeeded}
+                  >
                     <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
                   </button>
                 </div>

@@ -18,18 +18,16 @@ import CartItem from "../components/CartItem";
 function GameDetail() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const { twitchAccess } = location.state;
+  // const { twitchAccess } = location.state;
   const cartItems = useSelector((state) => state.cart.items);
   const notification = useSelector((state) => state.errorUI.notification);
-  let gameInCart = false;
-
-  console.log(twitchAccess);
 
   // const errorUI = useSelector((state) => state.errorUI);
 
   const [isLoading, setIsLoading] = useState(false);
   const [game, setGame] = useState([]);
   const [similarGames, setSimilarGames] = useState([]);
+  const [inCart, setInCart] = useState(false);
   const { slug } = useParams();
 
   useEffect(() => {
@@ -46,6 +44,8 @@ function GameDetail() {
     async function init() {
       try {
         await fetchClickedGame();
+        // await fetchSimilarGames();
+
         setIsLoading(false);
         dispatch(
           errorUIActions.showNotification({
@@ -54,8 +54,6 @@ function GameDetail() {
             message: "Completed loading from database",
           })
         );
-
-        checkGameInCart();
 
         setTimeout(() => {
           dispatch(
@@ -69,6 +67,7 @@ function GameDetail() {
       }
     }
     init();
+    // checkGameInCart(cartItems);
   }, []);
 
   // useEffect(() => {
@@ -84,25 +83,27 @@ function GameDetail() {
     const finalData = initData.results[0];
 
     setGame(finalData);
-  };
 
-  // const fetchSimilarGames = async (game) => {
-  //   const genre = game.genres[0].name;
-  //   const initData = await searchDB(`http://localhost:3001/gamelist/${genre}`);
-  //   console.log(initData);
-  // };
-
-  const checkGameInCart = () => {
     cartItems.forEach((cartGame) => {
       let gameCartName = cartGame.name;
       if (game.name === gameCartName) {
-        console.log(game.name, gameCartName);
+        console.log("called");
 
-        gameInCart = true;
+        setInCart(true);
         return;
       } else return;
     });
   };
+
+  // const fetchSimilarGames = async (game) => {
+  //   const genre = game.genres[0].name;
+  //   console.log(game);
+
+  //   const initData = await searchDB(`http://localhost:3001/gamelist/${genre}`);
+  // };
+
+  // const checkGameInCart = (cartItems) => {
+  // };
 
   return (
     <div>
@@ -115,8 +116,8 @@ function GameDetail() {
       )}
       <section className={styles["game-info"]}>
         <GameDetailContent
-          twitchAccess={twitchAccess}
-          inCart={gameInCart}
+          // twitchAccess={twitchAccess}
+          inCart={inCart}
           data={game}
         />
       </section>

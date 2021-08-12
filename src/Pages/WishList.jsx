@@ -15,8 +15,7 @@ function WishList() {
   return (
     <div>
       <div className={styles["user-controls"]}>
-        <SearchBar />
-        <Filter />
+        <h1>Your Wishlist</h1>
       </div>
       <div className={styles["list-container"]}>
         {wishListItems.map((item) => {

@@ -48,7 +48,7 @@ export const sendCartData = (cart, user) => {
         });
 
       db.collection("users")
-        .doc(user?.uid)
+        .doc(user?.displayName)
         .collection("cart")
         .doc("cart-details")
         .set({

@@ -3,6 +3,7 @@
   position: absolute;
   border-right: 1px solid #707070;
   padding-right: 56px;
+  /* position: fixed; */
 }
 
 .main-nav {

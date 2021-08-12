@@ -19,6 +19,11 @@ function Cart() {
     cartItems.length === 0 ? setDisabled(true) : setDisabled(false);
   }, [cartItems]);
 
+  const continueShopping = (e) => {
+    e.preventDefault();
+    history.goBack();
+  };
+
   return (
     <div>
       <h1>Your Cart</h1>
@@ -30,6 +35,7 @@ function Cart() {
             name={item.name}
             price={item.price}
             image={item.image}
+            slug={item.slug}
           />
         );
       })}
@@ -42,17 +48,28 @@ function Cart() {
         )}
       </div>
       <div className={styles.ctas}>
-        <PrimaryBtn content="Continue Shopping" />
+        <button
+          onClick={continueShopping}
+          content="Checkout"
+          className="primary-btn"
+        >
+          Continue Shopping
+        </button>
         {disabled ? (
           <button
             onClick={(e) => history.push("/payment")}
             content="Checkout"
+            className="primary-btn"
             disabled
           >
             Checkout
           </button>
         ) : (
-          <button onClick={(e) => history.push("/payment")} content="Checkout">
+          <button
+            onClick={(e) => history.push("/payment")}
+            className="primary-btn"
+            content="Checkout"
+          >
             Checkout
           </button>
         )}

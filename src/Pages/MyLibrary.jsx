@@ -15,8 +15,7 @@ function MyLibrary() {
   return (
     <div>
       <div className={styles["user-controls"]}>
-        <SearchBar />
-        <Filter />
+        <h1>Your Library</h1>
       </div>
       <div className={styles["list-container"]}>
         {libraryItems.map((item) => {

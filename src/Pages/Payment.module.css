@@ -47,10 +47,15 @@
 }
 
 .payment__details form {
-  background-color: white;
+  background-color: rgb(44, 35, 35);
   height: 50px;
+}
+.payment__details input {
+  color: white;
 }
 
 .payment__priceContainer {
-  margin-top: 40px;
+  margin-top: 120px;
+  display: flex;
+  justify-content: space-between;
 }

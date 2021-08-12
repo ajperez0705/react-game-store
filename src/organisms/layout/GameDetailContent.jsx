@@ -5,7 +5,7 @@ import GameDetailHero from "./GameDetailHero";
 
 import { gameSummary } from "../../helpers/fetch-functions";
 
-function GameDetailContent({ data, inCart, twitchAccess }) {
+function GameDetailContent({ data, inCart }) {
   const [summary, setSummary] = useState("");
 
   const game = {
@@ -23,35 +23,35 @@ function GameDetailContent({ data, inCart, twitchAccess }) {
     releaseDate: data.released,
   };
 
-  useEffect(() => {
-    async function fetchGameSummary(twitchAccess) {
-      try {
-        const bodyData = "fields *; where name =";
-        console.log(data.name);
-        const gameData = await gameSummary(
-          `http://localhost:3001/gamesummary/${twitchAccess.access_token}`,
-          `${data.name}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "text/plain",
-            },
-            body: bodyData,
-          }
-        );
-        console.log(gameData[0].summary);
-        setSummary(gameData[0].summary);
-      } catch {
-        console.log("Error in game detail content component");
-      }
-    }
+  // useEffect(() => {
+  //   async function fetchGameSummary(twitchAccess) {
+  //     try {
+  //       const bodyData = "fields *; where name =";
+  //       console.log(data.name);
+  //       const gameData = await gameSummary(
+  //         `http://localhost:3001/gamesummary/${twitchAccess.access_token}`,
+  //         `${data.name}`,
+  //         {
+  //           method: "POST",
+  //           headers: {
+  //             "Content-Type": "text/plain",
+  //           },
+  //           body: bodyData,
+  //         }
+  //       );
+  //       console.log(gameData[0].summary);
+  //       setSummary(gameData[0].summary);
+  //     } catch {
+  //       console.log("Error in game detail content component");
+  //     }
+  //   }
 
-    fetchGameSummary(twitchAccess);
+  //   fetchGameSummary(twitchAccess);
 
-    return () => {
-      setSummary("");
-    };
-  }, [data.name, twitchAccess]);
+  //   return () => {
+  //     setSummary("");
+  //   };
+  // }, [data.name, twitchAccess]);
 
   return (
     <div>
@@ -61,7 +61,7 @@ function GameDetailContent({ data, inCart, twitchAccess }) {
       <div className={styles.container}>
         <div className={styles["primary-container"]}>
           <h3>{game.title}</h3>
-          <p>{summary}</p>
+          <p>Summary</p>
         </div>
         <div className={styles["secondary-container"]}>
           <div className={styles["metacritic-rating"]}>
