@@ -26,7 +26,6 @@ const librarySlice = createSlice({
 
     replaceList(state, action) {
       const listDB = action.payload;
-      console.log(listDB);
       state.items = listDB.items;
       state.totalQuantity = listDB.totalQuantity;
     },

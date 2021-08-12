@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import GameDetailContent from "../organisms/layout/GameDetailContent";
-// import MediumProdCard from "../organisms/layout/MediumProdCard";
+import MediumProdCard from "../organisms/layout/MediumProdCard";
 
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 
 import styles from "./GameDetail.module.css";
 import { searchDB, slugSearch } from "../helpers/fetch-functions";
@@ -14,8 +14,11 @@ import { useSelector, useDispatch } from "react-redux";
 import CartItem from "../components/CartItem";
 // import { errorUIActions } from "../../components/store/errorUI-slice";
 // import Notification from "../../components/Notification";
+let isInitial = true;
 
 function GameDetail() {
+  const url = window.location.pathname;
+
   const dispatch = useDispatch();
   const location = useLocation();
   // const { twitchAccess } = location.state;
@@ -68,39 +71,63 @@ function GameDetail() {
     }
     init();
     // checkGameInCart(cartItems);
-  }, []);
+  }, [url]);
 
-  // useEffect(() => {
-  //   async function initSimilarSearch(game) {
-  //     await fetchSimilarGames(game);
-  //   }
+  useEffect(() => {
+    if (isInitial) {
+      isInitial = false;
+      return;
+    }
 
-  //   initSimilarSearch(game);
-  // }, [game]);
+    async function initSimilarSearch() {
+      setIsLoading(true);
+      await fetchSimilarGames(game);
+      setIsLoading(false);
+    }
+
+    initSimilarSearch();
+  }, [game]);
 
   const fetchClickedGame = async () => {
     const initData = await slugSearch(`http://localhost:3001/game/${slug}`);
     const finalData = initData.results[0];
 
     setGame(finalData);
-
-    cartItems.forEach((cartGame) => {
-      let gameCartName = cartGame.name;
-      if (game.name === gameCartName) {
-        console.log("called");
-
-        setInCart(true);
-        return;
-      } else return;
-    });
+    console.log(game);
   };
 
-  // const fetchSimilarGames = async (game) => {
-  //   const genre = game.genres[0].name;
-  //   console.log(game);
+  const fetchSimilarGames = async (game) => {
+    const genre = game.genres[0].name.toLowerCase();
+    const initData = await searchDB(`http://localhost:3001/gamelist/${genre}`);
 
-  //   const initData = await searchDB(`http://localhost:3001/gamelist/${genre}`);
-  // };
+    // Array Randomizer - need to get a return value to access the result
+    for (let i = initData.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * i);
+      const temp = initData[i];
+      initData[i] = initData[j];
+      initData[j] = temp;
+      console.log(temp);
+    }
+
+    let filteredSimilarData = [];
+
+    initData.forEach((game) => {
+      if (filteredSimilarData.length < 3) {
+        filteredSimilarData.push(game);
+        // setSimilarGames((prevState) => [...prevState, game]);
+      } else if (filteredSimilarData.length > 3) return;
+    });
+    setSimilarGames(filteredSimilarData);
+  };
+  // cartItems.forEach((cartGame) => {
+  //   let gameCartName = cartGame.name;
+  //   if (game.name === gameCartName) {
+  //     console.log("called");
+
+  //     setInCart(true);
+  //     return;
+  //   } else return;
+  // });
 
   // const checkGameInCart = (cartItems) => {
   // };
@@ -126,18 +153,10 @@ function GameDetail() {
           Checkout More Games Like This One
         </h2>
         <div className={styles["card-container"]}>
-          {cartItems.map((item) => {
-            return (
-              <CartItem
-                key={item.id}
-                id={item.id}
-                name={item.name}
-                price={item.price}
-                image={item.image}
-                slug={item.slug}
-              />
-            );
-          })}
+          {!isLoading &&
+            similarGames.map((item) => {
+              return <MediumProdCard data={item} />;
+            })}
         </div>
       </section>
     </div>

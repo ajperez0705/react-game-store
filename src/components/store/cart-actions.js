@@ -17,12 +17,10 @@ export const fetchCartData = (user) => {
             dbArr.push(tempCopy);
           });
         });
-      console.log(dbArr);
       return dbArr;
     };
     try {
       const cartData = await fetchRequest();
-      console.log(cartData[0].totalAmount);
       dispatch(
         cartActions.replaceCart({
           items: cartData[1].items || [],

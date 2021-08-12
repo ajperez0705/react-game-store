@@ -75,7 +75,6 @@ function Home() {
         method: "POST",
       }
     );
-    console.log(accessData);
     setTwitchAccessToken(accessData);
     // return () => {
     //   setIsEmpty(true);

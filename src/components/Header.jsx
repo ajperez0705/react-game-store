@@ -30,8 +30,6 @@ function Header() {
     }
   }
 
-  console.log(currentUser);
-
   return (
     <div className={style.header}>
       <div>
