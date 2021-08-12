@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useAuth } from "../contexts/AuthContext";
 import { cartActions } from "../components/store/cart-slice";
 import { wishlistActions } from "../components/store/wishlist-slice";
+import PrimaryBtn from "../organisms/buttons/PrimaryBtn";
 
 function Header() {
   const cartQuantity = useSelector((state) => state.cart.totalQuantity);
@@ -40,16 +41,19 @@ function Header() {
       <div className={style["user-btns"]}>
         <Link className={style["shopping-cart"]} to="/cart">
           {currentUser ? (
-            <span>{`Welcome ${currentUser.displayName}`}</span>
+            <span
+              className={style["welcome-message"]}
+            >{`Welcome ${currentUser.displayName}`}</span>
           ) : (
-            <span>Hello Guest!</span>
+            <span className={style["welcome-message"]}>Hello Guest!</span>
           )}
 
           <i className="fas fa-shopping-cart" />
-          <span>{cartQuantity}</span>
+          <span className={style["cart-quantity"]}>{cartQuantity}</span>
         </Link>
-        <i className="fas fa-user" />
-        <button onClick={handleLogout}>Log Out</button>
+        <button className="primary-btn" onClick={handleLogout}>
+          Log Out
+        </button>
       </div>
     </div>
   );

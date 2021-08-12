@@ -3,7 +3,6 @@ const app = express();
 const port = 3001;
 const fetch = require("node-fetch");
 const cors = require("cors");
-const { urlencoded } = require("express");
 const stripe = require("stripe")(
   "sk_test_51JMyQHGlODK871q6TktyOBPrNLZIZWhCWBgklFiJV0ARcsdtFdWBo5gSHQEsEsJonZzT3m0c0peM9ykGXLkUBIKl00ZazqkPfl"
 );
@@ -42,12 +41,20 @@ app.get("/releaseDateFilter", async (req, res) => {
   res.json(await response.json());
 });
 
+// Get Games based on Genre
+app.get("/gamelist/:genre", async (req, res) => {
+  const response = await fetch(
+    `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&genres=${req.params.genre}&page_size=${numResults}`
+  );
+  console.log(res);
+  res.json(await response.json());
+});
+
 // Search through DB
 app.get("/game/:name", async (req, res) => {
   const response = await fetch(
     `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&search=${req.params.name}&page_size=${numResults}`
   );
-  console.log(req.params.name);
   res.json(await response.json());
 });
 
@@ -56,14 +63,11 @@ app.get("/game/:slug", async (req, res) => {
   const response = await fetch(
     `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&slug=${req.params.name}`
   );
-  console.log(req.params.name);
   res.json(await response.json());
 });
 
 // Stripe
 app.post("/payments/create", async (req, res) => {
-  console.log("req sent");
-
   const total = req.query.total;
   const paymentIntent = await stripe.paymentIntents.create({
     amount: total, // in subunits (cents)
@@ -75,12 +79,14 @@ app.post("/payments/create", async (req, res) => {
   });
 });
 
-// // Uses the twitch api to access game summaries
-// app.post("/game/summary/:slug", async (req, res) => {
-//   res.send({
-//     Client-ID: pqvyu7shepuuadhc1ces159vkss7ba,
-//   });
-// });
+// Game Summary
+app.post("/gamesummary/", async (req, res) => {
+  const response = await fetch(`https://api.igdb.com/v4/games`);
+  const data = await response.json();
+  console.log(data);
+  // const data = response.json();
+  res.send(data);
+});
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

@@ -6,20 +6,21 @@
   /* flex-direction: column; */
   /* font-family: "Montserrat", sans-serif; */
   height: auto;
-  width: auto;
+  min-width: 768px;
+  /* width: auto; */
   margin-top: 40px;
+
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
 }
 
-h1 {
-  font-weight: bold;
-  margin: 0;
-}
-
-h2 {
-  text-align: center;
-}
-
-p {
+.container p {
   font-size: 14px;
   font-weight: 100;
   line-height: 20px;
@@ -27,18 +28,31 @@ p {
   margin: 20px 0 30px;
 }
 
-span {
-  font-size: 12px;
+.signin-title {
+  color: #333;
 }
 
-a {
+.form-suggestion {
+  font-size: 12px;
   color: #333;
+}
+
+/* a {
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 15px 0;
+} */
+
+.password-forget {
+  color: #2e2928;
+  opacity: 0.5;
   font-size: 14px;
   text-decoration: none;
   margin: 15px 0;
 }
 
-button {
+.form-btn {
   border-radius: 20px;
   border: 1px solid #ff4b2b;
   background-color: #ff4b2b;
@@ -51,20 +65,24 @@ button {
   transition: transform 80ms ease-in;
 }
 
-button:active {
+.form-btn:active {
   transform: scale(0.95);
 }
 
-button:focus {
+.form-btn:focus {
   outline: none;
 }
 
-button.ghost {
-  background-color: transparent;
-  border-color: #ffffff;
+.form-btn.ghost {
+  background-color: #2699fb;
+  border: none;
 }
 
-.form-container form {
+#signUp {
+  margin-top: 8px;
+}
+
+.signin-form {
   background-color: #ffffff;
   display: flex;
   align-items: center;
@@ -75,7 +93,19 @@ button.ghost {
   text-align: center;
 }
 
-.form-container input {
+.signup-form {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: auto;
+  text-align: center;
+  margin-top: -40px;
+}
+
+.signin-form input {
   background-color: #eee;
   border: none;
   padding: 12px 15px;
@@ -83,20 +113,17 @@ button.ghost {
   width: 100%;
 }
 
-.container {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  position: relative;
-  overflow: hidden;
-  width: 768px;
-  max-width: 100%;
-  min-height: 480px;
+.signup-form input {
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
 }
 
 .form-container {
   position: absolute;
-  top: 0;
+  top: 15%;
   height: 100%;
   transition: all 0.6s ease-in-out;
 }
@@ -155,9 +182,9 @@ button.ghost {
 }
 
 .overlay {
-  background: #ff416c;
-  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  background: #25262c;
+  background: -webkit-linear-gradient(to right, #25262c, #25262c);
+  background: linear-gradient(to right, #25262c, #25262c);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;

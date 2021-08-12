@@ -48,9 +48,9 @@ function SignUp() {
       <div className="container right-panel-active" id="container">
         <div className="form-container sign-up-container">
           {error && <h2>{error}</h2>}
-          <form onSubmit={handleSubmit} action="#">
-            {/* <h1>Create Account</h1> */}
-            <div className="social-container">
+          <form className="signup-form" onSubmit={handleSubmit} action="#">
+            <h1 className="signin-title">Create Account</h1>
+            {/* <div className="social-container">
               <a href="#" className="social">
                 <i className="fab fa-facebook-f"></i>
               </a>
@@ -60,9 +60,10 @@ function SignUp() {
               <a href="#" className="social">
                 <i className="fab fa-linkedin-in"></i>
               </a>
-            </div>
-            <span>or use your email for registration</span>
-            {/* <input type="text" placeholder="Name" /> */}
+            </div> */}
+            <span className="form-suggestion">
+              or use your email for registration
+            </span>
             <input
               id="name"
               type="text"
@@ -91,7 +92,7 @@ function SignUp() {
               required
               ref={passwordConfirmRef}
             />
-            <button disabled={loading} type="submit">
+            <button className="form-btn" disabled={loading} type="submit">
               Sign Up
             </button>
           </form>
@@ -125,7 +126,7 @@ function SignUp() {
                 To keep connected with us please login with your personal info
               </p>
               <Link to="/login">
-                <button className="ghost" id="signIn">
+                <button className="form-btn ghost" id="signIn">
                   Sign In
                 </button>
               </Link>
@@ -133,7 +134,7 @@ function SignUp() {
             <div className="overlay-panel overlay-right">
               <h1>Hello, Friend!</h1>
               <p>Enter your personal details and start journey with us</p>
-              <button className="ghost" id="signUp">
+              <button className="form-btn ghost" id="signUp">
                 Sign Up
               </button>
             </div>

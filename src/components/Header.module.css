@@ -9,16 +9,23 @@
   font-size: 3rem;
 }
 
-span {
-  color: #d91f27;
-}
-
 .user-btns {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-left: 32px;
   cursor: pointer;
+  color: white;
+}
+
+.cart-quantity {
+  color: #2699fb;
 }
 
 .shopping-cart {
   margin-right: 32px;
+}
+
+.welcome-message {
+  font-size: 24px;
+  margin-right: 16px;
+  color: white;
 }

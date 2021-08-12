@@ -27,6 +27,7 @@ function WishList() {
               name={item.name}
               image={item.image}
               price={item.price}
+              slug={item.slug}
             />
           );
         })}

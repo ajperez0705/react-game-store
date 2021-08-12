@@ -80,9 +80,9 @@ function SignInForm() {
         <div className="form-container sign-in-container">
           {error && <h2>{error}</h2>}
 
-          <form onSubmit={handleSubmit} action="#">
-            <h1>Sign in</h1>
-            <div className="social-container">
+          <form className="signin-form" onSubmit={handleSubmit} action="#">
+            <h1 className="signin-title">Sign in</h1>
+            {/* <div className="social-container">
               <a href="#" className="social">
                 <i className="fab fa-facebook-f"></i>
               </a>
@@ -92,8 +92,8 @@ function SignInForm() {
               <a href="#" className="social">
                 <i className="fab fa-linkedin-in"></i>
               </a>
-            </div>
-            <span>or use your account</span>
+            </div> */}
+            <span className="form-suggestion">or use your account</span>
             <input
               id="email"
               type="email"
@@ -108,8 +108,12 @@ function SignInForm() {
               required
               ref={passwordRef}
             />
-            <Link to="/forgot-password">Forgot your password?</Link>
-            <button disabled={loading}>Log In</button>
+            <Link className="password-forget" to="/forgot-password">
+              Forgot your password?
+            </Link>
+            <button className="form-btn" disabled={loading}>
+              Log In
+            </button>
           </form>
         </div>
         <div className="overlay-container">
@@ -119,7 +123,7 @@ function SignInForm() {
               <p>
                 To keep connected with us please login with your personal info
               </p>
-              <button className="ghost" id="signIn">
+              <button className="form-btn ghost" id="signIn">
                 Sign In
               </button>
             </div>
@@ -127,7 +131,7 @@ function SignInForm() {
               <h1>Hello, Friend!</h1>
               <p>Enter your personal details and start journey with us</p>
               <Link to="/sign-up">
-                <button className="ghost" id="signUp">
+                <button className="form-btn ghost" id="signUp">
                   Sign Up
                 </button>
               </Link>

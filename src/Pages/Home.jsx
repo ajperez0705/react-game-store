@@ -10,7 +10,7 @@ import SmallProdCard from "../organisms/layout/SmallProdCard";
 import styles from "./Home.module.css";
 
 // Helpers
-import { fetchGameList } from "../helpers/fetch-functions";
+import { fetchGameList, purchaseDB } from "../helpers/fetch-functions";
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -23,6 +23,7 @@ function Home() {
   const [newReleases, setNewReleases] = useState([]);
   const [bestSellers, setBestSellers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [twitchAccessToken, setTwitchAccessToken] = useState();
 
   // Redux
   const notification = useSelector((state) => state.errorUI.notification);
@@ -41,6 +42,7 @@ function Home() {
     );
 
     async function init() {
+      await getTwitchAccessToken();
       await fetchFeaturedGame();
       await fetchNewReleases();
       await fetchBestSellers();
@@ -63,6 +65,22 @@ function Home() {
     }
     init();
   }, [dispatch]);
+
+  const getTwitchAccessToken = async () => {
+    const clientID = "pqvyu7shepuuadhc1ces159vkss7ba";
+    const clientSecret = "4i4n874bs0pd5hyehdu33etwx3jysg";
+    const accessData = await purchaseDB(
+      `https://id.twitch.tv/oauth2/token?client_id=${clientID}&client_secret=${clientSecret}&grant_type=client_credentials`,
+      {
+        method: "POST",
+      }
+    );
+    console.log(accessData);
+    setTwitchAccessToken(accessData);
+    // return () => {
+    //   setIsEmpty(true);
+    // };
+  };
 
   const fetchFeaturedGame = async () => {
     const data = await fetchGameList("http://localhost:3001/gamelist");
@@ -179,7 +197,10 @@ function Home() {
         <div>
           <section className={styles.hero}>
             <h4 className={styles["section-title"]}>Featured</h4>
-            <HeroProdCard data={featuredGame} />
+            <HeroProdCard
+              twitchAccess={twitchAccessToken}
+              data={featuredGame}
+            />
           </section>
           <section className={styles.medium}>
             <h4 className={styles["section-title"]}>New Releases</h4>
@@ -188,7 +209,13 @@ function Home() {
                 <div>Loading</div>
               ) : (
                 newReleases.map((game) => {
-                  return <MediumProdCard key={game.id} data={game} />;
+                  return (
+                    <MediumProdCard
+                      twitchAccess={twitchAccessToken}
+                      key={game.id}
+                      data={game}
+                    />
+                  );
                 })
               )}
             </div>
@@ -200,7 +227,13 @@ function Home() {
                 <div>Loading</div>
               ) : (
                 bestSellers.map((game) => {
-                  return <SmallProdCard key={game.id} data={game} />;
+                  return (
+                    <SmallProdCard
+                      twitchAccess={twitchAccessToken}
+                      key={game.id}
+                      data={game}
+                    />
+                  );
                 })
               )}
             </div>

@@ -42,6 +42,8 @@ import ForgotPassword from "./Pages/ForgotPassword";
 
 import { useAuth } from "./contexts/AuthContext";
 
+// Helpers
+
 let isInitial = true;
 const promise = loadStripe(
   "pk_test_51JMyQHGlODK871q6XYOf5lRbRWuqFfKBCzf4ZeI3YFXTlT9gw5a2X2QmuhaWQbiOrEBgaaaEq4lmkzvRGXAhP1mC00z6cbkcSg"

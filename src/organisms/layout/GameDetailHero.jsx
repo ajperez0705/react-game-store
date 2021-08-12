@@ -8,15 +8,9 @@ import { cartActions } from "../../components/store/cart-slice";
 import { wishlistActions } from "../../components/store/wishlist-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { errorUIActions } from "../../components/store/errorUI-slice";
-import Notification from "../../components/Notification";
-
-let screenShotLimit = [];
-let garbage = [];
+// import Notification from "../../components/Notification";
 
 function GameDetailHero({ data, inCart }) {
-  const cartItems = useSelector((state) => state.cart.items);
-  const notification = useSelector((state) => state.errorUI.notification);
-  const errorUI = useSelector((state) => state.errorUI);
   const dispatch = useDispatch();
 
   const game = {
@@ -24,6 +18,7 @@ function GameDetailHero({ data, inCart }) {
     name: data.name,
     cardImage: data.background_image,
     screenShots: data.short_screenshots,
+    slug: data.slug,
     price: 50,
   };
 
@@ -42,6 +37,7 @@ function GameDetailHero({ data, inCart }) {
         name: game.name,
         price: game.price,
         image: game.cardImage,
+        slug: game.slug,
       })
     );
 
@@ -77,6 +73,7 @@ function GameDetailHero({ data, inCart }) {
         name: game.name,
         image: game.cardImage,
         price: game.price,
+        slug: game.slug,
       })
     );
 

@@ -3,7 +3,6 @@
   min-width: 350px;
   max-height: 350px;
   min-height: 350px;
-  background-image: url("https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -12,6 +11,11 @@
   flex-direction: column;
   justify-content: flex-end;
   cursor: pointer;
+}
+
+.container:hover {
+  color: #6c6e7a;
+  transition: ease-in-out 0.3s;
 }
 
 .card-content {

@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 let screenShotLimit = [];
 let garbage = [];
 
-function HeroProdCard({ data }) {
+function HeroProdCard({ data, twitchAccess }) {
   const cartItems = useSelector((state) => state.cart.items);
   const libraryItems = useSelector((state) => state.library.items);
 
@@ -22,6 +22,7 @@ function HeroProdCard({ data }) {
     name: data.name,
     cardImage: data.background_image,
     screenShots: data.short_screenshots,
+    slug: data.slug,
     price: 50,
   };
 
@@ -39,6 +40,7 @@ function HeroProdCard({ data }) {
           name: game.name,
           price: game.price,
           image: game.cardImage,
+          slug: game.slug,
         })
       );
     }
@@ -51,6 +53,7 @@ function HeroProdCard({ data }) {
         name: game.name,
         image: game.cardImage,
         price: game.price,
+        slug: game.slug,
       })
     );
   };

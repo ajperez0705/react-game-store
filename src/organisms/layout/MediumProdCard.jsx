@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import styles from "../layout/MediumProdCard.module.css";
 import { Link } from "react-router-dom";
 
-function MediumProdCard({ data }) {
+function MediumProdCard({ data, twitchAccess }) {
   const game = {
     id: data.id,
     name: data.name,
@@ -11,15 +11,15 @@ function MediumProdCard({ data }) {
     genreTwo: data.genres.length > 1 ? data.genres[1].name : "N/A",
     rating: data.metacritic,
     slug: data.slug,
-    // screenShotOne: data.short_screenshots,
-    // screenshotTwo: data.short_screenshots[2].image,
-    // screenshotThree: data.short_screenshots[3].image,
   };
 
   return (
     <Fragment>
       <Link
-        to={`/game-detail/${data.slug}`}
+        to={{
+          pathname: `/game-detail/${data.slug}`,
+          state: { twitchAccess },
+        }}
         key={game.id}
         style={{ backgroundImage: "url(" + game.cardImage + ")" }}
         className={styles.container}

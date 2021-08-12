@@ -23,6 +23,7 @@ const wishlistSlice = createSlice({
           name: newItem.name,
           image: newItem.image,
           price: newItem.price,
+          slug: newItem.slug,
           quantity: 1,
         });
         state.totalQuantity = state.totalQuantity + 1;

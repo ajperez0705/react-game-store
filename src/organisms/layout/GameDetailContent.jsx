@@ -1,12 +1,13 @@
 // Hooks
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./GameDetailContent.module.css";
 import GameDetailHero from "./GameDetailHero";
-import HeroProdCard from "./HeroProdCard";
 
-import { useSelector } from "react-redux";
+import { purchaseDB } from "../../helpers/fetch-functions";
 
-function GameDetailContent({ data, inCart }) {
+function GameDetailContent({ data, inCart, twitchAccess }) {
+  const [summary, setSummary] = useState("");
+
   const game = {
     heroImage: data.background_image,
     title: data.name,
@@ -21,6 +22,30 @@ function GameDetailContent({ data, inCart }) {
     description: data.description,
     releaseDate: data.released,
   };
+
+  useEffect(() => {
+    async function fetchGameSummary(twitchAccess) {
+      try {
+        const bodyData = "fields *; where name = The Witcher 3: Wild Hunt;";
+        const gameData = await purchaseDB(
+          `http://localhost:3001/gamesummary/`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "text/html",
+              "Client-ID": "clientIDHere",
+              Authorization: `Bearer ${twitchAccess.access_token}`,
+            },
+            body: JSON.stringify(bodyData),
+          }
+        );
+      } catch {
+        console.log("Error in game detail content component");
+      }
+    }
+
+    fetchGameSummary(twitchAccess);
+  }, []);
 
   return (
     <div>
