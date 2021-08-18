@@ -40,7 +40,7 @@ function ForgotPassword() {
 
           <form onSubmit={handleSubmit} action="#">
             <h1>Password Reset</h1>
-            <div className="social-container">
+            {/* <div className="social-container">
               <a href="#" className="social">
                 <i className="fab fa-facebook-f"></i>
               </a>
@@ -50,7 +50,7 @@ function ForgotPassword() {
               <a href="#" className="social">
                 <i className="fab fa-linkedin-in"></i>
               </a>
-            </div>
+            </div> */}
             <span>or use your account</span>
             <input
               id="email"

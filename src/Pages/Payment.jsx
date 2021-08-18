@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CartItem from "../components/CartItem";
 import styles from "./Payment.module.css";
-import PrimaryBtn from "../organisms/buttons/PrimaryBtn";
 import { purchaseDB } from "../helpers/fetch-functions";
 
 // Redux

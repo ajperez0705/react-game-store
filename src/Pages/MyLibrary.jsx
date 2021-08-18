@@ -1,6 +1,4 @@
 import React from "react";
-import Filter from "../components/Filter";
-import SearchBar from "../components/SearchBar";
 import MyLibraryCard from "../organisms/layout/MyLibraryCard";
 
 import styles from "./MyLibrary.module.css";

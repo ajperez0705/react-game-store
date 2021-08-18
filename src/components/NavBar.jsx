@@ -2,12 +2,15 @@
 import styles from "./NavBar.module.css";
 
 // Hooks
-import React, { useState } from "react";
+import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import NavItem from "./NavItem";
+import NintendoDropdownMenu from "./NintendoDropdownMenu";
+import PlaystationDropdownMenu from "./PlaystationDropdownMenu";
+import XboxDropdownMenu from "./XboxDropdownMenu";
 
 function NavBar() {
-  const [open, setOpen] = useState(false);
   const wishlistQuantity = useSelector((state) => state.wishlist.totalQuantity);
 
   return (
@@ -61,29 +64,34 @@ function NavBar() {
             >
               PC
             </Link>
-            <Link
-              to="/platforms/xbox-one"
-              param="xbox-one"
-              className={styles["filter-link"]}
+            <NavItem
+              content="Xbox"
+              icon={
+                <i style={{ marginLeft: 8 }} className="fas fa-caret-right"></i>
+              }
             >
-              Xbox
-            </Link>
-            <Link
-              to="/platforms/playstation-5"
-              param="playstation-5"
-              className={styles["filter-link"]}
+              <XboxDropdownMenu />
+            </NavItem>
+
+            <NavItem
+              content="Playstation"
+              icon={
+                <i style={{ marginLeft: 8 }} className="fas fa-caret-right"></i>
+              }
             >
-              Playstation
-            </Link>
-            <Link
-              to="/platforms/nintendo-switch"
-              param="nintendo-switch"
-              className={styles["filter-link"]}
+              <PlaystationDropdownMenu />
+            </NavItem>
+
+            <NavItem
+              content="Nintendo"
+              icon={
+                <i style={{ marginLeft: 8 }} className="fas fa-caret-right"></i>
+              }
             >
-              Nintendo
-            </Link>
+              <NintendoDropdownMenu />
+            </NavItem>
           </ul>
-          <h2 className={styles["filter-title"]}>Genre</h2>
+          {/* <h2 className={styles["filter-title"]}>Genre</h2>
           <ul className={styles["filter-list"]}>
             <Link className={styles["filter-link"]}>Adventure</Link>
             <Link className={styles["filter-link"]}>RPG</Link>
@@ -91,7 +99,7 @@ function NavBar() {
             <Link className={styles["filter-link"]}>Puzzle</Link>
             <Link className={styles["filter-link"]}>Racing</Link>
             <Link className={styles["filter-link"]}>Sports</Link>
-          </ul>
+          </ul> */}
         </div>
       </header>
     </div>

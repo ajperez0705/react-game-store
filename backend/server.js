@@ -40,30 +40,6 @@ app.get("/filteredGameList", async (req, res) => {
 app.get("/filterPlatform/:platform", async (req, res) => {
   let platform = req.params.platform;
   console.log(platform);
-  switch (platform) {
-    case "pc":
-      platform = 4;
-      break;
-
-    case "xbox-one":
-      platform = 1;
-      break;
-
-    case "playstation-5":
-      platform = 187;
-      break;
-
-    case "nintendo-switch":
-      platform = 7;
-      break;
-
-    case "nintendo-64":
-      platform = 83;
-      break;
-
-    default:
-      break;
-  }
 
   const response = await fetch(
     `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&page_size=12&platforms=${platform}`
@@ -76,31 +52,6 @@ app.get("/filterPlatform/:platform", async (req, res) => {
 app.get("/refinedPlatformFilter/", async (req, res) => {
   const { genres, ordering } = req.query;
   let platform = req.query.platforms;
-  console.log(platform);
-  switch (platform) {
-    case "pc":
-      platform = 4;
-      break;
-
-    case "xbox-one":
-      platform = 1;
-      break;
-
-    case "playstation-5":
-      platform = 187;
-      break;
-
-    case "nintendo-switch":
-      platform = 7;
-      break;
-
-    case "nintendo-64":
-      platform = 83;
-      break;
-
-    default:
-      break;
-  }
 
   console.log(platform, genres, ordering);
   const response = await fetch(

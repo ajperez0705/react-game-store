@@ -4,12 +4,11 @@
   /* align-items: center; */
 }
 
-.user-controls {
+/* .user-controls {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-}
+} */
 
 .error-msg {
   position: absolute;
@@ -22,4 +21,28 @@
   grid-template-columns: repeat(3, 500px);
   row-gap: 64px;
   column-gap: 16px;
+}
+
+.user-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.see-more-btn {
+  margin: 80px 0;
+
+  font-size: 1.5rem;
+  border-radius: 24px;
+  border: none;
+  background-color: #d91f27;
+  padding: 24px 16px;
+  cursor: pointer;
+  color: #f5f5f5;
+}
+
+.see-more-btn:hover {
+  background-color: #c4202b;
+  transition: ease-in 0.3s;
 }

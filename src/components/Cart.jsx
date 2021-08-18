@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import CartItem from "./CartItem";
 import styles from "./Cart.module.css";
-import PrimaryBtn from "../organisms/buttons/PrimaryBtn";
 
 import { useSelector } from "react-redux";
-import { useAuth } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 
 function Cart() {

@@ -1,6 +1,5 @@
 import React from "react";
 import PrimaryBtn from "../buttons/PrimaryBtn";
-import SecondaryBtn from "../buttons/SecondaryBtn";
 
 import styles from "./WishListCard.module.css";
 

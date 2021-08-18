@@ -21,7 +21,6 @@ export const fetchGameListPage = async (path, pageNum) => {
 // These helpers are used to filter through the API
 export const fetchFilteredDB = async (path, platform) => {
   try {
-    console.log(platform);
     const response = await fetch(`${path}/${platform}`);
     const data = response.json();
     return data;

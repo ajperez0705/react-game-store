@@ -30,7 +30,7 @@ function PlatformFilter({ updateFilter, platform }) {
   };
 
   return (
-    <div>
+    <div className={styles["filter-container"]}>
       <form className={styles.filters} label="Sort by" action="">
         <select
           value={orderBy}

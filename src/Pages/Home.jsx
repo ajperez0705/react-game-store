@@ -10,7 +10,7 @@ import SmallProdCard from "../organisms/layout/SmallProdCard";
 import styles from "./Home.module.css";
 
 // Helpers
-import { fetchGameList, purchaseDB } from "../helpers/fetch-functions";
+import { fetchGameList } from "../helpers/fetch-functions";
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -27,7 +27,6 @@ function Home() {
 
   // Redux
   const notification = useSelector((state) => state.errorUI.notification);
-  const errorUI = useSelector((state) => state.errorUI);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -85,7 +84,6 @@ function Home() {
     let sortingNewReleases = [];
 
     data.results.forEach((game) => {
-      let id = game.id;
       // let name = game.name;
       let month = game.released.slice(5, 7);
       let day = game.released.slice(8, 10);
@@ -131,7 +129,6 @@ function Home() {
     let sortingBestSellers = [];
 
     data.results.forEach((game) => {
-      let id = game.id;
       let ratingCount = game.ratings_count;
       // let name = game.name;
 

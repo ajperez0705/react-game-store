@@ -10,11 +10,10 @@ import MediumProdCard from "../organisms/layout/MediumProdCard";
 import {
   fetchFilteredDB,
   fetchGameList,
-  fetchGameListPage,
   updateFilteredDB,
 } from "../helpers/fetch-functions";
-import PrimaryBtn from "../organisms/buttons/PrimaryBtn";
 import LoadingSpinner from "../organisms/ui-components/LoadingSpinner";
+import { platformConverter } from "../helpers/platform-converter";
 
 function FilteredGamesList() {
   const url = window.location.pathname;
@@ -22,6 +21,7 @@ function FilteredGamesList() {
   const [isLoading, setIsLoading] = useState(false);
   const [renderList, setRenderList] = useState([]);
   const [nextPage, setNextPage] = useState(null);
+  const [platformID, setPlatformID] = useState(null);
 
   const { filter } = useParams();
 
@@ -30,21 +30,22 @@ function FilteredGamesList() {
   useEffect(() => {
     setIsLoading(true);
 
+    // Converts the url param to a platform ID that fits the API
+    setPlatformID(platformConverter(filter));
+
     async function init() {
-      await fetchFilteredList(filter);
+      await fetchFilteredList(platformID);
       setIsLoading(false);
     }
     init();
   }, [url]);
 
   const fetchFilteredList = async (chosenFilter) => {
-    console.log(chosenFilter);
     try {
       filteredList = await fetchFilteredDB(
         `http://localhost:3001/filterPlatform`,
         chosenFilter
       );
-      console.log(filteredList);
       setNextPage(filteredList.next);
       setRenderList(filteredList.results);
     } catch (err) {
@@ -52,11 +53,11 @@ function FilteredGamesList() {
     }
   };
 
-  const filterHandler = async (chosenFilter, orderBy, genre) => {
+  const filterHandler = async (platformID, orderBy, genre) => {
     setIsLoading(true);
     try {
       filteredList = await updateFilteredDB(
-        `http://localhost:3001/refinedPlatformFilter?platforms=${chosenFilter}&genres=${genre}&ordering=${orderBy}`
+        `http://localhost:3001/refinedPlatformFilter?platforms=${platformID}&genres=${genre}&ordering=${orderBy}`
       );
       console.log(filteredList);
       setRenderList(filteredList.results);
@@ -84,7 +85,7 @@ function FilteredGamesList() {
     <div>
       <div className={styles.container}>
         <div className={styles["user-controls"]}>
-          <PlatformFilter updateFilter={filterHandler} platform={filter} />
+          <PlatformFilter updateFilter={filterHandler} platform={platformID} />
         </div>
         <div className={styles["content-container"]}>
           {isLoading ? (
@@ -96,7 +97,11 @@ function FilteredGamesList() {
               return <MediumProdCard key={game.id} data={game} />;
             })
           )}
-          <button onClick={seeMoreHandler}>See More</button>
+        </div>
+        <div className={styles["user-btn"]}>
+          <button className={styles["see-more-btn"]} onClick={seeMoreHandler}>
+            See More
+          </button>
         </div>
       </div>
     </div>

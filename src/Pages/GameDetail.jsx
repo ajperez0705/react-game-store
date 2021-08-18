@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import GameDetailContent from "../organisms/layout/GameDetailContent";
 import MediumProdCard from "../organisms/layout/MediumProdCard";
 
-import { useParams, useLocation, Link } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 import styles from "./GameDetail.module.css";
 import { searchDB, slugSearch, gameSummary } from "../helpers/fetch-functions";
@@ -11,7 +11,6 @@ import { searchDB, slugSearch, gameSummary } from "../helpers/fetch-functions";
 import { errorUIActions } from "../components/store/errorUI-slice";
 import Notification from "../components/Notification";
 import { useSelector, useDispatch } from "react-redux";
-import CartItem from "../components/CartItem";
 import LoadingSpinner from "../organisms/ui-components/LoadingSpinner";
 // import { errorUIActions } from "../../components/store/errorUI-slice";
 // import Notification from "../../components/Notification";
@@ -21,9 +20,7 @@ function GameDetail() {
   const url = window.location.pathname;
 
   const dispatch = useDispatch();
-  const location = useLocation();
   // const { twitchAccess } = location.state;
-  const cartItems = useSelector((state) => state.cart.items);
   const notification = useSelector((state) => state.errorUI.notification);
 
   // const errorUI = useSelector((state) => state.errorUI);
@@ -208,7 +205,7 @@ function GameDetail() {
   };
 
   return (
-    <div>
+    <div className={styles["container"]}>
       {notification && (
         <Notification
           status={notification.status}

@@ -65,7 +65,63 @@ a.active {
   cursor: pointer;
 }
 
+.nav-item {
+  margin-bottom: 12px;
+}
+
+.filter-link-dropdown:hover {
+  color: #d91f27;
+  transition: ease-in-out 0.3s;
+  cursor: pointer;
+}
+
 .wishlist-quantity {
   color: #d91f27;
   padding-left: 8px;
+}
+
+.nintendo-dropdown {
+  position: absolute;
+  top: 540px;
+  width: 250px;
+  transform: translateX(44%);
+  padding: 1rem;
+  overflow: hidden;
+  background-color: #312c2c;
+  border-radius: 8px;
+}
+
+.playstation-dropdown {
+  position: absolute;
+  top: 500px;
+  width: 250px;
+  transform: translateX(44%);
+  padding: 1rem;
+  overflow: hidden;
+  background-color: #312c2c;
+  border-radius: 8px;
+}
+
+.xbox-dropdown {
+  position: absolute;
+  top: 470px;
+  width: 250px;
+  transform: translateX(44%);
+  padding: 1rem;
+  overflow: hidden;
+  background-color: #312c2c;
+  border-radius: 8px;
+}
+
+.menu-item {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  transition: background ease-in-out 300ms;
+  padding: 0.5rem;
+}
+
+.menu-item:hover {
+  background-color: #474243;
 }

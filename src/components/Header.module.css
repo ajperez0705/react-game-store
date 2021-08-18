@@ -17,15 +17,22 @@
 }
 
 .cart-quantity {
-  color: #2699fb;
+  color: #c9231d;
 }
 
 .shopping-cart {
   margin-right: 32px;
 }
 
+.shopping-cart:hover {
+  color: #c9231d;
+  transition: ease-in-out 0.3s;
+}
+
 .welcome-message {
-  font-size: 24px;
+  font-size: 32px;
   margin-right: 16px;
+  margin-bottom: 8px;
   color: white;
+  border-bottom: 2px solid #c9231d;
 }

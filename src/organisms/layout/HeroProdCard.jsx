@@ -8,11 +8,7 @@ import { cartActions } from "../../components/store/cart-slice";
 import { wishlistActions } from "../../components/store/wishlist-slice";
 import { useDispatch, useSelector } from "react-redux";
 
-let screenShotLimit = [];
-let garbage = [];
-
 function HeroProdCard({ data, twitchAccess }) {
-  const cartItems = useSelector((state) => state.cart.items);
   const libraryItems = useSelector((state) => state.library.items);
 
   const dispatch = useDispatch();

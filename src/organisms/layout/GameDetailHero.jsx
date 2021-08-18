@@ -113,23 +113,33 @@ function GameDetailHero({ data, inCart, inWishlist, inLibrary }) {
               {inCart === true ? (
                 <i className="fas fa-shopping-cart" />
               ) : (
-                <h3>Not in cart</h3>
+                <i
+                  className="fas fa-shopping-cart"
+                  style={{ opacity: 0.5, color: "black" }}
+                />
               )}
               {inWishlist === true ? (
                 <i className="fas fa-list-ol" />
               ) : (
-                <h3>Not in Wishlist</h3>
+                <i
+                  className="fas fa-list-ol"
+                  style={{ opacity: 0.5, color: "black" }}
+                />
               )}
               {inLibrary === true ? (
                 <i className="fas fa-book" />
               ) : (
-                <h3>Not in Library</h3>
+                <i
+                  className="fas fa-book"
+                  style={{ opacity: 0.5, color: "black" }}
+                />
               )}
             </div>
             <h1 className={styles.title}>{game.name}</h1>
             <div className={styles.ctas}>
               {inCart || inLibrary === true ? (
                 <button
+                  style={{ marginRight: 16 }}
                   className="primary-btn"
                   content="Add to Cart"
                   onClick={addToCartHandler}
@@ -139,6 +149,7 @@ function GameDetailHero({ data, inCart, inWishlist, inLibrary }) {
                 </button>
               ) : (
                 <button
+                  style={{ marginRight: 16 }}
                   className="primary-btn"
                   content="Add to Cart"
                   onClick={addToCartHandler}

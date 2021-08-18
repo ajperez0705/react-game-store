@@ -7,26 +7,23 @@ import { useSelector, useDispatch } from "react-redux";
 import { useAuth } from "../contexts/AuthContext";
 import { cartActions } from "../components/store/cart-slice";
 import { wishlistActions } from "../components/store/wishlist-slice";
-import PrimaryBtn from "../organisms/buttons/PrimaryBtn";
 
 function Header() {
   const cartQuantity = useSelector((state) => state.cart.totalQuantity);
   const cart = useSelector((state) => state.cart);
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const history = useHistory();
   const { currentUser, logout } = useAuth();
   const dispatch = useDispatch();
 
   async function handleLogout() {
-    setError("");
-
     dispatch(cartActions.emptyCart(cart));
     dispatch(wishlistActions.resetList());
     try {
       await logout();
       history.push("./login");
-    } catch {
-      setError("Failed to logout");
+    } catch (err) {
+      console.log(err);
     }
   }
 
@@ -48,7 +45,9 @@ function Header() {
           )}
 
           <i className="fas fa-shopping-cart" />
-          <span className={style["cart-quantity"]}>{cartQuantity}</span>
+          <span className={style["cart-quantity"]} style={{ marginLeft: 8 }}>
+            {cartQuantity}
+          </span>
         </Link>
         <button className="primary-btn" onClick={handleLogout}>
           Log Out
