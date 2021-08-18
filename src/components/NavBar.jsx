@@ -2,11 +2,12 @@
 import styles from "./NavBar.module.css";
 
 // Hooks
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function NavBar() {
+  const [open, setOpen] = useState(false);
   const wishlistQuantity = useSelector((state) => state.wishlist.totalQuantity);
 
   return (
@@ -53,25 +54,29 @@ function NavBar() {
           <h1 className={styles["filter-menu-title"]}>Filters</h1>
           <h2 className={styles["filter-title"]}>Platform</h2>
           <ul className={styles["filter-list"]}>
-            <Link to="/games/pc" param="pc" className={styles["filter-link"]}>
+            <Link
+              to="/platforms/pc"
+              param="pc"
+              className={styles["filter-link"]}
+            >
               PC
             </Link>
             <Link
-              to="/games/xbox-one"
+              to="/platforms/xbox-one"
               param="xbox-one"
               className={styles["filter-link"]}
             >
               Xbox
             </Link>
             <Link
-              to="/games/playstation-5"
+              to="/platforms/playstation-5"
               param="playstation-5"
               className={styles["filter-link"]}
             >
               Playstation
             </Link>
             <Link
-              to="/games/nintendo-switch"
+              to="/platforms/nintendo-switch"
               param="nintendo-switch"
               className={styles["filter-link"]}
             >

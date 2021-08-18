@@ -1,13 +1,10 @@
 import React from "react";
-import Filter from "../components/Filter";
-import SearchBar from "../components/SearchBar";
 import WishListCard from "../organisms/layout/WishListCard";
 
 import styles from "./WishList.module.css";
 
 // Redux
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 
 function WishList() {
   const wishListItems = useSelector((state) => state.wishlist.items);

@@ -21,6 +21,7 @@ function FilteredGamesList() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [renderList, setRenderList] = useState([]);
+  const [nextPage, setNextPage] = useState(null);
 
   const { filter } = useParams();
 
@@ -44,6 +45,7 @@ function FilteredGamesList() {
         chosenFilter
       );
       console.log(filteredList);
+      setNextPage(filteredList.next);
       setRenderList(filteredList.results);
     } catch (err) {
       console.log(err);
@@ -65,14 +67,18 @@ function FilteredGamesList() {
     setIsLoading(false);
   };
 
-  // const seeMoreHandler = () => {
-  //   setIsLoading(true);
-  //   setRenderList((prevState) => [
-  //     ...prevState,
-  //     filteredList.slice(startSliceCounter, endSliceCounter),
-  //   ]);
-  //   setIsLoading(false);
-  // };
+  const seeMoreHandler = async () => {
+    setIsLoading(true);
+    try {
+      filteredList = await fetchGameList(nextPage);
+      setNextPage(filteredList.next);
+      setRenderList((prevState) => [...prevState, ...filteredList.results]);
+    } catch (err) {
+      console.log(err);
+    }
+
+    setIsLoading(false);
+  };
 
   return (
     <div>
@@ -90,7 +96,7 @@ function FilteredGamesList() {
               return <MediumProdCard key={game.id} data={game} />;
             })
           )}
-          {/* <PrimaryBtn onClick={seeMoreHandler} /> */}
+          <button onClick={seeMoreHandler}>See More</button>
         </div>
       </div>
     </div>
