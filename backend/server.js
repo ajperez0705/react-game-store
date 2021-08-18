@@ -7,6 +7,9 @@ const stripe = require("stripe")(
   "sk_test_51JMyQHGlODK871q6TktyOBPrNLZIZWhCWBgklFiJV0ARcsdtFdWBo5gSHQEsEsJonZzT3m0c0peM9ykGXLkUBIKl00ZazqkPfl"
 );
 
+const clientID = "pqvyu7shepuuadhc1ces159vkss7ba";
+const accessToken = "4exsbb3q8tpopkrwc9pbnb3n6eldj8";
+
 // Vars
 const numResults = 150;
 app.use(cors());
@@ -30,6 +33,79 @@ app.get("/filteredGameList", async (req, res) => {
     `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&page_size=200&page=${page}`
   );
   console.log(res);
+  res.json(await response.json());
+});
+
+// Get All games && Page #s
+app.get("/filterPlatform/:platform", async (req, res) => {
+  let platform = req.params.platform;
+  console.log(platform);
+  switch (platform) {
+    case "pc":
+      platform = 4;
+      break;
+
+    case "xbox-one":
+      platform = 1;
+      break;
+
+    case "playstation-5":
+      platform = 187;
+      break;
+
+    case "nintendo-switch":
+      platform = 7;
+      break;
+
+    case "nintendo-64":
+      platform = 83;
+      break;
+
+    default:
+      break;
+  }
+
+  const response = await fetch(
+    `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&page_size=12&platforms=${platform}`
+  );
+  console.log(res);
+  res.json(await response.json());
+});
+
+// Get All games && Page #s
+app.get("/refinedPlatformFilter/", async (req, res) => {
+  const { genres, ordering } = req.query;
+  let platform = req.query.platforms;
+  console.log(platform);
+  switch (platform) {
+    case "pc":
+      platform = 4;
+      break;
+
+    case "xbox-one":
+      platform = 1;
+      break;
+
+    case "playstation-5":
+      platform = 187;
+      break;
+
+    case "nintendo-switch":
+      platform = 7;
+      break;
+
+    case "nintendo-64":
+      platform = 83;
+      break;
+
+    default:
+      break;
+  }
+
+  console.log(platform, genres, ordering);
+  const response = await fetch(
+    `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&page_size=12&platforms=${platform}&genres=${genres}&metacritic=${ordering}`
+  );
   res.json(await response.json());
 });
 
@@ -81,20 +157,19 @@ app.post("/payments/create", async (req, res) => {
 });
 
 // Game Summary
-app.post("/gamesummary/:accessToken", async (req, res) => {
-  const clientID = "pqvyu7shepuuadhc1ces159vkss7ba";
-  const accessToken = req.params.accessToken;
-  const { gameName } = req.query;
-  console.log(gameName);
+app.post("/game/summary", async (req, res) => {
+  const gameName = req.query.gameName;
+
+  console.log("hgello");
   const newBody = `${req.body} "${gameName}";`;
 
-  console.log(gameName);
+  console.log(newBody);
 
   const options = {
     method: "POST",
     headers: {
       "Content-Type": "text/plain",
-      "Client-ID": `${clientID}`,
+      "Client-ID": clientID,
       Authorization: `Bearer ${accessToken}`,
     },
     body: newBody,

@@ -13,7 +13,7 @@
   min-width: 844px;
   width: auto;
 
-  max-height: 409px;
+  max-height: auto;
   min-height: 409px;
   height: auto;
   background-color: #25262c;
@@ -53,4 +53,10 @@
 
 .detail {
   padding-bottom: 8px;
+}
+
+.game-summary {
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: lighter;
 }

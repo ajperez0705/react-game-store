@@ -42,7 +42,6 @@ function Home() {
     );
 
     async function init() {
-      await getTwitchAccessToken();
       await fetchFeaturedGame();
       await fetchNewReleases();
       await fetchBestSellers();
@@ -65,21 +64,6 @@ function Home() {
     }
     init();
   }, [dispatch]);
-
-  const getTwitchAccessToken = async () => {
-    const clientID = "pqvyu7shepuuadhc1ces159vkss7ba";
-    const clientSecret = "4i4n874bs0pd5hyehdu33etwx3jysg";
-    const accessData = await purchaseDB(
-      `https://id.twitch.tv/oauth2/token?client_id=${clientID}&client_secret=${clientSecret}&grant_type=client_credentials`,
-      {
-        method: "POST",
-      }
-    );
-    setTwitchAccessToken(accessData);
-    // return () => {
-    //   setIsEmpty(true);
-    // };
-  };
 
   const fetchFeaturedGame = async () => {
     const data = await fetchGameList("http://localhost:3001/gamelist");
@@ -192,7 +176,11 @@ function Home() {
         />
       )}
 
-      {!isLoading ? (
+      {isLoading ? (
+        <Fragment>
+          <LoadingSpinner />
+        </Fragment>
+      ) : (
         <div>
           <section className={styles.hero}>
             <h4 className={styles["section-title"]}>Featured</h4>
@@ -238,10 +226,6 @@ function Home() {
             </div>
           </section>
         </div>
-      ) : (
-        <Fragment>
-          <LoadingSpinner />
-        </Fragment>
       )}
     </div>
   );

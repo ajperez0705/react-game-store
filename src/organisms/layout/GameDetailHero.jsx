@@ -10,8 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { errorUIActions } from "../../components/store/errorUI-slice";
 // import Notification from "../../components/Notification";
 
-function GameDetailHero({ data, inCart }) {
+function GameDetailHero({ data, inCart, inWishlist, inLibrary }) {
   const dispatch = useDispatch();
+  const library = useSelector((state) => state.library.items);
 
   const game = {
     id: data.id,
@@ -23,6 +24,11 @@ function GameDetailHero({ data, inCart }) {
   };
 
   const addToCartHandler = () => {
+    // Guard clause
+    library.forEach((item) => {
+      if (item.name === data.name) return;
+    });
+
     dispatch(
       errorUIActions.showNotification({
         status: "Pending",
@@ -104,26 +110,61 @@ function GameDetailHero({ data, inCart }) {
         >
           <div className={styles["left-panel"]}>
             <div className={styles["user-check"]}>
-              {inCart ? (
+              {inCart === true ? (
                 <i className="fas fa-shopping-cart" />
               ) : (
                 <h3>Not in cart</h3>
               )}
-              <i className="fas fa-list-ol" />
-              <i className="fas fa-book" />
+              {inWishlist === true ? (
+                <i className="fas fa-list-ol" />
+              ) : (
+                <h3>Not in Wishlist</h3>
+              )}
+              {inLibrary === true ? (
+                <i className="fas fa-book" />
+              ) : (
+                <h3>Not in Library</h3>
+              )}
             </div>
             <h1 className={styles.title}>{game.name}</h1>
             <div className={styles.ctas}>
-              <PrimaryBtn
-                className={styles.btn}
-                content="Add to Cart"
-                onClick={addToCartHandler}
-              />
-              <SecondaryBtn
-                className={styles.btn}
-                content="Add to Wishlist"
-                onClick={addToWishListHandler}
-              />
+              {inCart || inLibrary === true ? (
+                <button
+                  className="primary-btn"
+                  content="Add to Cart"
+                  onClick={addToCartHandler}
+                  disabled
+                >
+                  Add to Cart
+                </button>
+              ) : (
+                <button
+                  className="primary-btn"
+                  content="Add to Cart"
+                  onClick={addToCartHandler}
+                >
+                  Add to Cart
+                </button>
+              )}
+
+              {inWishlist === true ? (
+                <button
+                  className="primary-btn"
+                  content="Add to Wishlist"
+                  onClick={addToCartHandler}
+                  disabled
+                >
+                  Add to Wishlist
+                </button>
+              ) : (
+                <button
+                  className="primary-btn"
+                  content="Add to Wishlist"
+                  onClick={addToWishListHandler}
+                >
+                  Add to Wishlist
+                </button>
+              )}
             </div>
           </div>
         </div>

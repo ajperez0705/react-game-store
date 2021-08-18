@@ -1,0 +1,26 @@
+The following are the platform ids within the Rawg API
+
+Playstation
+Playstation 5 = 187
+Playstation 4 = 18
+Playstation 3 = 16
+Playstation 2 = 15
+
+Xbox
+Xbox One = 1
+Xbox Series X/S = 186
+Xbox 360 = 14
+Xbox = 80
+
+PC = 4
+iOS = 3
+Android = 21
+
+Nintendo
+Nintendo 3DS = 8 
+Nintendo Gameboy = 26
+Nintendo Gameboy Color = 43
+Wii U = 10
+Nintendo 64 = 83
+Switch = 7
+GameCube = 105

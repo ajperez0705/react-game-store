@@ -18,6 +18,29 @@ export const fetchGameListPage = async (path, pageNum) => {
   }
 };
 
+// These helpers are used to filter through the API
+export const fetchFilteredDB = async (path, platform) => {
+  try {
+    console.log(platform);
+    const response = await fetch(`${path}/${platform}`);
+    const data = response.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const updateFilteredDB = async (path) => {
+  try {
+    console.log(path);
+    const response = await fetch(`${path}`);
+    const data = response.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const searchDB = async (path) => {
   try {
     const response = await fetch(path);
@@ -29,9 +52,9 @@ export const searchDB = async (path) => {
   }
 };
 
-export const slugSearch = async (path) => {
+export const slugSearch = async (path, abortController) => {
   try {
-    const response = await fetch(path);
+    const response = await fetch(path, { signal: abortController.signal });
     const data = await response.json();
     return data;
   } catch (error) {
@@ -39,10 +62,11 @@ export const slugSearch = async (path) => {
   }
 };
 
-export const gameSummary = async (path, gameName, options) => {
+export const gameSummary = async (path, options) => {
   try {
-    const response = await fetch(`${path}?gameName=${gameName}`, options);
+    const response = await fetch(path, options);
     const data = await response.json();
+    console.log(data);
     return data;
     // console.log(data);
   } catch (error) {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import Filter from "../components/Filter";
 import SearchBar from "../components/SearchBar";
 
@@ -7,6 +7,7 @@ import styles from "./Search.module.css";
 // Helpers
 import { searchDB } from "../helpers/fetch-functions";
 import MediumProdCard from "../organisms/layout/MediumProdCard";
+import LoadingSpinner from "../organisms/ui-components/LoadingSpinner";
 
 function Search() {
   const [isLoading, setIsLoading] = useState(false);
@@ -43,7 +44,9 @@ function Search() {
             ""
           )}
           {isLoading ? (
-            <h1 className={styles["error-msg"]}>Loading</h1>
+            <Fragment>
+              <LoadingSpinner />
+            </Fragment>
           ) : (
             searchData.map((game) => {
               return <MediumProdCard key={game.id} data={game} />;

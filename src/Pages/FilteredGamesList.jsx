@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import Filter from "../components/Filter";
-import SearchBar from "../components/SearchBar";
+import React, { useState, useEffect, Fragment } from "react";
+import PlatformFilter from "../components/Filters/PlatformFilter";
 
 import styles from "./Search.module.css";
 
@@ -8,18 +7,23 @@ import { useParams } from "react-router-dom";
 
 import MediumProdCard from "../organisms/layout/MediumProdCard";
 // Helpers
-import { fetchGameList, fetchGameListPage } from "../helpers/fetch-functions";
+import {
+  fetchFilteredDB,
+  fetchGameList,
+  fetchGameListPage,
+  updateFilteredDB,
+} from "../helpers/fetch-functions";
 import PrimaryBtn from "../organisms/buttons/PrimaryBtn";
+import LoadingSpinner from "../organisms/ui-components/LoadingSpinner";
 
 function FilteredGamesList() {
+  const url = window.location.pathname;
+
   const [isLoading, setIsLoading] = useState(false);
   const [renderList, setRenderList] = useState([]);
-  const [startSliceCounter, setStartSliceCounter] = useState(0);
-  const [endSliceCounter, setEndSliceCounter] = useState(19);
 
   const { filter } = useParams();
 
-  let listToFilter = [];
   let filteredList = [];
 
   useEffect(() => {
@@ -30,86 +34,57 @@ function FilteredGamesList() {
       setIsLoading(false);
     }
     init();
-  }, []);
-
-  //   const fetchFilteredList = async (chosenFilter) => {
-  //     for (let page = 1; page < 12; page++) {
-  //       let initData = await fetchGameListPage(
-  //         `http://localhost:3001/filteredGameList`,
-  //         page
-  //       );
-  //       listToFilter.push(...initData.results);
-  //       //   setMasterList((prevState) => [...prevState, ...initData.results]);
-  //     }
-  //     console.log(listToFilter);
-
-  //     listToFilter.forEach((game) => {
-  //       const platformsArr = game.platforms;
-  //       for (let i = 0; i < platformsArr.length; i++) {
-  //         if (platformsArr[i].platform.slug === `${chosenFilter}`)
-  //           filteredList.push(game);
-  //       }
-  //     });
-  //     console.log(filteredList);
-  //   };
+  }, [url]);
 
   const fetchFilteredList = async (chosenFilter) => {
-    while (filteredList.length < 20) {
-      let startingPage = 1;
-      let endPage = 12;
-      let initData = [];
-      for (startingPage; startingPage < endPage; startingPage++) {
-        initData = await fetchGameListPage(
-          `http://localhost:3001/filteredGameList`,
-          startingPage
-        );
-        listToFilter.push(...initData.results);
-        //   setMasterList((prevState) => [...prevState, ...initData.results]);
-      }
-      console.log(startingPage);
+    console.log(chosenFilter);
+    try {
+      filteredList = await fetchFilteredDB(
+        `http://localhost:3001/filterPlatform`,
+        chosenFilter
+      );
+      console.log(filteredList);
+      setRenderList(filteredList.results);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-      startingPage = endPage + 1;
-      endPage = startingPage + startingPage - 1;
-      console.log(startingPage);
-
-      console.log(startingPage, endPage);
-
-      console.log(listToFilter);
-
-      listToFilter.forEach((game) => {
-        const platformsArr = game.platforms;
-        for (let i = 0; i < platformsArr.length; i++) {
-          if (platformsArr[i].platform.slug === `${chosenFilter}`)
-            filteredList.push(game);
-        }
-      });
-      initData = [];
-      listToFilter = [];
+  const filterHandler = async (chosenFilter, orderBy, genre) => {
+    setIsLoading(true);
+    try {
+      filteredList = await updateFilteredDB(
+        `http://localhost:3001/refinedPlatformFilter?platforms=${chosenFilter}&genres=${genre}&ordering=${orderBy}`
+      );
+      console.log(filteredList);
+      setRenderList(filteredList.results);
+    } catch (err) {
+      console.log(err);
     }
 
-    setRenderList(filteredList.slice(startSliceCounter, endSliceCounter));
-    setStartSliceCounter(endSliceCounter + 1);
-    setEndSliceCounter(endSliceCounter + endSliceCounter - 1);
-  };
-
-  const seeMoreHandler = () => {
-    setIsLoading(true);
-    setRenderList((prevState) => [
-      ...prevState,
-      filteredList.slice(startSliceCounter, endSliceCounter),
-    ]);
     setIsLoading(false);
   };
+
+  // const seeMoreHandler = () => {
+  //   setIsLoading(true);
+  //   setRenderList((prevState) => [
+  //     ...prevState,
+  //     filteredList.slice(startSliceCounter, endSliceCounter),
+  //   ]);
+  //   setIsLoading(false);
+  // };
 
   return (
     <div>
       <div className={styles.container}>
         <div className={styles["user-controls"]}>
-          <Filter />
+          <PlatformFilter updateFilter={filterHandler} platform={filter} />
         </div>
         <div className={styles["content-container"]}>
           {isLoading ? (
-            <h1 className={styles["error-msg"]}>Loading</h1>
+            <Fragment>
+              <LoadingSpinner />
+            </Fragment>
           ) : (
             renderList.map((game) => {
               return <MediumProdCard key={game.id} data={game} />;

@@ -64,3 +64,8 @@ a.active {
   transition: ease-in-out 0.3s;
   cursor: pointer;
 }
+
+.wishlist-quantity {
+  color: #d91f27;
+  padding-left: 8px;
+}

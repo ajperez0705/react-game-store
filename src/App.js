@@ -39,6 +39,7 @@ import SignInForm from "./components/SignInForm";
 import SignUp from "./components/SignUp";
 import PrivateRoute from "./components/PrivateRoute";
 import ForgotPassword from "./Pages/ForgotPassword";
+import ScrollToTop from "./organisms/ui-components/ScrollToTop";
 
 import { useAuth } from "./contexts/AuthContext";
 
@@ -87,6 +88,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <NavBar />
+      <ScrollToTop />
       <div className="container-wrapper">
         <Switch>
           <PrivateRoute path="/" exact component={Home} />

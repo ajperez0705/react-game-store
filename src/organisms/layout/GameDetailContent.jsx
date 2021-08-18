@@ -3,16 +3,19 @@ import React, { useEffect, useState } from "react";
 import styles from "./GameDetailContent.module.css";
 import GameDetailHero from "./GameDetailHero";
 
-import { gameSummary } from "../../helpers/fetch-functions";
-
-function GameDetailContent({ data, inCart }) {
-  const [summary, setSummary] = useState("");
-
+function GameDetailContent({
+  data,
+  inCart,
+  inWishlist,
+  inLibrary,
+  gameSummary,
+}) {
   const game = {
     heroImage: data.background_image,
     title: data.name,
     id: data.id,
     genres: data.genres,
+    summary: gameSummary,
     // genreOne: data.genres.length > 0 ? data.genres[0].name : "N/A",
     // genreTwo: data.genres.length > 1 ? data.genres[1].name : "N/A",
     rating: data.metacritic,
@@ -56,12 +59,17 @@ function GameDetailContent({ data, inCart }) {
   return (
     <div>
       <div className={styles["hero-container"]}>
-        <GameDetailHero inCart={inCart} data={data} />
+        <GameDetailHero
+          inWishlist={inWishlist}
+          inLibrary={inLibrary}
+          inCart={inCart}
+          data={data}
+        />
       </div>
       <div className={styles.container}>
         <div className={styles["primary-container"]}>
           <h3>{game.title}</h3>
-          <p>Summary</p>
+          <p className={styles["game-summary"]}>{game.summary}</p>
         </div>
         <div className={styles["secondary-container"]}>
           <div className={styles["metacritic-rating"]}>

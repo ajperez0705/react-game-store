@@ -4,8 +4,11 @@ import styles from "./NavBar.module.css";
 // Hooks
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function NavBar() {
+  const wishlistQuantity = useSelector((state) => state.wishlist.totalQuantity);
+
   return (
     <div>
       <header className={styles.container}>
@@ -33,6 +36,9 @@ function NavBar() {
           >
             <i className="fas fa-heart" />
             Wish List
+            <span className={styles["wishlist-quantity"]}>
+              {wishlistQuantity}
+            </span>
           </NavLink>
           <NavLink
             activeClassName={styles.active}
@@ -58,8 +64,8 @@ function NavBar() {
               Xbox
             </Link>
             <Link
-              to="/games/playstation4"
-              param="playstation4"
+              to="/games/playstation-5"
+              param="playstation-5"
               className={styles["filter-link"]}
             >
               Playstation
