@@ -42,17 +42,10 @@ function Cart() {
         {cartItems.length === 0 ? (
           <h1 className={styles.price}>$0.00</h1>
         ) : (
-          <h1 className={styles.price}>{totalAmount.toFixed(2)}</h1>
+          <h1 className={styles.price}>${totalAmount.toFixed(2)}</h1>
         )}
       </div>
       <div className={styles.ctas}>
-        <button
-          onClick={continueShopping}
-          content="Checkout"
-          className="primary-btn"
-        >
-          Continue Shopping
-        </button>
         {disabled ? (
           <button
             onClick={(e) => history.push("/payment")}
@@ -71,6 +64,13 @@ function Cart() {
             Checkout
           </button>
         )}
+        <button
+          onClick={continueShopping}
+          content="Checkout"
+          className="secondary-btn"
+        >
+          Continue Shopping
+        </button>
 
         {/* <PrimaryBtn
           onClick={(e) => history.push("/payment")}

@@ -47,12 +47,25 @@
   font-size: 16px;
 }
 
+h3 {
+  color: #6c6e6c;
+  margin-bottom: 8px;
+}
+
+h4 {
+  font-size: 60px;
+}
+
+h6 {
+  font-size: 16px;
+}
+
 .game-detail-extras {
   color: #6c6e6c;
 }
 
 .detail {
-  padding-bottom: 8px;
+  margin-bottom: 16px;
 }
 
 .game-summary {

@@ -69,7 +69,7 @@ function GameDetailHero({ data, inCart, inWishlist, inLibrary }) {
       errorUIActions.showNotification({
         status: "Pending",
         title: "Sending",
-        message: "Sending Cart Data",
+        message: "Sending Wishlist Data",
       })
     );
 
@@ -87,7 +87,7 @@ function GameDetailHero({ data, inCart, inWishlist, inLibrary }) {
       errorUIActions.showNotification({
         status: "Complete",
         title: "Send Complete",
-        message: "Successfully sent data to cart",
+        message: "Successfully sent data to wishlist",
       })
     );
 
@@ -160,7 +160,7 @@ function GameDetailHero({ data, inCart, inWishlist, inLibrary }) {
 
               {inWishlist === true ? (
                 <button
-                  className="primary-btn"
+                  className="secondary-btn"
                   content="Add to Wishlist"
                   onClick={addToCartHandler}
                   disabled
@@ -169,7 +169,7 @@ function GameDetailHero({ data, inCart, inWishlist, inLibrary }) {
                 </button>
               ) : (
                 <button
-                  className="primary-btn"
+                  className="secondary-btn"
                   content="Add to Wishlist"
                   onClick={addToWishListHandler}
                 >

@@ -87,7 +87,7 @@ function GameDetail() {
       abortController.abort();
     };
     // checkGameInCart(cartItems);
-  }, [url]);
+  }, [url, slug]);
 
   // Skips init, runs when the game state changes
   useEffect(() => {
@@ -114,24 +114,31 @@ function GameDetail() {
     checkGameStatus();
   }, [cart, wishlist, library]);
 
+  // Checks if the current game already exists in one of the databases
   const checkGameStatus = () => {
-    const curGameName = game.name;
+    const curGameSlug = game.slug;
 
     cart.forEach((item) => {
-      if (curGameName === item.name) {
+      if (curGameSlug === item.slug) {
         setInCart(true);
+      } else {
+        setInCart(false);
       }
     });
 
     wishlist.forEach((item) => {
-      if (curGameName === item.name) {
+      if (curGameSlug === item.slug) {
         setInWishlist(true);
+      } else {
+        setInWishlist(false);
       }
     });
 
     library.forEach((item) => {
-      if (curGameName === item.name) {
+      if (curGameSlug === item.slug) {
         setInLibrary(true);
+      } else {
+        setInLibrary(false);
       }
     });
   };

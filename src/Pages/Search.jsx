@@ -39,7 +39,9 @@ function Search() {
         </div>
         <div className={styles["content-container"]}>
           {!isSearching ? (
-            <h1 className={styles["error-msg"]}>You need to search porra</h1>
+            <h1 className={styles["error-msg"]}>
+              Search for your favorite game!
+            </h1>
           ) : (
             ""
           )}

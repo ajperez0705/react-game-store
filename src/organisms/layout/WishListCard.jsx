@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import PrimaryBtn from "../buttons/PrimaryBtn";
 
 import styles from "./WishListCard.module.css";
@@ -12,6 +13,16 @@ import { Link } from "react-router-dom";
 
 function WishListCard({ id, name, price, image, slug }) {
   const dispatch = useDispatch();
+
+  // DB Lists
+  const cart = useSelector((state) => state.cart.items);
+  const library = useSelector((state) => state.library.items);
+
+  // DB States
+  const [inCart, setInCart] = useState(false);
+  const [inLibrary, setInLibrary] = useState(false);
+
+  useEffect(() => checkGameStatus());
 
   const listItem = {
     id: id,
@@ -33,6 +44,26 @@ function WishListCard({ id, name, price, image, slug }) {
     );
   };
 
+  const checkGameStatus = () => {
+    const curGameSlug = slug;
+
+    cart.forEach((item) => {
+      if (curGameSlug === item.slug) {
+        setInCart(true);
+      } else {
+        setInCart(false);
+      }
+    });
+
+    library.forEach((item) => {
+      if (curGameSlug === item.slug) {
+        setInLibrary(true);
+      } else {
+        setInLibrary(false);
+      }
+    });
+  };
+
   const removeFromWishListHandler = () => {
     dispatch(wishlistActions.removeFromList(listItem));
   };
@@ -50,11 +81,17 @@ function WishListCard({ id, name, price, image, slug }) {
         </div>
         <div className={styles["right-panel"]}>
           <h1 className={styles.price}>${price}</h1>
-          <PrimaryBtn onClick={addToCartHandler} content="Add to Cart" />
-          <button
-            onClick={removeFromWishListHandler}
-            className={styles["remove-btn"]}
-          >
+          {inCart || inLibrary ? (
+            <button disabled onClick={addToCartHandler} className="primary-btn">
+              Add to Cart
+            </button>
+          ) : (
+            <button onClick={addToCartHandler} className="primary-btn">
+              Add to Cart
+            </button>
+          )}
+
+          <button onClick={removeFromWishListHandler} className="secondary-btn">
             Remove
           </button>
         </div>

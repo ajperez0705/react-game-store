@@ -16,6 +16,7 @@ function GameDetailContent({
     id: data.id,
     genres: data.genres,
     summary: gameSummary,
+    // esrbRating: data.esrb_rating.name,
     // genreOne: data.genres.length > 0 ? data.genres[0].name : "N/A",
     // genreTwo: data.genres.length > 1 ? data.genres[1].name : "N/A",
     rating: data.metacritic,
@@ -25,36 +26,6 @@ function GameDetailContent({
     description: data.description,
     releaseDate: data.released,
   };
-
-  // useEffect(() => {
-  //   async function fetchGameSummary(twitchAccess) {
-  //     try {
-  //       const bodyData = "fields *; where name =";
-  //       console.log(data.name);
-  //       const gameData = await gameSummary(
-  //         `http://localhost:3001/gamesummary/${twitchAccess.access_token}`,
-  //         `${data.name}`,
-  //         {
-  //           method: "POST",
-  //           headers: {
-  //             "Content-Type": "text/plain",
-  //           },
-  //           body: bodyData,
-  //         }
-  //       );
-  //       console.log(gameData[0].summary);
-  //       setSummary(gameData[0].summary);
-  //     } catch {
-  //       console.log("Error in game detail content component");
-  //     }
-  //   }
-
-  //   fetchGameSummary(twitchAccess);
-
-  //   return () => {
-  //     setSummary("");
-  //   };
-  // }, [data.name, twitchAccess]);
 
   return (
     <div>
@@ -68,22 +39,22 @@ function GameDetailContent({
       </div>
       <div className={styles.container}>
         <div className={styles["primary-container"]}>
-          <h3>{game.title}</h3>
+          <h3>Game Summary</h3>
           <p className={styles["game-summary"]}>{game.summary}</p>
         </div>
         <div className={styles["secondary-container"]}>
           <div className={styles["metacritic-rating"]}>
             <h3>Metacritic</h3>
-            <h3>{game.rating}</h3>
+            <h4>{game.rating}</h4>
           </div>
           <div className={styles["metacritic-rating"]}>
             <h3>Reviews</h3>
-            <h3>{game.numReviews}</h3>
+            <h4>{game.numReviews}</h4>
           </div>
         </div>
         <div className={styles["secondary-container"]}>
           <div className={styles.detail}>
-            <h6 className={styles["game-detail-extras"]}>Platform</h6>
+            <h3 className={styles["game-detail-extras"]}>Platform</h3>
             <div className={styles["platforms-container"]}>
               {!game.platforms ? (
                 <h3>Loading</h3>
@@ -99,15 +70,15 @@ function GameDetailContent({
             </div>
           </div>
           <div className={styles.detail}>
-            <h6 className={styles["game-detail-extras"]}>Developers</h6>
-            <h6>CD Projekt Rekt</h6>
+            <h3 className={styles["game-detail-extras"]}>ESRB Rating</h3>
+            <h6>{game.esrbRating}</h6>
           </div>
           <div className={styles.detail}>
-            <h6 className={styles["game-detail-extras"]}>Release Date</h6>
+            <h3 className={styles["game-detail-extras"]}>Release Date</h3>
             <h6>{game.releaseDate}</h6>
           </div>
           <div className={styles.detail}>
-            <h6 className={styles["game-detail-extras"]}>Tags</h6>
+            <h3 className={styles["game-detail-extras"]}>Tags</h3>
             <div>
               {!game.genres ? (
                 <h3>Loading</h3>

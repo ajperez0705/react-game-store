@@ -4,11 +4,15 @@
   /* align-items: center; */
 }
 
-/* .user-controls {
+.user-controls {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-} */
+}
+
+.user-controls :not(:last-child) {
+  margin-right: 40px;
+}
 
 .error-msg {
   position: absolute;

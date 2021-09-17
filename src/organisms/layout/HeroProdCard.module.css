@@ -54,8 +54,8 @@
   justify-content: space-around;
 }
 
-.ctas .btn {
-  margin-right: 8px;
+.ctas :not(:last-child) {
+  margin-right: 20px;
 }
 
 .hero-screenshots {

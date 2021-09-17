@@ -16,16 +16,20 @@ function MyLibrary() {
         <h1>Your Library</h1>
       </div>
       <div className={styles["list-container"]}>
-        {libraryItems.map((item) => {
-          return (
-            <MyLibraryCard
-              key={item.id}
-              id={item.id}
-              name={item.name}
-              image={item.image}
-            />
-          );
-        })}
+        {libraryItems.length === 0 ? (
+          <h1 className="error-message">View your purchased games here!</h1>
+        ) : (
+          libraryItems.map((item) => {
+            return (
+              <MyLibraryCard
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                image={item.image}
+              />
+            );
+          })
+        )}
       </div>
     </div>
   );

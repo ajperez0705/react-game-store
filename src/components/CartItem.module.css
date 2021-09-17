@@ -2,8 +2,8 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  border-bottom: 1px solid #e3d4d4;
-  padding: 64px 16px;
+  /* border-bottom: 1px solid #e3d4d4; */
+  /* padding: 64px 16px; */
 }
 
 .title {
@@ -38,7 +38,7 @@
 }
 
 .price {
-  margin-bottom: 4px;
+  /* margin-bottom: 4px; */
 }
 
 .remove-btn {

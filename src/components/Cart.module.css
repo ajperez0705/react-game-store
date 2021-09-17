@@ -1,3 +1,7 @@
+.cart-items-container :not(:last-child) {
+  margin-bottom: 24px;
+}
+
 .cart-totals {
   display: flex;
   justify-content: space-between;
@@ -9,4 +13,8 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+
+.ctas button:not(:last-child) {
+  margin-right: 16px;
 }

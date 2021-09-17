@@ -31,7 +31,7 @@ function CartItem({ id, name, price, image, slug }) {
           </Link>
         </div>
         <div className={styles["right-cart-item"]}>
-          <h4 className={styles.price}>{price}</h4>
+          <h4 className={styles.price}>${price}</h4>
           <button
             onClick={removeFromCartHandler}
             className={styles["remove-btn"]}

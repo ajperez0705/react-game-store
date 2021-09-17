@@ -97,7 +97,7 @@ function Payment() {
     <div>
       <div className={styles["payment"]}>
         <div className={styles["payment__container"]}>
-          <div className={styles["payment__section"]}>
+          {/* <div className={styles["payment__section"]}>
             <div className={styles["payment__title"]}>
               <h3>Delivery Address</h3>
             </div>
@@ -106,7 +106,7 @@ function Payment() {
               <p>Street</p>
               <p>City</p>
             </div>
-          </div>
+          </div> */}
 
           <div className={styles["payment__section"]}>
             <div className={styles["payment__title"]}>

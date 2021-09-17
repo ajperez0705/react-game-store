@@ -32,9 +32,14 @@ function FilteredGamesList() {
 
     // Converts the url param to a platform ID that fits the API
     setPlatformID(platformConverter(filter));
+    console.log(platformID);
 
     async function init() {
-      await fetchFilteredList(platformID);
+      try {
+        await fetchFilteredList(platformID);
+      } catch (err) {
+        console.log(err);
+      }
       setIsLoading(false);
     }
     init();

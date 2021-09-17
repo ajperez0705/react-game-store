@@ -2,13 +2,29 @@
   font-size: 1.5rem;
   border-radius: 24px;
   border: none;
-  background-color: #89ef89;
+  background-color: #f3686f;
   padding: 24px 16px;
   cursor: pointer;
-  color: white;
+  color: #f5f5f5;
+}
+
+.secondary-btn:disabled {
+  font-size: 1.5rem;
+  border-radius: 24px;
+  border: none;
+  background-color: #444141;
+  opacity: 0.8s;
+  padding: 24px 16px;
+  cursor: pointer;
+  color: #f5f5f5;
 }
 
 .secondary-btn:hover {
-  background-color: #58eb58;
+  background-color: #c9565b;
   transition: ease-in 0.3s;
+}
+
+.secondary-btn:disabled:hover {
+  background-color: #444141;
+  opacity: 0.8s;
 }

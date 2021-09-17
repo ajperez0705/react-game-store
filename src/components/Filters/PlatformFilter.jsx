@@ -8,16 +8,16 @@ function PlatformFilter({ updateFilter, platform }) {
   // Consider creating an object that holds the value and label pairs for the option tags to keep everything clean
 
   const [orderBy, setOrderBy] = useState("80");
-  const [genre, setGenre] = useState();
+  const [genre, setGenre] = useState("adventure");
 
   useEffect(() => {
-    if (isInitial) {
-      isInitial = false;
-      return;
-    }
+    // if (isInitial) {
+    //   isInitial = false;
+    //   return;
+    // }
 
     updateFilter(platform, orderBy, genre);
-  }, [orderBy, genre, platform]);
+  }, [orderBy, genre]);
 
   const orderByChangeHandler = (e) => {
     setOrderBy(e.target.value);
@@ -56,7 +56,7 @@ function PlatformFilter({ updateFilter, platform }) {
           name=""
           id=""
         >
-          <option value="">Genres</option>
+          {/* <option value="">Genres</option> */}
           <option value="adventure">Adventure</option>
           <option value="strategy">Strategy</option>
           <option value="action">Action</option>
