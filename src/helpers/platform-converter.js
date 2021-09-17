@@ -18,24 +18,24 @@ export const platformConverter = (platform) => {
       break;
 
     /*******Playstation************/
-    case "playstation-5":
+    case "playstation5":
       platform = 187;
       break;
 
-    case "playstation-4":
+    case "playstation4":
       platform = 18;
       break;
 
-    case "playstation-3":
+    case "playstation3":
       platform = 16;
       break;
 
-    case "playstation-2":
+    case "playstation2":
       platform = 15;
       break;
 
-    case "playstation-1":
-      platform = 15;
+    case "playstation1":
+      platform = 27;
       break;
 
     /*******Nintendo************/
@@ -43,16 +43,20 @@ export const platformConverter = (platform) => {
       platform = 7;
       break;
 
-    case "nintendo-wii":
-      platform = 10;
+    case "wii":
+      platform = 11;
       break;
 
-    case "nintendo-gamecube":
+    case "gamecube":
       platform = 105;
       break;
 
-    case "nintendo-gameboy-advance":
+    case "gameboy-boy":
       platform = 26;
+      break;
+
+    case "game-boy-advance":
+      platform = 24;
       break;
 
     case "nintendo-3ds":

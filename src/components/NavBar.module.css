@@ -17,19 +17,32 @@
   margin: 24px 0;
   padding: 0 8px;
   cursor: pointer;
-  border-left: orangered 3px transparent;
+  /* border-left: orangered 3px transparent; */
   text-decoration: none;
   color: #6c6e7a;
+  position: relative;
 }
 
-.main-nav .nav-link:hover {
-  border-left: orangered 3px solid;
-  transition: ease-in-out 0.3s;
+.main-nav .nav-link::before {
+  content: "";
+  height: 100%;
+  width: 3px;
+  position: absolute;
+  background-color: orangered;
+  /* display: none; */
+  opacity: 0;
+  left: 0;
+  transition: opacity 0.3s ease-out;
 }
 
-a.active {
-  border-left: orangered 3px solid;
-  /* color: white; */
+.main-nav .nav-link:hover::before {
+  /* display: block; */
+  opacity: 1;
+}
+
+.main-nav .nav-link.active::before {
+  /* display: block; */
+  opacity: 1;
 }
 
 .main-nav .nav-link i {
@@ -57,6 +70,7 @@ a.active {
 
 .filter-link {
   margin-bottom: 8px;
+  /* position: relative; */
 }
 
 .filter-link:hover {
@@ -80,33 +94,44 @@ a.active {
   padding-left: 8px;
 }
 
-.nintendo-dropdown {
+#xbox-link {
+  position: relative;
+}
+.xbox-dropdown {
   position: absolute;
-  top: 540px;
+  top: -40px;
+  left: 100px;
   width: 250px;
-  transform: translateX(44%);
   padding: 1rem;
   overflow: hidden;
   background-color: #312c2c;
   border-radius: 8px;
+}
+
+#playstation-link {
+  position: relative;
 }
 
 .playstation-dropdown {
   position: absolute;
-  top: 500px;
+  top: -40px;
+  left: 100px;
   width: 250px;
-  transform: translateX(44%);
   padding: 1rem;
   overflow: hidden;
   background-color: #312c2c;
   border-radius: 8px;
 }
 
-.xbox-dropdown {
+#nintendo-link {
+  position: relative;
+}
+
+.nintendo-dropdown {
   position: absolute;
-  top: 470px;
+  top: -40px;
+  left: 100px;
   width: 250px;
-  transform: translateX(44%);
   padding: 1rem;
   overflow: hidden;
   background-color: #312c2c;
@@ -122,6 +147,6 @@ a.active {
   padding: 0.5rem;
 }
 
-.menu-item:hover {
+/* .menu-item:hover {
   background-color: #474243;
-}
+} */

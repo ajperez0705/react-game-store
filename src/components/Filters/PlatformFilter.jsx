@@ -17,7 +17,7 @@ function PlatformFilter({ updateFilter, platform }) {
     }
 
     updateFilter(platform, orderBy, genre);
-  }, [orderBy, genre]);
+  }, [orderBy, genre, platform]);
 
   const orderByChangeHandler = (e) => {
     setOrderBy(e.target.value);

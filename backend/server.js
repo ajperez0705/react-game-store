@@ -37,8 +37,9 @@ app.get("/filteredGameList", async (req, res) => {
 });
 
 // Get All games && Page #s
-app.get("/filterPlatform/:platform", async (req, res) => {
-  let platform = req.params.platform;
+app.get("/filterPlatform/", async (req, res) => {
+  let platform = req.query.platforms;
+
   console.log(platform);
 
   const response = await fetch(
@@ -53,7 +54,6 @@ app.get("/refinedPlatformFilter/", async (req, res) => {
   const { genres, ordering } = req.query;
   let platform = req.query.platforms;
 
-  console.log(platform, genres, ordering);
   const response = await fetch(
     `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&page_size=12&platforms=${platform}&genres=${genres}&metacritic=${ordering}`
   );

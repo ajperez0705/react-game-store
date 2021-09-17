@@ -8,7 +8,7 @@ function NintendoDropdownMenu() {
   }
 
   return (
-    <div className={styles["nintendo-dropdown"]}>
+    <div id={styles["nintendo-link"]} className={styles["nintendo-dropdown"]}>
       <DropDownItem>
         <Link
           to="/platforms/nintendo-switch"
@@ -31,8 +31,8 @@ function NintendoDropdownMenu() {
 
       <DropDownItem>
         <Link
-          to="/platforms/gameboy-advance"
-          param="gameboy-advance"
+          to="/platforms/game-boy-advance"
+          param="game-boy-advance"
           className={styles["filter-link-dropdown"]}
         >
           Gameboy Advance
@@ -41,8 +41,8 @@ function NintendoDropdownMenu() {
 
       <DropDownItem>
         <Link
-          to="/platforms/nintendo-wii"
-          param="nintendo-wii"
+          to="/platforms/wii"
+          param="wii"
           className={styles["filter-link-dropdown"]}
         >
           Nintendo Wii
@@ -51,8 +51,8 @@ function NintendoDropdownMenu() {
 
       <DropDownItem>
         <Link
-          to="/platforms/nintendo-gamecube"
-          param="nintendo-gamecube"
+          to="/platforms/gamecube"
+          param="gamecube"
           className={styles["filter-link-dropdown"]}
         >
           Nintendo GameCube

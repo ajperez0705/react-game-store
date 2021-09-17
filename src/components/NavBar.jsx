@@ -18,6 +18,7 @@ function NavBar() {
       <header className={styles.container}>
         <ul className={styles["main-nav"]}>
           <NavLink
+            exact
             activeClassName={styles.active}
             className={styles["nav-link"]}
             to="/"

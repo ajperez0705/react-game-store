@@ -8,11 +8,14 @@ function PlaystationDropdownMenu() {
   }
 
   return (
-    <div className={styles["playstation-dropdown"]}>
+    <div
+      id={styles["playstation-link"]}
+      className={styles["playstation-dropdown"]}
+    >
       <DropDownItem>
         <Link
-          to="/platforms/playstation-5"
-          param="playstation-5"
+          to="/platforms/playstation5"
+          param="playstation5"
           className={styles["filter-link-dropdown"]}
         >
           Playstation 5
@@ -21,8 +24,8 @@ function PlaystationDropdownMenu() {
 
       <DropDownItem>
         <Link
-          to="/platforms/playstation-4"
-          param="playstation-4"
+          to="/platforms/playstation4"
+          param="playstation4"
           className={styles["filter-link-dropdown"]}
         >
           Playstation 4
@@ -31,8 +34,8 @@ function PlaystationDropdownMenu() {
 
       <DropDownItem>
         <Link
-          to="/platforms/playstation-3"
-          param="playstation-3"
+          to="/platforms/playstation3"
+          param="playstation3"
           className={styles["filter-link-dropdown"]}
         >
           Playstation 3
@@ -41,8 +44,8 @@ function PlaystationDropdownMenu() {
 
       <DropDownItem>
         <Link
-          to="/platforms/playstation-2"
-          param="playstation-2"
+          to="/platforms/playstation2"
+          param="playstation2"
           className={styles["filter-link-dropdown"]}
         >
           Playstation 2
@@ -51,8 +54,8 @@ function PlaystationDropdownMenu() {
 
       <DropDownItem>
         <Link
-          to="/platforms/playstation-1"
-          param="playstation-1"
+          to="/platforms/playstation1"
+          param="playstation1"
           className={styles["filter-link-dropdown"]}
         >
           Playstation 1

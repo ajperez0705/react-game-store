@@ -38,13 +38,12 @@ function FilteredGamesList() {
       setIsLoading(false);
     }
     init();
-  }, [url]);
+  }, [url, filter]);
 
-  const fetchFilteredList = async (chosenFilter) => {
+  const fetchFilteredList = async (platformID) => {
     try {
-      filteredList = await fetchFilteredDB(
-        `http://localhost:3001/filterPlatform`,
-        chosenFilter
+      filteredList = await updateFilteredDB(
+        `http://localhost:3001/filterPlatform?platforms=${platformID}`
       );
       setNextPage(filteredList.next);
       setRenderList(filteredList.results);

@@ -31,7 +31,7 @@ function Header() {
     <div className={style.header}>
       <div>
         <div className={style.logo}>
-          Logo<span>.</span>
+          Game<span className={style["logo-span"]}>Hub</span>
         </div>
       </div>
       <div className={style["user-btns"]}>
