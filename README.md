@@ -36,7 +36,9 @@ In addition to these frontend interactions, a significant portion of time was us
 ## Design Work and Inspiration
 Before touching code, I like to make use of a moodboard and design program like Adobe XD to plan my attack.
 
-Here is the moodboard for this app: <img src="/readme-images/gamehub-moodboard.png" width="400">
+Here is the moodboard for this app: 
+
+<img src="/readme-images/gamehub-moodboard.png" width="400">
 
 Here is a link to view the design files within Figma: [GameHub Design Files](https://www.figma.com/file/sxAJKEb7drkmrgD90odU95/GameHub-Design-File)
 
