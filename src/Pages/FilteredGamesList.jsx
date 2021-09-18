@@ -30,12 +30,11 @@ function FilteredGamesList() {
   useEffect(() => {
     setIsLoading(true);
 
-    // Converts the url param to a platform ID that fits the API
-    setPlatformID(platformConverter(filter));
-    console.log(platformID);
-
     async function init() {
       try {
+        // Converts the url param to a platform ID that fits the API
+        setPlatformID(platformConverter(filter));
+        console.log(platformID);
         await fetchFilteredList(platformID);
       } catch (err) {
         console.log(err);
@@ -43,13 +42,14 @@ function FilteredGamesList() {
       setIsLoading(false);
     }
     init();
-  }, [url, filter]);
+  }, [filter]);
 
   const fetchFilteredList = async (platformID) => {
     try {
       filteredList = await updateFilteredDB(
         `http://localhost:3001/filterPlatform?platforms=${platformID}`
       );
+      console.log(filteredList);
       setNextPage(filteredList.next);
       setRenderList(filteredList.results);
     } catch (err) {
@@ -57,11 +57,11 @@ function FilteredGamesList() {
     }
   };
 
-  const filterHandler = async (platformID, orderBy, genre) => {
+  const filterHandler = async (platformID, genre) => {
     setIsLoading(true);
     try {
       filteredList = await updateFilteredDB(
-        `http://localhost:3001/refinedPlatformFilter?platforms=${platformID}&genres=${genre}&ordering=${orderBy}`
+        `http://localhost:3001/refinedPlatformFilter?platforms=${platformID}&genres=${genre}`
       );
       console.log(filteredList);
       setRenderList(filteredList.results);

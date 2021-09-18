@@ -22,7 +22,6 @@ app.get("/gamelist", async (req, res) => {
   const response = await fetch(
     `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&page_size=200`
   );
-  console.log(res);
   res.json(await response.json());
 });
 
@@ -45,17 +44,16 @@ app.get("/filterPlatform/", async (req, res) => {
   const response = await fetch(
     `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&page_size=12&platforms=${platform}`
   );
-  console.log(res);
   res.json(await response.json());
 });
 
 // Get All games && Page #s
 app.get("/refinedPlatformFilter/", async (req, res) => {
-  const { genres, ordering } = req.query;
+  const { genres } = req.query;
   let platform = req.query.platforms;
 
   const response = await fetch(
-    `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&page_size=12&platforms=${platform}&genres=${genres}&metacritic=${ordering}`
+    `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&page_size=12&platforms=${platform}&genres=${genres}`
   );
   res.json(await response.json());
 });
@@ -74,7 +72,6 @@ app.get("/gamelist/:genre", async (req, res) => {
   const response = await fetch(
     `https://api.rawg.io/api/games?key=d3414bb318cb4f30a1f802c153d2afee&genres=${req.params.genre}&page_size=${numResults}`
   );
-  console.log(res);
   res.json(await response.json());
 });
 
@@ -111,10 +108,7 @@ app.post("/payments/create", async (req, res) => {
 app.post("/game/summary", async (req, res) => {
   const gameName = req.query.gameName;
 
-  console.log("hgello");
   const newBody = `${req.body} "${gameName}";`;
-
-  console.log(newBody);
 
   const options = {
     method: "POST",
@@ -127,10 +121,9 @@ app.post("/game/summary", async (req, res) => {
   };
   const response = await fetch(`https://api.igdb.com/v4/games`, options);
   const data = await response.json();
-  console.log(data);
   res.send(data);
 });
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+  // console.log(`Listening on port ${port}`);
 });

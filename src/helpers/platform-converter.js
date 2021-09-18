@@ -13,7 +13,7 @@ export const platformConverter = (platform) => {
       platform = 14;
       break;
 
-    case "xbox":
+    case "xbox-old":
       platform = 80;
       break;
 

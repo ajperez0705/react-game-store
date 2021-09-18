@@ -5,24 +5,22 @@ import styles from "./PlatformFilter.module.css";
 let isInitial = true;
 
 function PlatformFilter({ updateFilter, platform }) {
-  // Consider creating an object that holds the value and label pairs for the option tags to keep everything clean
-
-  const [orderBy, setOrderBy] = useState("80");
-  const [genre, setGenre] = useState("adventure");
+  // const [orderBy, setOrderBy] = useState("80");
+  const [genre, setGenre] = useState("");
 
   useEffect(() => {
-    // if (isInitial) {
-    //   isInitial = false;
-    //   return;
-    // }
+    if (isInitial === true) {
+      isInitial = false;
+      return;
+    }
 
-    updateFilter(platform, orderBy, genre);
-  }, [orderBy, genre]);
+    // updateFilter(platform, genre);
+  }, [platform, genre]);
 
-  const orderByChangeHandler = (e) => {
-    setOrderBy(e.target.value);
-    console.log(orderBy);
-  };
+  // const orderByChangeHandler = (e) => {
+  //   setOrderBy(e.target.value);
+  //   console.log(orderBy);
+  // };
 
   const genreChangeHandler = (e) => {
     setGenre(e.target.value);
@@ -31,7 +29,7 @@ function PlatformFilter({ updateFilter, platform }) {
 
   return (
     <div className={styles["filter-container"]}>
-      <form className={styles.filters} label="Sort by" action="">
+      {/* <form className={styles.filters} label="Sort by" action="">
         <select
           value={orderBy}
           onChange={orderByChangeHandler}
@@ -42,11 +40,11 @@ function PlatformFilter({ updateFilter, platform }) {
           <option value="80">Popularity</option>
           <option value="released">Released</option>
           <option value="name">Name</option>
-          {/* <option value="Lowest Price">Lowest Price</option> */}
-          {/* <option value="Highest Price">Highest Price</option> */}
-          {/* <option value="Ratings">Ratings</option> */}
+          <option value="Lowest Price">Lowest Price</option>
+          <option value="Highest Price">Highest Price</option>
+          <option value="Ratings">Ratings</option>
         </select>
-      </form>
+      </form> */}
 
       <form className={styles.filters} label="Choose a genre" action="">
         <select
@@ -56,7 +54,7 @@ function PlatformFilter({ updateFilter, platform }) {
           name=""
           id=""
         >
-          {/* <option value="">Genres</option> */}
+          <option value="">Genres</option>
           <option value="adventure">Adventure</option>
           <option value="strategy">Strategy</option>
           <option value="action">Action</option>
