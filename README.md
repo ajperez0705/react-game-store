@@ -42,28 +42,28 @@ Here is a link to view the design files within Figma: [GameHub Design Files](htt
 
 ## Features
 GameHub asks visitors to sign up for an account upon entry so that a database can be created linked to their credentials.
-<img src="/readme-images/gamehub-signin.png" width="400">
+<img src="/readme-images/action-images/gamehub-signin.png" width="400">
 
 From there, many things can be done such as, viewing the home page and being greeted by a number of different games based on popularity, new releases, and best sellers. 
-<img src="/readme-images/gamehub-home.png" width="400">
+<img src="/readme-images/action-images/gamehub-home.png" width="400">
 
 
 From there, many things can be done such as, viewing the home page and being greeted by a number of different games based on popularity, new releases, and best sellers. 
-<img src="/readme-images/gamehub-game-detail.png" width="400">
-<img src="/readme-images/gamehub-game-detail-similar-games.png" width="400">
+<img src="/readme-images/action-images/gamehub-game-detail.png" width="400">
+<img src="/readme-images/action-images/gamehub-game-detail-similar-games.png" width="400">
 
 
 The user can add the game to their wishlist or cart. Which they can later view within the wishlist tab or cart button. Any games viewed within the wishlist tab can be re-rendered, added to the cart, or removed from the list.
-<img src="/readme-images/gamehub-wishlist.png" width="400">
+<img src="/readme-images/action-images/gamehub-wishlist.png" width="400">
 
 
 The search tab allows the user to search for games by title, while the platform filter tab allows for the user to quickly search for games by platform, and further filter by genre. 
-<img src="/readme-images/gamehub-search.png" width="400">
-<img src="/readme-images/gamehub-platform-filter.png" width="400">
+<img src="/readme-images/action-images/gamehub-search.png" width="400">
+<img src="/readme-images/action-images/gamehub-platform-filter.png" width="400">
 
 
 Within the cart, the user can purchase games (using the Stripe API), and upon pay completion, view and play games in their library 
-<img src="/readme-images/gamehub-cart.png" width="400">
+<img src="/readme-images/action-images/gamehub-cart.png" width="400">
   
 
 ## Contact
