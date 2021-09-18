@@ -22,18 +22,20 @@ function FilteredGamesList() {
   const [renderList, setRenderList] = useState([]);
   const [nextPage, setNextPage] = useState(null);
   const [platformID, setPlatformID] = useState(null);
+  let platform;
 
   const { filter } = useParams();
 
   let filteredList = [];
 
+  platform = platformConverter(filter);
   useEffect(() => {
     setIsLoading(true);
+    setPlatformID(platform);
 
     async function init() {
       try {
         // Converts the url param to a platform ID that fits the API
-        setPlatformID(platformConverter(filter));
         console.log(platformID);
         await fetchFilteredList(platformID);
       } catch (err) {
