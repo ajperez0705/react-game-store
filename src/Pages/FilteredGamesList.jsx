@@ -42,7 +42,7 @@ function FilteredGamesList() {
     }
 
     init();
-  }, [filter, platformID]);
+  }, [platformID]);
 
   const fetchFilteredList = async () => {
     filteredList = await updateFilteredDB(
