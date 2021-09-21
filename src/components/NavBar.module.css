@@ -94,12 +94,12 @@
   padding-left: 8px;
 }
 
-#xbox-link {
+/* #xbox-link {
   position: relative;
-}
+} */
 .xbox-dropdown {
   position: absolute;
-  top: -40px;
+  bottom: 190px;
   left: 100px;
   width: 250px;
   padding: 1rem;
@@ -107,30 +107,30 @@
   background-color: #312c2c;
   border-radius: 8px;
 }
-
+/* 
 #playstation-link {
   position: relative;
-}
+} */
 
 .playstation-dropdown {
   position: absolute;
-  top: -40px;
+  bottom: 65px;
+
   left: 100px;
   width: 250px;
   padding: 1rem;
   overflow: hidden;
   background-color: #312c2c;
   border-radius: 8px;
-  height: 0%;
 }
 
-#nintendo-link {
+/* #nintendo-link {
   position: relative;
-}
+} */
 
 .nintendo-dropdown {
   position: absolute;
-  top: -40px;
+  bottom: 35px;
   left: 100px;
   width: 250px;
   padding: 1rem;

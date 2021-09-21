@@ -75,7 +75,7 @@
 }
 
 .form-btn.ghost {
-  background-color: #2699fb;
+  background-color: #f18d7b;
   border: none;
   cursor: pointer;
 }
@@ -248,4 +248,9 @@
   margin: 0 5px;
   height: 40px;
   width: 40px;
+}
+
+.form-error {
+  color: red;
+  margin-top: 16px;
 }

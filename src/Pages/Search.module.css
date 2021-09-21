@@ -4,6 +4,10 @@
   /* align-items: center; */
 }
 
+h2 {
+  font-weight: 400;
+}
+
 .user-controls {
   display: flex;
   justify-content: flex-start;
@@ -49,4 +53,9 @@
 .see-more-btn:hover {
   background-color: #c4202b;
   transition: ease-in 0.3s;
+}
+
+.platform-name {
+  color: #c4202b;
+  text-decoration: underline;
 }

@@ -14,19 +14,23 @@ import {
 } from "../helpers/fetch-functions";
 import LoadingSpinner from "../organisms/ui-components/LoadingSpinner";
 import { platformConverter } from "../helpers/platform-converter";
+import { platformNameConverter } from "../helpers/platformNameConverter";
 
 function FilteredGamesList() {
   const [isLoading, setIsLoading] = useState(false);
   const [renderList, setRenderList] = useState([]);
   const [nextPage, setNextPage] = useState(null);
   const [platformID, setPlatformID] = useState(null);
+  const [platformName, setPlatformName] = useState(null);
   let filteredList = [];
 
   const { filter } = useParams();
 
   useEffect(() => {
     setPlatformID(null);
+    setPlatformName(null);
     setPlatformID(platformConverter(filter));
+    setPlatformName(platformNameConverter(filter));
   }, [filter]);
 
   useEffect(() => {
@@ -86,6 +90,12 @@ function FilteredGamesList() {
       <div className={styles.container}>
         <div className={styles["user-controls"]}>
           <PlatformFilter updateFilter={filterHandler} platform={platformID} />
+          <h2>
+            `Here is a list of{" "}
+            <span className={styles["platform-name"]}>{platformName}</span>{" "}
+            games! Feel free to use the dropdown menu to find the genre you like
+            best!
+          </h2>
         </div>
         <div className={styles["content-container"]}>
           {isLoading ? (

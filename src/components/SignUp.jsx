@@ -24,6 +24,9 @@ function SignUp() {
   async function handleSubmit(e) {
     e.preventDefault();
 
+    if (passwordRef.current.value.length <= 4) {
+      return setError("Password needs to be more than FOUR characters");
+    }
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
     }
@@ -47,7 +50,6 @@ function SignUp() {
     <Fragment>
       <div className="container right-panel-active" id="container">
         <div className="form-container sign-up-container">
-          {error && <h2>{error}</h2>}
           <form className="signup-form" onSubmit={handleSubmit} action="#">
             <h1 className="signin-title">Create Account</h1>
             {/* <div className="social-container">
@@ -95,6 +97,7 @@ function SignUp() {
             <button className="form-btn" disabled={loading} type="submit">
               Sign Up
             </button>
+            {error && <h2 className="form-error">{error}</h2>}
           </form>
         </div>
         <div className="form-container sign-in-container">
