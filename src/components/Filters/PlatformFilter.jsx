@@ -14,8 +14,8 @@ function PlatformFilter({ updateFilter, platform }) {
       return;
     }
 
-    // updateFilter(platform, genre);
-  }, [platform, genre]);
+    updateFilter(platform, genre);
+  }, [genre]);
 
   // const orderByChangeHandler = (e) => {
   //   setOrderBy(e.target.value);

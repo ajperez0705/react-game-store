@@ -16,47 +16,41 @@ import LoadingSpinner from "../organisms/ui-components/LoadingSpinner";
 import { platformConverter } from "../helpers/platform-converter";
 
 function FilteredGamesList() {
-  const url = window.location.pathname;
-
   const [isLoading, setIsLoading] = useState(false);
   const [renderList, setRenderList] = useState([]);
   const [nextPage, setNextPage] = useState(null);
   const [platformID, setPlatformID] = useState(null);
-  let platform;
+  let filteredList = [];
 
   const { filter } = useParams();
 
-  let filteredList = [];
+  useEffect(() => {
+    setPlatformID(null);
+    setPlatformID(platformConverter(filter));
+  }, [filter]);
 
-  platform = platformConverter(filter);
   useEffect(() => {
     setIsLoading(true);
-    setPlatformID(platform);
 
     async function init() {
       try {
-        // Converts the url param to a platform ID that fits the API
-        console.log(platformID);
-        await fetchFilteredList(platformID);
+        await fetchFilteredList();
       } catch (err) {
         console.log(err);
       }
       setIsLoading(false);
     }
-    init();
-  }, [filter]);
 
-  const fetchFilteredList = async (platformID) => {
-    try {
-      filteredList = await updateFilteredDB(
-        `http://localhost:3001/filterPlatform?platforms=${platformID}`
-      );
-      console.log(filteredList);
-      setNextPage(filteredList.next);
-      setRenderList(filteredList.results);
-    } catch (err) {
-      console.log(err);
-    }
+    init();
+  }, [filter, platformID]);
+
+  const fetchFilteredList = async () => {
+    filteredList = await updateFilteredDB(
+      `http://localhost:3001/filterPlatform?platforms=${platformID}`
+    );
+    console.log(filteredList);
+    setNextPage(filteredList.next);
+    setRenderList(filteredList.results);
   };
 
   const filterHandler = async (platformID, genre) => {
