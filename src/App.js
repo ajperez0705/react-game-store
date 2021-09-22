@@ -97,7 +97,7 @@ function App() {
           <PrivateRoute path="/" exact component={Home} />
           <PrivateRoute path="/search" exact component={Search} />
           <PrivateRoute
-            path="/platforms/:filter"
+            path="/platform/:filter"
             component={FilteredGamesList}
           />
           <PrivateRoute path="/wish-list" exact component={WishList} />

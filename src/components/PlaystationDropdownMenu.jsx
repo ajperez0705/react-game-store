@@ -14,7 +14,7 @@ function PlaystationDropdownMenu() {
     >
       <DropDownItem>
         <Link
-          to="/platforms/playstation5"
+          to="/platform/playstation5"
           param="playstation5"
           className={styles["filter-link-dropdown"]}
         >
@@ -24,7 +24,7 @@ function PlaystationDropdownMenu() {
 
       <DropDownItem>
         <Link
-          to="/platforms/playstation4"
+          to="/platform/playstation4"
           param="playstation4"
           className={styles["filter-link-dropdown"]}
         >
@@ -34,7 +34,7 @@ function PlaystationDropdownMenu() {
 
       <DropDownItem>
         <Link
-          to="/platforms/playstation3"
+          to="/platform/playstation3"
           param="playstation3"
           className={styles["filter-link-dropdown"]}
         >
@@ -44,7 +44,7 @@ function PlaystationDropdownMenu() {
 
       <DropDownItem>
         <Link
-          to="/platforms/playstation2"
+          to="/platform/playstation2"
           param="playstation2"
           className={styles["filter-link-dropdown"]}
         >
@@ -54,7 +54,7 @@ function PlaystationDropdownMenu() {
 
       <DropDownItem>
         <Link
-          to="/platforms/playstation1"
+          to="/platform/playstation1"
           param="playstation1"
           className={styles["filter-link-dropdown"]}
         >

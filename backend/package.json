@@ -4,15 +4,13 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
-    "dev": "nodemon server",
+    "start": "node server.js",
     "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
     "express": "^4.17.1",
     "http-proxy-middleware": "^2.0.1",
     "node-fetch": "^2.6.1",

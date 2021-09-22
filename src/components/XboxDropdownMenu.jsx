@@ -11,7 +11,7 @@ function XboxDropdownMenu() {
     <div id={styles["xbox-link"]} className={styles["xbox-dropdown"]}>
       <DropDownItem>
         <Link
-          to="/platforms/xbox-one"
+          to="/platform/xbox-one"
           param="xbox-one"
           className={styles["filter-link-dropdown"]}
         >
@@ -21,7 +21,7 @@ function XboxDropdownMenu() {
 
       <DropDownItem>
         <Link
-          to="/platforms/xbox-360"
+          to="/platform/xbox-360"
           param="xbox-360"
           className={styles["filter-link-dropdown"]}
         >
@@ -31,7 +31,7 @@ function XboxDropdownMenu() {
 
       <DropDownItem>
         <Link
-          to="/platforms/xbox-old"
+          to="/platform/xbox-old"
           param="xbox-old"
           className={styles["filter-link-dropdown"]}
         >

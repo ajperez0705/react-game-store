@@ -59,7 +59,7 @@ function NavBar() {
           <h2 className={styles["filter-title"]}>Platform</h2>
           <ul className={styles["filter-list"]}>
             <Link
-              to="/platforms/pc"
+              to="/platform/pc"
               param="pc"
               className={styles["filter-link"]}
             >

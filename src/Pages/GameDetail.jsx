@@ -144,7 +144,7 @@ function GameDetail() {
   };
 
   const fetchClickedGame = async (abortController) => {
-    const initData = await slugSearch(`game/${slug}`, abortController);
+    const initData = await slugSearch(`/game/${slug}`, abortController);
     const finalData = initData.results[0];
 
     setGame(finalData);
@@ -154,7 +154,7 @@ function GameDetail() {
   const fetchSimilarGames = async () => {
     try {
       const genre = game.genres[0].name.toLowerCase();
-      const initData = await searchDB(`gamelist/${genre}`);
+      const initData = await searchDB(`/gamelist/${genre}`);
 
       // Array Randomizer - need to get a return value to access the result
       for (let i = initData.length - 1; i > 0; i--) {
@@ -181,13 +181,16 @@ function GameDetail() {
   const fetchGameSummary = async () => {
     try {
       const bodyData = "fields *; where name =";
-      const gameData = await gameSummary(`game/summary?gameName=${game.name}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "text/plain",
-        },
-        body: bodyData,
-      });
+      const gameData = await gameSummary(
+        `/game/summary?gameName=${game.name}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "text/plain",
+          },
+          body: bodyData,
+        }
+      );
 
       console.log(gameData);
 

@@ -65,7 +65,7 @@ function Home() {
   }, [dispatch]);
 
   const fetchFeaturedGame = async () => {
-    const data = await fetchGameList("gamelist");
+    const data = await fetchGameList("/gamelist");
     let featGame = {
       rating: 0,
     };
@@ -79,7 +79,7 @@ function Home() {
   };
 
   const fetchNewReleases = async () => {
-    const data = await fetchGameList("releaseDateFilter");
+    const data = await fetchGameList("/releaseDateFilter");
 
     let sortingNewReleases = [];
 
@@ -125,7 +125,7 @@ function Home() {
   };
 
   const fetchBestSellers = async () => {
-    const data = await fetchGameList("gamelist");
+    const data = await fetchGameList("/gamelist");
     let sortingBestSellers = [];
 
     data.results.forEach((game) => {

@@ -43,7 +43,7 @@ function Payment() {
 
     const getClientSecret = async () => {
       const amount = totalAmount * 100;
-      const data = await purchaseDB(`payments/create?total=${amount}`, {
+      const data = await purchaseDB(`/payments/create?total=${amount}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

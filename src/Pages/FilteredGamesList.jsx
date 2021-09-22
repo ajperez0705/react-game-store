@@ -25,6 +25,7 @@ function FilteredGamesList() {
   let filteredList = [];
 
   const { filter } = useParams();
+  const hostname = window.location.hostname;
 
   useEffect(() => {
     setPlatformID(null);
@@ -49,9 +50,8 @@ function FilteredGamesList() {
   }, [platformID]);
 
   const fetchFilteredList = async () => {
-    filteredList = await updateFilteredDB(
-      `filterPlatform?platforms=${platformID}`
-    );
+    filteredList = await updateFilteredDB(`/platform/${platformID}`);
+    // localhost:3001/7
     console.log(filteredList);
     setNextPage(filteredList.next);
     setRenderList(filteredList.results);
@@ -59,9 +59,10 @@ function FilteredGamesList() {
 
   const filterHandler = async (platformID, genre) => {
     setIsLoading(true);
+    console.log(hostname);
     try {
       filteredList = await updateFilteredDB(
-        `refinedPlatformFilter?platforms=${platformID}&genres=${genre}`
+        `/refinedPlatformFilter?platforms=${platformID}&genres=${genre}`
       );
       console.log(filteredList);
       setRenderList(filteredList.results);
