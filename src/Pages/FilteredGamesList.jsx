@@ -50,7 +50,7 @@ function FilteredGamesList() {
 
   const fetchFilteredList = async () => {
     filteredList = await updateFilteredDB(
-      `http://localhost:3001/filterPlatform?platforms=${platformID}`
+      `filterPlatform?platforms=${platformID}`
     );
     console.log(filteredList);
     setNextPage(filteredList.next);
@@ -61,7 +61,7 @@ function FilteredGamesList() {
     setIsLoading(true);
     try {
       filteredList = await updateFilteredDB(
-        `http://localhost:3001/refinedPlatformFilter?platforms=${platformID}&genres=${genre}`
+        `refinedPlatformFilter?platforms=${platformID}&genres=${genre}`
       );
       console.log(filteredList);
       setRenderList(filteredList.results);

@@ -43,15 +43,12 @@ function Payment() {
 
     const getClientSecret = async () => {
       const amount = totalAmount * 100;
-      const data = await purchaseDB(
-        `http://localhost:3001/payments/create?total=${amount}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const data = await purchaseDB(`payments/create?total=${amount}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       setClientSecret(data.clientSecret);
 
       // return () => {

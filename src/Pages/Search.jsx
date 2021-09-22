@@ -20,7 +20,7 @@ function Search() {
     setIsLoading(true);
     setIsSearching(true);
 
-    const initData = await searchDB(`http://localhost:3001/game/${inputValue}`);
+    const initData = await searchDB(`game/${inputValue}`);
     console.log(initData);
 
     const filteredData = initData.filter((result) => result.ratings_count > 50);
