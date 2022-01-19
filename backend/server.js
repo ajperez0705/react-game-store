@@ -9,7 +9,7 @@ const stripe = require("stripe")(
 );
 
 const clientID = "pqvyu7shepuuadhc1ces159vkss7ba";
-const accessToken = "4exsbb3q8tpopkrwc9pbnb3n6eldj8";
+const accessToken = "cglq94ecv2zvbzmduavcnpufb7xqot";
 
 // Vars
 const numResults = 150;
