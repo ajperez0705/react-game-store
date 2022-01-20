@@ -1,7 +1,8 @@
 .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .hero-container {
@@ -9,24 +10,32 @@
 }
 
 .primary-container {
-  max-width: 844px;
-  min-width: 844px;
+  flex: 3 1;
+  min-width: 50%;
   width: auto;
-
+  margin: 8px;
   max-height: auto;
   min-height: 409px;
-  height: auto;
+  max-height: 410px;
   background-color: #25262c;
   border-radius: 50px;
   padding: 64px;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 1440px) {
+  .primary-container {
+    min-width: 100%;
+  }
 }
 
 .secondary-container {
-  max-width: 293px;
-  min-width: 293px;
+  flex: 1;
   width: auto;
   max-height: 409px;
   min-height: 409px;
+  margin: 8px;
+
   height: auto;
   background-color: #25262c;
   border-radius: 50px;
@@ -72,4 +81,5 @@ h6 {
   font-size: 20px;
   line-height: 32px;
   font-weight: lighter;
+  padding: 8px 0;
 }
