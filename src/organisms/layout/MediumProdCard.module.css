@@ -1,16 +1,18 @@
 .container {
-  max-width: 465px;
-  min-width: 465px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 1;
+  max-width: auto;
+  min-width: 300px;
   max-height: 350px;
   min-height: 350px;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
   cursor: pointer;
+  margin: 8px;
 }
 
 .container:hover {
@@ -44,7 +46,7 @@
 }
 
 .title {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .genre {

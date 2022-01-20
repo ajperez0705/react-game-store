@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3001;
 const fetch = require("node-fetch");
 const cors = require("cors");
 const stripe = require("stripe")(
@@ -8,7 +8,9 @@ const stripe = require("stripe")(
 );
 
 const clientID = "pqvyu7shepuuadhc1ces159vkss7ba";
-const accessToken = "4exsbb3q8tpopkrwc9pbnb3n6eldj8";
+// Access token needs to be renewed every 60 days using postman which yields a new token.
+// Last updated: 1/19/22
+const accessToken = "cglq94ecv2zvbzmduavcnpufb7xqot";
 
 // Vars
 const numResults = 150;
