@@ -6,6 +6,7 @@ h2 {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-bottom: 48px;
 }
 
 .user-controls :not(:last-child) {
