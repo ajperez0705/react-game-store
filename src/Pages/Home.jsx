@@ -164,7 +164,7 @@ function Home() {
   };
 
   return (
-    <div>
+    <>
       {notification && (
         <Notification
           status={notification.status}
@@ -178,7 +178,7 @@ function Home() {
           <LoadingSpinner />
         </Fragment>
       ) : (
-        <div>
+        <>
           <section className={styles.hero}>
             <h4 className={styles["section-title"]}>Featured</h4>
             <HeroProdCard
@@ -222,9 +222,9 @@ function Home() {
               )}
             </div>
           </section>
-        </div>
+        </>
       )}
-    </div>
+    </>
   );
 }
 

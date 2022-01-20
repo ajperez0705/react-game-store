@@ -1,7 +1,7 @@
 .main-container {
   display: flex;
-  max-height: 440px;
   justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .container::after {
@@ -18,30 +18,24 @@
 }
 
 .container {
-  position: relative;
-  min-width: 1100px;
-  max-width: 1100px;
-  min-height: 440px;
-  border-radius: 50px;
-  /* background-image: url("https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg"); */
-  background-position: left;
-  background-repeat: no-repeat;
-  background-size: cover;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  flex: 3;
+  position: relative;
+  max-width: auto;
+  min-width: 600px;
+  min-height: 440px;
+  border-radius: 50px;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
   padding: 54px;
-  margin-right: 7rem;
 }
+
 .container > * {
   z-index: 10;
   position: relative;
-}
-
-.screenshot-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
 }
 
 .title {
@@ -58,9 +52,27 @@
   margin-right: 20px;
 }
 
+.screenshot-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+@media only screen and (max-width: 1280px) {
+  .screenshot-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .hero-screenshots {
+    margin: 16px 0;
+  }
+}
+
 .hero-screenshots {
   max-height: 133px;
-  max-width: 244px;
+  max-width: auto;
   min-width: 244px;
   border-radius: 540px;
   margin-left: 16px;
