@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "../components/SignInForm.css";
 import { useAuth } from "../contexts/AuthContext";
@@ -47,7 +47,7 @@ function SignUp() {
   }
 
   return (
-    <Fragment>
+    <div className="auth-container">
       <div className="container right-panel-active" id="container">
         <div className="form-container sign-up-container">
           <form className="signup-form" onSubmit={handleSubmit} action="#">
@@ -144,7 +144,7 @@ function SignUp() {
           </div>
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 }
 
