@@ -35,7 +35,7 @@ function Search() {
       <div className={styles.container}>
         <div className={styles["user-controls"]}>
           <SearchBar submit={searchHandler} />
-          <Filter />
+          {/* <Filter /> */}
         </div>
         <div className={styles["content-container"]}>
           {!isSearching ? (
