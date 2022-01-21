@@ -10,15 +10,8 @@ function SignInForm() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  // const    signUpButton = () => {
-  //         container.classList.add("right-panel-active");
-  //     };
 
-  //     signInButton.addEventListener('click', () => {
-  //         container.classList.remove("right-panel-active");
-  //     });
-
-  async function handleSubmit(e) {
+  async function signIn(e) {
     e.preventDefault();
 
     try {
@@ -32,67 +25,29 @@ function SignInForm() {
     setLoading(false);
   }
 
+  async function guestLogin(e) {
+    e.preventDefault();
+
+    try {
+      setError("");
+      setLoading(true);
+      await login("guest@email.com", "Password123");
+      history.push("/");
+    } catch {
+      setError("Failed to Sign in");
+    }
+    setLoading(false);
+  }
+
   return (
     <div className="auth-container">
       <div className="container left-panel-active" id="container">
-        {/* <div class="form-container sign-up-container">
-          <form onSubmit={handleSubmit} action="#">
-            <h1>Create Account</h1>
-            <div class="social-container">
-              <a href="#" class="social">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social">
-                <i class="fab fa-google-plus-g"></i>
-              </a>
-              <a href="#" class="social">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-            </div>
-            <span>or use your email for registration</span>
-            <input type="text" placeholder="Name" />
-            <input
-              id="email"
-              type="email"
-              placeholder="Email"
-              required
-              ref={emailRef}
-            />
-            <input
-              id="password"
-              type="password"
-              placeholder="Password"
-              required
-              ref={passwordRef}
-            />
-            <input
-              id="password-confirm"
-              type="password"
-              placeholder="Password"
-              required
-              ref={passwordConfirmRef}
-            />
-            <button disabled={loading} type="submit">
-              Sign Up
-            </button>
-          </form>
-        </div> */}
         <div className="form-container sign-in-container">
           {error && <h2>{error}</h2>}
 
-          <form className="signin-form" onSubmit={handleSubmit} action="#">
+          <form className="signin-form" action="#">
             <h1 className="signin-title">Sign in</h1>
-            {/* <div className="social-container">
-              <a href="#" className="social">
-                <i className="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" className="social">
-                <i className="fab fa-google-plus-g"></i>
-              </a>
-              <a href="#" className="social">
-                <i className="fab fa-linkedin-in"></i>
-              </a>
-            </div> */}
+
             <span className="form-suggestion">or use your account</span>
             <input
               id="email"
@@ -108,11 +63,18 @@ function SignInForm() {
               required
               ref={passwordRef}
             />
-            <Link className="password-forget" to="/forgot-password">
+            {/* <Link className="password-forget" to="/forgot-password">
               Forgot your password?
-            </Link>
-            <button className="form-btn" disabled={loading}>
+            </Link> */}
+            <button className="form-btn" disabled={loading} onClick={signIn}>
               Log In
+            </button>
+            <button
+              className="form-btn"
+              disabled={loading}
+              onClick={guestLogin}
+            >
+              Guest Login
             </button>
           </form>
         </div>

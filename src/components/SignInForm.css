@@ -64,6 +64,7 @@
   text-transform: uppercase;
   transition: transform 80ms ease-in;
   cursor: pointer;
+  margin: 8px;
 }
 
 .form-btn:active {
